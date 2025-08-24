@@ -9,7 +9,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: "/X-01Folio",   // 👈 add this (replace X-01Folio with your repo name)
+  // 👇 Replace X-01Folio with your exact GitHub repo name
+  base: "/X-01Folio/",  
   plugins: [
     react(),
     mode === "development" && componentTagger(),
