@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "The Future of AI in Web Development",
+    "excerpt": "Exploring how AI is changing web development.",
+    "content": "Artificial Intelligence is transforming web development in many ways. From automating repetitive coding tasks to enhancing user experiences with intelligent interfaces, AI is reshaping the way we build websites and applications.",
+    "coverImage": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop",
+    "date": "2024-01-15",
+    "readTime": "8 min read",
+    "tags": ["AI", "Web Development", "Future Tech"],
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Building Scalable Microservices with Node.js",
+    "excerpt": "A guide to architecting scalable microservices.",
+    "content": "Microservices architecture is now the backbone of modern web apps. Learn how to design and deploy Node.js microservices that handle millions of requests efficiently and maintain modularity.",
+    "coverImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop",
+    "date": "2024-01-10",
+    "readTime": "12 min read",
+    "tags": ["Node.js", "Microservices", "Architecture"],
+    "featured": false
+  },
+  {
+    "id": 3,
+    "title": "Machine Learning Models in Production",
+    "excerpt": "Best practices for deploying ML models at scale.",
+    "content": "Deploying machine learning models to production is often more challenging than building them. This article covers essential strategies, tools, and monitoring techniques to keep ML models reliable and performant.",
+    "coverImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop",
+    "date": "2024-01-05",
+    "readTime": "15 min read",
+    "tags": ["Machine Learning", "DevOps", "Production"],
+    "featured": true
+  },
+  {
+    "id": 4,
+    "title": "Introduction to Data Visualization",
+    "excerpt": "How to present data effectively with visuals.",
+    "content": "Data visualization helps communicate insights clearly and efficiently. Learn the basics of charts, dashboards, and storytelling with data to make complex information easy to understand.",
+    "coverImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop",
+    "date": "2024-02-01",
+    "readTime": "7 min read",
+    "tags": ["Data Visualization", "Charts", "Analytics"],
+    "featured": false
+  },
+ 
+  {
+    "id": 5,
+    "title": "Bill Gates reveals his winning answer to ‘why should we hire you’ to crack any interview",
+    "excerpt": "A beginner’s guide to Python programming for data analysis.",
+    "content": "When it comes to cracking a job interview, even the brightest candidates often stumble on the most common questions. Microsoft co-founder Bill Gates, who has not only given interviews in his youth but also conducted countless ones as an employer, recently shared how to approach some of the trickiest questions that appear in almost every interview. Gates believes that while technical skills matter, the way candidates express their motivation, adaptability, and problem-solving abilities makes a lasting impression. His advice offers a mix of honesty, preparation, and strategic thinking that can help job seekers stand out in today’s highly competitive hiring environment.",
+    "coverImage": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1KR8BT.img?w=768&h=432&m=6&x=417&y=257&s=277&d=277",
+    "date": "2025-08-26",
+    "readTime": "4 min read",
+    "tags": ["Career Advice", "Job Interview", "Interview Tips", "Professional Growth", "Soft Skills", "Problem Solving", "Adaptability", "Motivation"],
+    "featured": true
+  },
+   {
+    "id": 6,
+    "title": "The Rise of Generative AI in Data Science",
+    "excerpt": "Exploring how generative AI models like GPT-5 are transforming data analysis, content creation, and predictive modeling.",
+    "content": "Generative AI models are revolutionizing data science by enabling advanced content creation, predictive modeling, and automation of repetitive tasks. Companies are increasingly leveraging these models to gain insights faster and innovate at scale.",
+    "coverImage": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop",
+    "date": "2025-08-26",
+    "readTime": "7 min read",
+    "tags": ["Generative AI", "Data Science", "GPT-5", "Machine Learning", "AI Trends"],
+    "featured": true
+  },
+  
+    {
+  "id": 11,
+  "title": "Google Launches Data Science Agent in Colab: Revolutionizing Data Analysis",
+  "excerpt": "Google introduces the Data Science Agent in Colab, powered by Gemini 2.0, to automate data analysis workflows.",
+  "content": "Google has unveiled the Data Science Agent on its Colab platform, leveraging the capabilities of its Gemini 2.0 AI model. This agent automates the process of data analysis by generating fully functional notebooks from user-uploaded data files. It eliminates the need for manual tasks such as importing libraries, loading data, and writing boilerplate code. Users can now achieve their analysis goals by simply describing them, and the agent orchestrates a composite flow mimicking the workflow of a typical data scientist. The generated code can be customized and extended to meet specific requirements.",
+  "coverImage": "https://analyticsindiamag.com/wp-content/uploads/2024/11/You-Wont-Believe-What-Google-Did-in-2024.jpg.webp",
+  "date": "2025-03-04",
+  "readTime": "5 min read",
+  "tags": ["Google Colab", "Data Science", "AI Automation", "Gemini 2.0", "Machine Learning"],
+  "featured": true
+}
+
+  
+]

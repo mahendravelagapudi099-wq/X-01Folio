@@ -36,8 +36,7 @@ const Index = () => {
       <Blog />
       <Resume />
       <Contact />
-      <Footer />
-       <QuickConnect />
+      <QuickConnect />
     </div>
   );
 };

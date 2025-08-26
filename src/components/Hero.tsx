@@ -150,7 +150,7 @@ const Hero = () => {
         <div className="fade-in delay-400">
           <p className="text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
             Passionate about extracting insights from data to solve real-world problems. 
-            Currently pursuing my Master's in Data Science with a focus on machine learning and statistical analysis.
+            Currently B.Tech in Data Science with a focus on machine learning and statistical analysis.
           </p>
         </div>
 

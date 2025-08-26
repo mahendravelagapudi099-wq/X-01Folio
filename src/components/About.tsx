@@ -8,8 +8,6 @@ const About = () => {
     "Pandas",
     "NumPy",
     "Scikit-learn",
-    "TensorFlow",
-    "PyTorch",
     "Matplotlib",
     "Seaborn",
     "Jupyter",
@@ -20,19 +18,10 @@ const About = () => {
     "Express",
     "MongoDB",
     "Git",
-    "Docker",
-    "AWS",
-    "Azure",
-    "Google Cloud",
-    "Machine Learning",
-    "Deep Learning",
     "Data Visualization",
     "Data Analysis",
-    "Statistical Modeling",
-    "Data Engineering",
-    "ETL Processes",
-    "Big Data Technologies",
-    "APIs",
+    
+    
   ];
 
   const skills = [
@@ -92,12 +81,7 @@ const About = () => {
                 Velagapudi Mahendra
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                A dedicated data science student passionate about transforming
-                raw data into actionable insights. Currently pursuing my
-                Master's in Data Science at UC Berkeley, I love working on
-                projects that combine statistical rigor with creative
-                problem-solving. My goal is to leverage data to drive meaningful
-                impact in healthcare and social good initiatives.
+               I’m a Data Science student passionate about turning raw data into actionable insights. Currently pursuing my B.Tech in Data Science at MREM, I enjoy working on projects that blend statistical rigor with creative problem-solving. My goal is to leverage data to make a meaningful impact in healthcare and social good initiatives.
               </p>
             </div>
           </div>
