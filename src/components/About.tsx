@@ -79,7 +79,7 @@ const About = () => {
               <div className="w-full h-full rounded-full bg-gradient-primary p-1">
                 <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
                   <img
-                    src="src/assets/profilepic-CMVvYHOy.png"
+                    src="src/assets/profilepic.png"
                     alt="Profile"
                     className="w-full h-full object-cover rounded-full"
                   />

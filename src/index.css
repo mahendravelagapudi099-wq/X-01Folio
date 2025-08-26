@@ -230,3 +230,11 @@
     background: linear-gradient(180deg, hsl(var(--primary-glow)), hsl(var(--secondary-glow)));
   }
 }
+
+/* Prevent horizontal scroll / shaking issue */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}

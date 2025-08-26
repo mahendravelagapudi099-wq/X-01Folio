@@ -21,13 +21,13 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "AI-Powered Analytics Dashboard",
-      description: "Real-time analytics platform with machine learning insights",
-      longDescription: "A comprehensive analytics dashboard that leverages machine learning to provide predictive insights and real-time data visualization. Built with React, Node.js, and TensorFlow, it processes millions of data points to deliver actionable business intelligence.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+  title: "SentimentScopex",
+  description: "AI-powered sentiment analysis web application",
+  longDescription: "SentimentScopex is an AI-driven platform that analyzes textual content such as social media comments, reviews, and feedback to determine positive, negative, or neutral sentiment. Built with React and hosted on Netlify, it offers a real-time, user-friendly interface to help users understand public opinion and customer sentiment effectively.",
+      image: "./assets//SentimentScopex.jpg", 
       tech: ["React", "TypeScript", "Node.js", "TensorFlow", "PostgreSQL", "AWS"],
-      github: "https://github.com",
-      demo: "https://demo.com",
+      github: "https://github.com/mahendravelagapudi099-wq/SentimentScope",
+      demo: "https://sentimentscopex.netlify.app/",
       featured: true
     },
     {
