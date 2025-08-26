@@ -46,16 +46,17 @@ const Resume = () => {
     "Published 15+ technical articles with 50K+ reads"
   ];
 
-  const handleDownload = () => {
-    // In a real implementation, this would download the actual PDF
-    const link = document.createElement('a');
-    link.href = '/resume.pdf'; // This would be a real PDF file
-    link.download = 'Alex_Chen_Resume.pdf';
-    link.click();
-  };
+const handleDownload = () => {
+  const link = document.createElement('a');
+  link.href = '/Velagapudi_Mahendra_Resume.pdf'; // just relative path from public
+  link.download = 'Velagapudi_Mahendra_Resume.pdf';
+  link.click();
+};
+
 
   return (
     <section id="resume" className="py-20 px-6 max-w-7xl mx-auto">
+      {/* Header */}
       <div className="fade-in text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
           Resume
@@ -78,6 +79,7 @@ const Resume = () => {
         </Button>
       </div>
 
+      {/* Content */}
       <div className="grid lg:grid-cols-2 gap-16">
         {/* Experience */}
         <div className="fade-in delay-300">
@@ -87,7 +89,6 @@ const Resume = () => {
             </div>
             <h3 className="text-2xl font-orbitron font-semibold">Experience</h3>
           </div>
-          
           <div className="space-y-6">
             {experience.map((job, index) => (
               <div key={index} className="glass-card p-6 hover:glow-secondary transition-all duration-300">
@@ -112,7 +113,6 @@ const Resume = () => {
               </div>
               <h3 className="text-2xl font-orbitron font-semibold">Education</h3>
             </div>
-            
             <div className="space-y-6">
               {education.map((edu, index) => (
                 <div key={index} className="glass-card p-6 hover:glow-secondary transition-all duration-300">
@@ -135,7 +135,6 @@ const Resume = () => {
               </div>
               <h3 className="text-2xl font-orbitron font-semibold">Achievements</h3>
             </div>
-            
             <div className="glass-card p-6 glow-purple">
               <ul className="space-y-3">
                 {achievements.map((achievement, index) => (

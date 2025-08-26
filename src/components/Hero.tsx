@@ -170,7 +170,7 @@ const Hero = () => {
   className="glass-card glow-secondary px-8 py-4 text-lg font-medium border-primary/50 hover:border-primary hover:scale-105 transition-all duration-300"
   asChild
 >
-  <a href="/cv.pdf" download>
+  <a href="/Velagapudi_Mahendra_Resume.pdf" download>
     <Download className="mr-2 h-5 w-5" />
     Download CV
   </a>
