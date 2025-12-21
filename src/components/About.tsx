@@ -4,54 +4,51 @@ import profileImage from '@/assets/profilepic.png';
 
 const About = () => {
   const techStack = [
-    "Python",
-    "R",
-    "SQL",
-    "Pandas",
-    "NumPy",
-    "Scikit-learn",
-    "Matplotlib",
-    "Seaborn",
-    "Jupyter",
-    "Tableau",
-    "javascript", 
-    "React",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "Git",
-    "Data Visualization",
-    "Data Analysis",
-    
-    
+   "Python",
+  "SQL",
+  "Statistics (Basics)",
+  "Data Cleaning",
+  "Exploratory Data Analysis (EDA)",
+  "Pandas",
+  "NumPy",
+  "Machine Learning (Basics)",
+  "Scikit-learn",
+  "Model Evaluation (Intro)",
+  "Matplotlib",
+  "Seaborn",
+  "Data Visualization",
+  "Jupyter Notebook",
+  "Git & GitHub",
+
   ];
 
   const skills = [
     {
       icon: TrendingUp,
-      title: "Statistical Analysis",
+      title: "Data Analysis",
       description:
-        "Proficient in statistical modeling, hypothesis testing, and exploratory data analysis using R and Python.",
+        "Understanding data analysis concepts including data cleaning, exploratory data analysis, and basic statistical techniques.",
     },
     {
       icon: Brain,
-      title: "Machine Learning",
+      title: "Machine Learning (Beginner)",
       description:
-        "Experience with supervised and unsupervised learning, deep learning, and model evaluation techniques.",
+        "Learning fundamentals of machine learning such as supervised and unsupervised learning, model training, and evaluation.",
     },
     {
       icon: Database,
-      title: "Data Engineering",
+      title: "Databases & Data Modeling",
       description:
-        "Skilled in data cleaning, preprocessing, ETL pipelines, and working with various database systems.",
+        "Working with MongoDB basics including schema design, indexing concepts, and query optimization fundamentals.",
     },
     {
       icon: BarChart3,
       title: "Data Visualization",
       description:
-        "Creating compelling visualizations and dashboards using Tableau, matplotlib, and interactive tools.",
+        "Creating basic visualizations using tools like Tableau, spreadsheets, and Python libraries to present insights clearly.",
     },
   ];
+
 
   return (
     <section id="about" className="py-20 px-6 max-w-7xl mx-auto">
@@ -83,7 +80,7 @@ const About = () => {
                 Velagapudi Mahendra
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-               I’m a Data Science student passionate about turning raw data into actionable insights. Currently pursuing my B.Tech in Data Science at MREM, I enjoy working on projects that blend statistical rigor with creative problem-solving. My goal is to leverage data to make a meaningful impact in healthcare and social good initiatives.
+               I’m a Data Science student passionate about transforming raw data into meaningful insights. Currently pursuing my B.Tech in Data Science at MREM, I enjoy working on projects that combine analytical thinking with creative problem-solving. I aspire to apply data-driven approaches to make a positive impact in healthcare and social good initiatives.
               </p>
             </div>
           </div>

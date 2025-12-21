@@ -41,12 +41,13 @@ const Resume = () => {
   ];
 
   const achievements = [
-    "AWS Certified Solutions Architect",
-    "Google Cloud Professional Developer",
-    "Won 'Best Innovation' at TechCorp Hackathon 2023",
-    "Speaker at React Conference 2022",
-    "Published 15+ technical articles with 50K+ reads"
-  ];
+  "Google Data Analytics Certified",
+  "Completed Generative AI and Data Science Courses",
+  "MongoDB Data Modeling Certified",
+  "Data Analytics & Visualization Simulations",
+  "Participated in DevOps and GitHub Workshops"
+];
+
 
 const handleDownload = () => {
   const link = document.createElement('a');

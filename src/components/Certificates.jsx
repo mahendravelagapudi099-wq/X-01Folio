@@ -6,6 +6,7 @@ import { Award, Calendar, ExternalLink } from 'lucide-react';
 
 const Certifications = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const certificates = [
     {
@@ -21,38 +22,155 @@ const Certifications = () => {
     },
     {
       id: '2',
-      title: 'Machine Learning Specialization',
-      issuer: 'Stanford University & DeepLearning.AI',
-      date: '2023',
-      description: 'Completed comprehensive machine learning curriculum covering supervised learning, unsupervised learning, and neural networks.',
-      skills: ['Machine Learning', 'Python', 'TensorFlow', 'Neural Networks', 'Deep Learning'],
-      credentialId: 'ML-SPEC-2023-456',
-      verificationUrl: 'https://coursera.org/verify/specialization/abc456',
+      title: 'Introduction to Generative AI',
+      issuer: 'Google Cloud / Simplilearn',
+      date: '12th December 2025',
+      description: 'This professional has demonstrated initiative and a commitment to deepening their skills and advancing their career in generative AI.',
+      skills: ['Generative AI', 'Machine Learning', 'AI Models', 'Deep Learning', 'Python', 'Prompt Engineering'],
+      credentialId: '9550963',
+      verificationUrl: '',
       image: '/placeholder.svg'
     },
     {
       id: '3',
-      title: 'AWS Certified Cloud Practitioner',
-      issuer: 'Amazon Web Services',
-      date: '2023',
-      description: 'Foundational certification demonstrating cloud computing knowledge and AWS core services understanding.',
-      skills: ['AWS', 'Cloud Computing', 'Cloud Architecture', 'Cloud Security'],
-      credentialId: 'AWS-CCP-789',
-      verificationUrl: 'https://aws.amazon.com/verification/xyz789',
+      title: 'MongoDB Data Modeling Intro',
+      issuer: 'MongoDB',
+      date: '18th December 2025',
+      description: 'Completed an introductory course on MongoDB data modeling, covering schema design, indexing, and database best practices.',
+      skills: ['MongoDB', 'Data Modeling', 'Database Design', 'Indexing', 'NoSQL'],
+      credentialId: 'MDBeiehqbzv9n',
+      verificationUrl: '',
       image: '/placeholder.svg'
     },
     {
       id: '4',
-      title: 'Data Science Professional Certificate',
-      issuer: 'IBM',
-      date: '2023',
-      description: 'Hands-on experience with data science tools and techniques including Python, SQL, machine learning, and data visualization.',
-      skills: ['Data Science', 'Python', 'Pandas', 'Scikit-learn', 'Jupyter Notebooks'],
-      credentialId: 'IBM-DS-101',
-      verificationUrl: 'https://ibm.com/verify/certificate/def101',
+      title: 'Data Analyst 101',
+      issuer: 'Microsoft / Simplilearn',
+      date: '4th December 2025',
+      description: 'Completed an introductory data analysis course covering data cleaning, visualization, and basic statistical analysis.',
+      skills: ['Data Analysis', 'Data Cleaning', 'Data Visualization', 'Excel', 'SQL', 'Python'],
+      credentialId: '9528126',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '5',
+      title: 'MongoDB and the Document Model',
+      issuer: 'MongoDB, Inc.',
+      date: '20th December 2025',
+      description: 'Completed a course on MongoDB document modeling, covering schema design, collections, and best practices for document databases.',
+      skills: ['MongoDB', 'Document Model', 'NoSQL', 'Database Design', 'Data Modeling'],
+      credentialId: 'MDB3dllkpvir8',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '6',
+      title: 'Gemini Certified Student',
+      issuer: 'Google for Education / University',
+      date: '7th December 2025',
+      description: 'Demonstrated knowledge, skills, and basic competencies needed to use Google AI.',
+      skills: ['Artificial Intelligence', 'Machine Learning', 'Google AI', 'AI Fundamentals'],
+      credentialId: '',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '7',
+      title: 'Data Analytics and Visualization Job Simulation',
+      issuer: 'Accenture / Forage',
+      date: '27th February 2025',
+      description: 'Completed practical tasks in project understanding, data cleaning & modeling, data visualization & storytelling, and client presentation.',
+      skills: ['Data Analysis', 'Data Cleaning', 'Data Modeling', 'Data Visualization', 'Storytelling', 'Project Management'],
+      credentialId: 'TtuRuZiFOz6MBpjAJ',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '8',
+      title: 'Data Analytics Job Simulation',
+      issuer: 'Deloitte / Forage',
+      date: '26th February 2025',
+      description: 'Completed practical tasks in data analysis and forensic technology, demonstrating applied analytics skills in a professional simulation environment.',
+      skills: ['Data Analysis', 'Forensic Technology', 'Data Modeling', 'Reporting'],
+      credentialId: '',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '9',
+      title: 'Software Engineering Job Simulation',
+      issuer: 'Skyscanner / Forage',
+      date: '13th February 2025',
+      description: 'Completed practical tasks including creating a Backpack React web app, building microservices, developing a mobile flight itinerary, and creating a user-friendly platform.',
+      skills: ['React', 'Microservices', 'Mobile Development', 'Web Development', 'UI/UX'],
+      credentialId: 'pHebmieZOnoP64ZJ5',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '10',
+      title: 'SQL Bootcamp',
+      issuer: 'LetsUpgrade / NSDC / GDG MAD',
+      date: '10th August 2024',
+      description: 'Completed a 5-day SQL Bootcamp covering database querying, data manipulation, and SQL fundamentals.',
+      skills: ['SQL', 'Database Queries', 'Data Manipulation', 'Database Management'],
+      credentialId: 'LUESQLAUG124491',
+      verificationUrl: 'https://www.letsupgrade.in/verify',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '11',
+      title: 'Data Analytics with Python',
+      issuer: 'NPTEL / IIT Roorkee',
+      date: 'Jan-Apr 2025',
+      description: 'Successfully completed a 12-week course on data analytics using Python, including online assignments and a proctored exam.',
+      skills: ['Python', 'Data Analysis', 'Pandas', 'NumPy', 'Data Visualization', 'Statistics'],
+      credentialId: 'NPTEL25CS17S1147000547',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '12',
+      title: 'Introduction to Generative AI',
+      issuer: 'Google Cloud / Simplilearn',
+      date: '12th December 2025',
+      description: 'Completed an online course on Generative AI, demonstrating initiative and commitment to learning AI fundamentals.',
+      skills: ['Generative AI', 'Machine Learning', 'AI Models', 'Deep Learning', 'Python', 'Prompt Engineering'],
+      credentialId: '9550963',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '13',
+      title: 'DevOps Webinar Participation',
+      issuer: 'Google Developer Groups / Malla Reddy Engineering College',
+      date: '30th September 2025',
+      description: 'Successfully participated in a DevOps webinar covering collaboration, CI/CD concepts, and cloud development practices.',
+      skills: ['DevOps', 'CI/CD', 'Cloud Development', 'Collaboration', 'Webinar Participation'],
+      credentialId: '',
+      verificationUrl: '',
+      image: '/placeholder.svg'
+    },
+    {
+      id: '14',
+      title: 'Hands-on Workshop on DevOps — Git, GitHub & Docker',
+      issuer: 'GeeksforGeeks / Malla Reddy Engineering College',
+      date: '16th October 2025',
+      description: 'Participated in a hands-on DevOps workshop focused on Git, GitHub, Docker, and automation practices.',
+      skills: ['DevOps', 'Git', 'GitHub', 'Docker', 'Automation'],
+      credentialId: 'MREMGFG041',
+      verificationUrl: '',
       image: '/placeholder.svg'
     }
   ];
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => Math.min(prev + 6, certificates.length));
+  };
+
+  const visibleCertificates = certificates.slice(0, visibleCount);
+  const hasMore = visibleCount < certificates.length;
 
   return (
     <section id="certifications" className="py-20 px-6 max-w-7xl mx-auto">
@@ -67,7 +185,7 @@ const Certifications = () => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {certificates.map((cert, index) => (
+        {visibleCertificates.map((cert, index) => (
           <Dialog key={cert.id}>
             <DialogTrigger asChild>
               <div
@@ -189,6 +307,17 @@ const Certifications = () => {
           </Dialog>
         ))}
       </div>
+
+      {hasMore && (
+        <div className="text-center mt-12 fade-in">
+          <Button
+            onClick={handleLoadMore}
+            className="glass-card bg-primary/20 hover:bg-primary/30 border-primary/30 text-primary px-8 py-6 text-lg font-orbitron glow-primary"
+          >
+            Load More Certifications
+          </Button>
+        </div>
+      )}
 
       <div className="text-center mt-12 fade-in delay-500">
         <div className="glass-card p-6 glow-purple inline-block">

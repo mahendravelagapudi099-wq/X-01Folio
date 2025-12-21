@@ -42,39 +42,30 @@ const Projects = () => {
       demo: "https://demo.com",
       featured: true
     },
-    {
-      id: 3,
-      title: "Cloud Infrastructure Manager",
-      description: "Automated cloud resource management and optimization",
-      longDescription: "An intelligent cloud infrastructure management system that automatically optimizes resource allocation, monitors performance, and reduces costs. Integrates with major cloud providers to deliver seamless scaling and management.",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop",
-      tech: ["Python", "AWS", "Terraform", "Docker", "Kubernetes", "React"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Neural Network Visualizer",
-      description: "Interactive tool for visualizing neural network architectures",
-      longDescription: "An educational tool that provides interactive visualization of neural network architectures and training processes. Helps students and researchers understand complex AI models through intuitive visual representations.",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop",
-      tech: ["D3.js", "Python", "FastAPI", "React", "WebGL", "TensorFlow"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Neural Network Visualizer",
-      description: "Interactive tool for visualizing neural network architectures",
-      longDescription: "An educational tool that provides interactive visualization of neural network architectures and training processes. Helps students and researchers understand complex AI models through intuitive visual representations.",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop",
-      tech: ["D3.js", "Python", "FastAPI", "React", "WebGL", "TensorFlow"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-      featured: false
-    }
+   { id: 3, title: "Habit Tracker Web", description: "A web app to track daily habits and visualize progress with charts.", 
+    longDescription: "Habit Tracker Web helps users monitor their daily habits, set goals, and stay motivated. The interactive charts and dashboards allow for easy tracking of progress over time. This project provided hands-on experience with frontend development, state management, and cloud-based database integration.", 
+    image: "https://uploads.onecompiler.io/42rqwwqvz/44897vpuv/Screenshot%202025-12-21%20225947.png",
+    tech: ["React.js (Hooks, Context API)", "Vite", "Tailwind CSS", "Firebase Firestore", "Recharts", "Lucide React", "GitHub Pages"], 
+    github: "https://github.com/mahendravelagapudi099-wq/habit-tracker-web.git", 
+    demo: "https://github.com/mahendravelagapudi099-wq/habit-tracker-web.git", 
+    featured: true 
+  },
+    { id: 4, title: "VectorMind - AI Sales Analyst", description: "An AI-powered sales analytics platform to convert raw data into actionable insights.", 
+    longDescription: "VectorMind is an intelligent sales analytics platform designed to bridge the gap between raw data and decision-making. Unlike traditional dashboards, it goes beyond charts to provide predictive analytics and insights. Built to explore AI integration with business analytics, this project helped improve skills in Python, AI/LLM frameworks, and data visualization.", 
+    image: "https://uploads.onecompiler.io/42rqwwqvz/44897vpuv/dashboard.png",
+    tech: ["Streamlit (Python)", "Cohere / Ollama", "LangChain", "ChromaDB", "Pandas", "NumPy", "Scikit-learn", "Prophet", "Plotly Express"], 
+    github: "https://github.com/mahendravelagapudi099-wq/VectorMind---AI-Sales-Analyst-.git", 
+    demo: "https://github.com/mahendravelagapudi099-wq/VectorMind---AI-Sales-Analyst-.git", 
+    featured: false 
+  },
+  { id: 5, title: "Climate Change Insights", description: "A project analyzing and visualizing climate data to understand environmental trends.", 
+    longDescription: "Climate Change Insights focuses on exploring climate-related datasets to provide meaningful visualizations and analysis. The project uses Python and data science tools to study trends in temperature, emissions, and other key environmental variables. It helps in learning effective data representation, analysis, and reporting for real-world climate data.", 
+    image: "https://uploads.onecompiler.io/42rqwwqvz/44897vpuv/climate%20data%20eda.jpg",
+    tech: ["Python (Pandas, NumPy, Matplotlib, Seaborn)", "Jupyter Notebook", "CSV Datasets"], 
+    github: "https://github.com/mahendravelagapudi099-wq/6-CLIMATE-CHANGE-INSIGHTS.git", 
+    demo: "https://github.com/mahendravelagapudi099-wq/6-CLIMATE-CHANGE-INSIGHTS.git", 
+    featured: false 
+  }
   ];
 
   const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => (

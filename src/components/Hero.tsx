@@ -114,7 +114,7 @@ const Hero = () => {
             <span className="text-sm font-jetbrains text-muted-foreground">Seeking Data Science Internships</span>
           </div>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 font-light">
-            Data Science Student • ML Researcher • Analytics Enthusiast
+           Data Science Student | Learning ML & Analytics
           </p>
         </div>
 
