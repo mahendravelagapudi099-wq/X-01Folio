@@ -21,23 +21,24 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-  title: "SentimentScopex",
-  description: "AI-powered sentiment analysis web application",
-  longDescription: "SentimentScopex is an AI-driven platform that analyzes textual content such as social media comments, reviews, and feedback to determine positive, negative, or neutral sentiment. Built with React and hosted on Netlify, it offers a real-time, user-friendly interface to help users understand public opinion and customer sentiment effectively.",
-      image: "./assets//SentimentScopex.jpg", 
+      title: "SentimentScopex",
+      description: "AI-powered sentiment analysis web application",
+      longDescription: "SentimentScopex is an AI-driven platform that analyzes textual content such as social media comments, reviews, and feedback to determine positive, negative, or neutral sentiment. Built with React and hosted on Netlify, it offers a real-time, user-friendly interface to help users understand public opinion and customer sentiment effectively.",
+      image: "./assets//SentimentScopex.jpg",
       tech: ["React", "TypeScript", "Node.js", "TensorFlow", "PostgreSQL", "AWS"],
       github: "https://github.com/mahendravelagapudi099-wq/SentimentScope",
       demo: "https://sentimentscopex.netlify.app/",
       featured: true
     },
+
     {
       id: 2,
-      title: "Blockchain Trading Platform",
-      description: "Decentralized trading platform with smart contract integration",
-      longDescription: "A secure and scalable decentralized trading platform built on Ethereum. Features include automated trading strategies, portfolio management, and real-time market analysis with smart contract integration for secure transactions.",
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop",
-      tech: ["React", "Web3", "Solidity", "Node.js", "MongoDB", "Express"],
-      github: "https://github.com",
+      title: "Student Performance Dashboard",
+      description: "A simple dashboard that shows student marks, attendance, and study hours with easy charts to quickly understand performance.",
+      longDescription: "An interactive web dashboard that tracks student marks, attendance, and study behavior, using visual charts to reveal learning patterns, performance trends, and improvement areas in a simple, engaging format.",
+      image: "/assets/Student_Performance_Dashboard.png",
+      tech: ["Python", "HTML", "CSS", "JavaScript"],
+      github: "https://github.com/mahendravelagapudi099-wq/Student_Performance_Dashboard.git",
       demo: "https://demo.com",
       featured: true
     },
@@ -86,22 +87,22 @@ const Projects = () => {
           >
             <X className="h-6 w-6" />
           </button>
-          
-          <img 
-            src={project.image} 
+
+          <img
+            src={project.image}
             alt={project.title}
             className="w-full h-64 object-cover rounded-t-2xl"
           />
-          
+
           <div className="p-8">
             <h3 className="text-3xl font-orbitron font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
               {project.title}
             </h3>
-            
+
             <p className="text-muted-foreground mb-6 leading-relaxed">
               {project.longDescription}
             </p>
-            
+
             <div className="mb-6">
               <h4 className="text-lg font-orbitron font-semibold mb-3">Technologies Used</h4>
               <div className="flex flex-wrap gap-2">
@@ -115,16 +116,16 @@ const Projects = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="flex gap-4">
-              <Button 
+              <Button
                 className="glass-card glow-primary hover:scale-105 transition-all duration-300"
                 onClick={() => window.open(project.github, '_blank')}
               >
                 <Github className="mr-2 h-4 w-4" />
                 GitHub
               </Button>
-              <Button 
+              <Button
                 variant="outline"
                 className="glass-card glow-secondary hover:scale-105 transition-all duration-300"
                 onClick={() => window.open(project.demo, '_blank')}
@@ -153,15 +154,15 @@ const Projects = () => {
 
       <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
-          <div 
-            key={project.id} 
+          <div
+            key={project.id}
             className={`fade-in delay-${200 + index * 100} cursor-pointer group`}
             onClick={() => setSelectedProject(project)}
           >
             <div className="glass-card overflow-hidden hover:glow-secondary transition-all duration-500 hover:scale-[1.02]">
               <div className="relative overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -171,7 +172,7 @@ const Projects = () => {
                   </div>
                 )}
               </div>
-              
+
               <div className="p-6">
                 <h3 className="text-xl font-orbitron font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
                   {project.title}
@@ -179,7 +180,7 @@ const Projects = () => {
                 <p className="text-muted-foreground mb-4 line-clamp-2">
                   {project.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.slice(0, 3).map((tech) => (
                     <span
@@ -195,10 +196,10 @@ const Projects = () => {
                     </span>
                   )}
                 </div>
-                
+
                 <div className="flex gap-3">
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     className="glass-card text-xs hover:glow-primary transition-all duration-300"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -208,8 +209,8 @@ const Projects = () => {
                     <Github className="mr-1 h-3 w-3" />
                     Code
                   </Button>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     variant="outline"
                     className="glass-card text-xs hover:glow-secondary transition-all duration-300"
                     onClick={(e) => {
@@ -228,9 +229,9 @@ const Projects = () => {
       </div>
 
       {selectedProject && (
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
         />
       )}
     </section>

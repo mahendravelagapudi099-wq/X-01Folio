@@ -4,38 +4,40 @@ import { Download, Award, Briefcase, GraduationCap } from 'lucide-react';
 const Resume = () => {
   const experience = [
     {
-      title: "Senior Full Stack Developer",
-      company: "TechCorp Innovation",
-      period: "2022 - Present",
-      description: "Leading development of scalable web applications serving 1M+ users. Architected microservices infrastructure reducing load times by 40%."
-    },
-    {
-      title: "Full Stack Developer",
-      company: "StartupXYZ",
-      period: "2020 - 2022",
-      description: "Built and maintained React/Node.js applications. Implemented CI/CD pipelines and automated testing, improving deployment frequency by 300%."
-    },
-    {
-      title: "Junior Developer",
-      company: "Digital Solutions Inc",
-      period: "2019 - 2020",
-      description: "Developed responsive web interfaces and collaborated on API integrations. Gained expertise in modern JavaScript frameworks and cloud technologies."
-    }
+  title: "Python Intern",
+  company: "Micro IT",
+  period: "2024",
+  description: "Worked on Python-based automation and mini projects while learning real-world coding practices and version control workflows."
+},
+{
+  title: "Web Development Intern",
+  company: "CodeC",
+  period: "2025",
+  description: "Supported the development of frontend components using HTML, CSS, and JavaScript. Improved UI responsiveness and user interactions."
+},
+{
+  title: "Data Science Intern",
+  company: "CodeAlpha",
+  period: "2025",
+  description: "Gained hands-on experience in data preprocessing, visualization, and model building using Python and machine learning libraries."
+}
+
   ];
 
   const education = [
     {
-      degree: "Master of Science in Computer Science",
-      school: "Stanford University",
-      period: "2017 - 2019",
-      focus: "Artificial Intelligence & Machine Learning"
-    },
-    {
-      degree: "Bachelor of Science in Software Engineering",
-      school: "UC Berkeley",
-      period: "2013 - 2017",
-      focus: "Web Technologies & Systems Design"
-    }
+  degree: "B.Tech in Computer Science Engineering (Data Science)",
+  school: "Mallareddy Engineering College and Management Sciences",
+  period: "2023 - 2027",
+  focus: "Data Science, Artificial Intelligence, Machine Learning"
+},
+{
+  degree: "Intermediate (MPC)",
+  school: "Vandana Junior College",
+  period: "2021 - 2023",
+  focus: "Mathematics, Physics & Chemistry"
+}
+
   ];
 
   const achievements = [

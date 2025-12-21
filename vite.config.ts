@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   return {
     server: {
       host: "::",   // allows local access
-      port: 8080,
+      port: 8081,
     },
     base: "/",      // ✅ Netlify needs root base path
     plugins: [

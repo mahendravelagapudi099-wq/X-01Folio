@@ -32,13 +32,13 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{ backgroundImage: `url(${heroBackground})` }}
       />
-      
+
       {/* Parallax Overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"
         style={{
           transform: `translate(${mousePosition.x / 50}px, ${mousePosition.y / 50}px)`,
@@ -86,9 +86,9 @@ const Hero = () => {
           <div className="relative mx-auto w-48 h-48 mb-6">
             <div className="absolute inset-0 bg-gradient-primary rounded-full animate-pulse opacity-50"></div>
             <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/30 glass-card glow-primary">
-              <img 
-                src={profileImage} 
-                alt="Alex Chen - Full Stack Developer"
+              <img
+                src={profileImage}
+                alt="Velagapudi Mahendra - Data Scientist"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -101,13 +101,13 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="fade-in delay-100">
           <h1 className="whitespace-nowrap text-[clamp(2rem,6vw,5rem)] font-playfair font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
             Velagapudi Mahendra
           </h1>
         </div>
-        
+
         <div className="fade-in delay-200">
           <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full mb-6 glow-accent">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -149,32 +149,32 @@ const Hero = () => {
 
         <div className="fade-in delay-400">
           <p className="text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Passionate about extracting insights from data to solve real-world problems. 
+            Passionate about extracting insights from data to solve real-world problems.
             Currently B.Tech in Data Science with a focus on machine learning and statistical analysis.
           </p>
         </div>
 
         <div className="fade-in delay-500 flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="glass-card glow-primary px-8 py-4 text-lg font-medium hover:scale-105 transition-all duration-300"
             onClick={scrollToProjects}
           >
             View Projects
             <ArrowDown className="ml-2 h-5 w-5" />
           </Button>
-          
-          <Button 
-  variant="outline" 
-  size="lg"
-  className="glass-card glow-secondary px-8 py-4 text-lg font-medium border-primary/50 hover:border-primary hover:scale-105 transition-all duration-300"
-  asChild
->
-  <a href="/Velagapudi_Mahendra_Resume.pdf" download>
-    <Download className="mr-2 h-5 w-5" />
-    Download CV
-  </a>
-</Button>
+
+          <Button
+            variant="outline"
+            size="lg"
+            className="glass-card glow-secondary px-8 py-4 text-lg font-medium border-primary/50 hover:border-primary hover:scale-105 transition-all duration-300"
+            asChild
+          >
+            <a href="/Velagapudi_Mahendra_Resume.pdf" download>
+              <Download className="mr-2 h-5 w-5" />
+              Download CV
+            </a>
+          </Button>
 
         </div>
 
