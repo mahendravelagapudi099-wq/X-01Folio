@@ -4,11 +4,23 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Award, Calendar, ExternalLink } from 'lucide-react';
 
+export interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  description: string;
+  skills: string[];
+  credentialId: string;
+  verificationUrl: string;
+  image: string;
+}
+
 const Certifications = () => {
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const [visibleCount, setVisibleCount] = useState(6);
 
-  const certificates = [
+  const certificates: Certificate[] = [
     {
       id: '1',
       title: 'Google Data Analytics Professional Certificate',
