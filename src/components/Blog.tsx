@@ -1,177 +1,165 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Calendar, Tag } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Calendar, ArrowRight, Clock } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
-import GhostContentAPI, { PostOrPage } from '@tryghost/content-api';
+import { Navigation, Autoplay, Pagination } from 'swiper/modules';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { supabase } from '@/lib/supabase';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-const ghostClient = new GhostContentAPI({
-  url: import.meta.env.VITE_GHOST_API_URL || 'https://demo.ghost.io',
-  key: import.meta.env.VITE_GHOST_CONTENT_API_KEY || '22444f78447824223cefc48062',
-  version: 'v5.0'
-});
+interface Post {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  feature_image: string;
+  published_at: string;
+  featured: boolean;
+  tags: string[];
+  reading_time: string;
+}
 
 const Blog = () => {
-  const [posts, setPosts] = useState<PostOrPage[]>([]);
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
-  const [slides, setSlides] = useState<PostOrPage[][]>([]);
-  const blogUrl = import.meta.env.VITE_BLOG_URL || 'https://articles.mahendraa.dev'; // Subdomain base URL
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    ghostClient.posts.browse({ limit: 'all', include: ['tags'] })
-      .then(data => {
-        setPosts(data);
-      })
-      .catch(err => console.error('Failed to load posts', err));
+    const fetchPosts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .order('published_at', { ascending: false });
+
+        if (error) throw error;
+        setPosts(data || []);
+      } catch (err) {
+        console.error('Failed to load posts', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
-  const allTags = Array.from(new Set(posts.flatMap(post => post.tags?.map(t => t.name) || []))).filter(Boolean) as string[];
-  const filteredPosts = selectedTag
-    ? posts.filter(post => post.tags?.some(t => t.name === selectedTag))
-    : posts;
+  if (isLoading) {
+    return (
+      <section id="blog" className="py-20 px-6 max-w-7xl mx-auto">
+        <div className="h-96 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      </section>
+    );
+  }
 
-  const getSlides = useCallback(() => {
-    const width = window.innerWidth;
-    let postsPerSlide = 6;
-    if (width < 768) postsPerSlide = 1;
-    return filteredPosts.reduce<PostOrPage[][]>((acc, post, i) => {
-      const slideIndex = Math.floor(i / postsPerSlide);
-      if (!acc[slideIndex]) acc[slideIndex] = [];
-      acc[slideIndex].push(post);
-      return acc;
-    }, []);
-  }, [filteredPosts]);
-
-  useEffect(() => {
-    setSlides(getSlides());
-    const handleResize = () => setSlides(getSlides());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [getSlides]);
+  if (posts.length === 0) return null;
 
   return (
-    <section id="blog" className="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
-      <div className="fade-in text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold mb-4 sm:mb-6 bg-gradient-primary bg-clip-text text-transparent">
-          Latest Articles
-        </h2>
-        <div className="w-20 h-1 sm:w-24 bg-gradient-primary mx-auto rounded-full" />
-        <p className="text-muted-foreground mt-4 sm:mt-6 max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-base">
-          Read my latest thoughts on software engineering over at my new blog.
-        </p>
-      </div>
+    <section id="blog" className="py-24 px-6 relative overflow-hidden">
+      {/* Background Orbs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-      <div className="fade-in delay-200 mb-8 sm:mb-12 flex flex-wrap justify-center gap-2 sm:gap-3">
-        <button
-          onClick={() => setSelectedTag(null)}
-          className={`glass-card px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm transition-all duration-300 ${
-            !selectedTag ? 'glow-primary' : 'hover:glow-secondary'
-          }`}
-        >
-          All Posts
-        </button>
-        {allTags.map(tag => (
-          <button
-            key={tag}
-            onClick={() => setSelectedTag(tag)}
-            className={`glass-card px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm transition-all duration-300 ${
-              selectedTag === tag ? 'glow-primary' : 'hover:glow-secondary'
-            }`}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
-            {tag}
-          </button>
-        ))}
-      </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-orbitron font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+              Latest Articles
+            </h2>
+            <div className="w-24 h-1.5 bg-gradient-primary mx-auto rounded-full mb-8" />
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Deep dives into AI, Machine Learning, and Modern Web Architecture.
+            </p>
+          </motion.div>
+        </div>
 
-      <Swiper
-        navigation
-        modules={[Navigation, Autoplay]}
-        spaceBetween={20}
-        loop={slides.length >= 3}
-        autoplay={slides.length > 1 ? {
-          delay: 3000,
-          disableOnInteraction: false,
-        } : false}
-        breakpoints={{
-          0: { slidesPerView: 1, spaceBetween: 10 },
-          640: { slidesPerView: 1, spaceBetween: 15 },
-          768: { slidesPerView: 2, spaceBetween: 20 },
-          1024: { slidesPerView: 1, spaceBetween: 30 },
-        }}
-      >
-        {slides.map((slidePosts, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className={`
-                grid gap-6
-                lg:grid-cols-3 lg:grid-rows-2
-                md:grid-cols-2 md:grid-rows-3
-                grid-cols-1 grid-rows-1
-              `}
-            >
-              {slidePosts.map(post => (
-                <a
-                  key={post.id}
-                  href={`${blogUrl}/post/${post.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer group"
+        <Swiper
+          modules={[Navigation, Autoplay, Pagination]}
+          spaceBetween={30}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="pb-16"
+        >
+          {posts.map((post) => (
+            <SwiperSlide key={post.id} className="h-auto">
+              <Link to={`/blog/${post.slug}`} className="block h-full">
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  className="glass-card group h-full flex flex-col border border-primary/10 hover:border-primary/30 transition-all duration-500 overflow-hidden glow-hover"
                 >
-                  <div className="glass-card overflow-hidden hover:glow-secondary transition-all duration-500 hover:scale-[1.02] h-full flex flex-col">
-                    <div className="relative overflow-hidden">
-                      {post.feature_image && (
-                        <img
-                          src={post.feature_image}
-                          alt={post.title}
-                          className="w-full h-48 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                      )}
-                      {post.featured && (
-                        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass-card px-2 py-1 text-xs sm:text-sm font-medium glow-accent">
-                          Featured
-                        </div>
-                      )}
+                  {/* Image Container */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={post.feature_image || 'https://images.unsplash.com/photo-1518770660439-4636190af475'}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {post.featured && (
+                      <div className="absolute top-4 left-4 glass-card px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/30">
+                        Featured
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-3.5 w-3.5" />
+                        {new Date(post.published_at).toLocaleDateString()}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-3.5 w-3.5" />
+                        {post.reading_time || '5 min'}
+                      </span>
                     </div>
-                    <div className="p-4 sm:p-6 flex-1 flex flex-col">
-                      <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {post.published_at ? new Date(post.published_at).toLocaleDateString() : ''}
-                        </div>
-                      </div>
-                      <h3 className="text-base sm:text-lg font-orbitron font-semibold mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-muted-foreground mb-4 line-clamp-3 flex-1 text-sm sm:text-base">
-                        {post.custom_excerpt || post.excerpt}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mt-auto">
-                        {post.tags?.slice(0, 3).map(tag => (
-                          <span key={tag.id} className="text-xs px-2 py-1 bg-primary/10 text-primary rounded border border-primary/20">
-                            {tag.name}
-                          </span>
-                        ))}
-                      </div>
+
+                    <h3 className="text-xl font-orbitron font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground text-sm line-clamp-3 mb-6 flex-1 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {post.tags?.map((tag) => (
+                        <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 uppercase tracking-tighter">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center text-primary font-bold text-sm group-hover:gap-3 transition-all duration-300">
+                      Read Article <ArrowRight className="ml-2 h-4 w-4" />
                     </div>
                   </div>
-                </a>
-              ))}
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      
-      <div className="mt-12 text-center">
-        <a 
-          href={blogUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-        >
-          View All Articles on My Blog
-        </a>
+                </motion.div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="mt-12 text-center">
+           <p className="text-sm text-muted-foreground">
+             Powered by Supabase & Open Source Technology
+           </p>
+        </div>
       </div>
     </section>
   );

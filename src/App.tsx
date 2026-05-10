@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 
 import Index from "./pages/Index";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import Footer from "@/components/Footer";
 import QuickConnect from "@/components/QuickConnect";
@@ -30,6 +31,7 @@ const App: React.FC = () => {
             <main className="flex-grow">
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
