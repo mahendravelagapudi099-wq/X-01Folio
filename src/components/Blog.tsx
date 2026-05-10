@@ -1,134 +1,67 @@
-import { useState, useEffect } from 'react';
-import { Calendar, Clock, Tag, X } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Calendar, Tag } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
+import GhostContentAPI, { PostOrPage } from '@tryghost/content-api';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  coverImage: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-  featured: boolean;
-}
+const ghostClient = new GhostContentAPI({
+  url: import.meta.env.VITE_GHOST_API_URL || 'https://demo.ghost.io',
+  key: import.meta.env.VITE_GHOST_CONTENT_API_KEY || '22444f78447824223cefc48062',
+  version: 'v5.0'
+});
 
 const Blog = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [posts, setPosts] = useState<PostOrPage[]>([]);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
-  const [slides, setSlides] = useState<BlogPost[][]>([]);
+  const [slides, setSlides] = useState<PostOrPage[][]>([]);
+  const blogUrl = import.meta.env.VITE_BLOG_URL || 'http://localhost:5173'; // Subdomain base URL
 
   useEffect(() => {
-    fetch('/posts.json')
-      .then(res => res.json())
+    ghostClient.posts.browse({ limit: 'all', include: ['tags'] })
       .then(data => {
-        const sorted = data.sort(
-          (a: BlogPost, b: BlogPost) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
-        setPosts(sorted);
+        setPosts(data);
       })
       .catch(err => console.error('Failed to load posts', err));
   }, []);
 
-  const allTags = Array.from(new Set(posts.flatMap(post => post.tags)));
+  const allTags = Array.from(new Set(posts.flatMap(post => post.tags?.map(t => t.name) || []))).filter(Boolean) as string[];
   const filteredPosts = selectedTag
-    ? posts.filter(post => post.tags.includes(selectedTag))
+    ? posts.filter(post => post.tags?.some(t => t.name === selectedTag))
     : posts;
 
-  // Function to split posts into slides based on screen width
-  const getSlides = () => {
+  const getSlides = useCallback(() => {
     const width = window.innerWidth;
-    let postsPerSlide = 6; // Default for desktop
-    if (width < 768) postsPerSlide = 1; // Mobile
-    return filteredPosts.reduce<BlogPost[][]>((acc, post, i) => {
+    let postsPerSlide = 6;
+    if (width < 768) postsPerSlide = 1;
+    return filteredPosts.reduce<PostOrPage[][]>((acc, post, i) => {
       const slideIndex = Math.floor(i / postsPerSlide);
       if (!acc[slideIndex]) acc[slideIndex] = [];
       acc[slideIndex].push(post);
       return acc;
     }, []);
-  };
+  }, [filteredPosts]);
 
   useEffect(() => {
     setSlides(getSlides());
     const handleResize = () => setSlides(getSlides());
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [filteredPosts]);
-
-  const BlogModal = ({ post, onClose }: { post: BlogPost; onClose: () => void }) => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/90 backdrop-blur-sm">
-      <div className="glass-card w-full max-w-xl max-h-[90vh] overflow-y-auto glow-primary">
-        <div className="relative">
-          <button
-            onClick={onClose}
-            aria-label="Close blog post"
-            className="absolute top-4 right-4 glass-card p-2 rounded-full hover:glow-accent transition-all duration-300"
-          >
-            <X className="h-6 w-6" />
-          </button>
-
-          <img
-            src={post.coverImage}
-            alt={post.title}
-            className="w-full h-56 sm:h-64 object-cover rounded-t-2xl"
-          />
-
-          <div className="p-6 sm:p-8">
-            <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-muted-foreground mb-4">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
-                {new Date(post.date).toLocaleDateString()}
-              </div>
-              <div className="flex items-center gap-1">
-                <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
-                {post.readTime}
-              </div>
-            </div>
-
-            <h3 className="text-2xl sm:text-3xl font-orbitron font-bold mb-4 sm:mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              {post.title}
-            </h3>
-
-            <div className="prose prose-invert max-w-none mb-4 sm:mb-6">
-              <p className="text-muted-foreground leading-relaxed">{post.content}</p>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map(tag => (
-                <span
-                  key={tag}
-                  className="glass-card px-2 py-1 sm:px-3 sm:py-1.5 text-xs sm:text-sm hover:glow-accent transition-all duration-300 flex items-center gap-1"
-                >
-                  <Tag className="h-3 w-3" />
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  }, [getSlides]);
 
   return (
     <section id="blog" className="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
-      {/* Header */}
       <div className="fade-in text-center mb-12 sm:mb-16">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold mb-4 sm:mb-6 bg-gradient-primary bg-clip-text text-transparent">
           Latest Articles
         </h2>
         <div className="w-20 h-1 sm:w-24 bg-gradient-primary mx-auto rounded-full" />
         <p className="text-muted-foreground mt-4 sm:mt-6 max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-base">
-          Insights, tutorials, and thoughts on the latest in technology and development
+          Read my latest thoughts on software engineering over at my new blog.
         </p>
       </div>
 
-      {/* Tag Filter */}
       <div className="fade-in delay-200 mb-8 sm:mb-12 flex flex-wrap justify-center gap-2 sm:gap-3">
         <button
           onClick={() => setSelectedTag(null)}
@@ -151,21 +84,20 @@ const Blog = () => {
         ))}
       </div>
 
-      {/* Swiper Carousel */}
       <Swiper
         navigation
         modules={[Navigation, Autoplay]}
         spaceBetween={20}
-        loop={true}
-        autoplay={{
+        loop={slides.length >= 3}
+        autoplay={slides.length > 1 ? {
           delay: 3000,
           disableOnInteraction: false,
-        }}
+        } : false}
         breakpoints={{
           0: { slidesPerView: 1, spaceBetween: 10 },
           640: { slidesPerView: 1, spaceBetween: 15 },
           768: { slidesPerView: 2, spaceBetween: 20 },
-          1024: { slidesPerView: 1, spaceBetween: 30 }, // Desktop shows full grid
+          1024: { slidesPerView: 1, spaceBetween: 30 },
         }}
       >
         {slides.map((slidePosts, index) => (
@@ -179,18 +111,22 @@ const Blog = () => {
               `}
             >
               {slidePosts.map(post => (
-                <div
+                <a
                   key={post.id}
+                  href={`${blogUrl}/post/${post.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="cursor-pointer group"
-                  onClick={() => setSelectedPost(post)}
                 >
                   <div className="glass-card overflow-hidden hover:glow-secondary transition-all duration-500 hover:scale-[1.02] h-full flex flex-col">
                     <div className="relative overflow-hidden">
-                      <img
-                        src={post.coverImage}
-                        alt={post.title}
-                        className="w-full h-48 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
+                      {post.feature_image && (
+                        <img
+                          src={post.feature_image}
+                          alt={post.title}
+                          className="w-full h-48 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      )}
                       {post.featured && (
                         <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass-card px-2 py-1 text-xs sm:text-sm font-medium glow-accent">
                           Featured
@@ -201,29 +137,42 @@ const Blog = () => {
                       <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
-                          {new Date(post.date).toLocaleDateString()}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {post.readTime}
+                          {post.published_at ? new Date(post.published_at).toLocaleDateString() : ''}
                         </div>
                       </div>
                       <h3 className="text-base sm:text-lg font-orbitron font-semibold mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2">
                         {post.title}
                       </h3>
-                      <p className="text-muted-foreground mb-2 sm:mb-4 line-clamp-3 flex-1 text-sm sm:text-base">
-                        {post.excerpt}
+                      <p className="text-muted-foreground mb-4 line-clamp-3 flex-1 text-sm sm:text-base">
+                        {post.custom_excerpt || post.excerpt}
                       </p>
+                      
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {post.tags?.slice(0, 3).map(tag => (
+                          <span key={tag.id} className="text-xs px-2 py-1 bg-primary/10 text-primary rounded border border-primary/20">
+                            {tag.name}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {selectedPost && <BlogModal post={selectedPost} onClose={() => setSelectedPost(null)} />}
+      
+      <div className="mt-12 text-center">
+        <a 
+          href={blogUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+        >
+          View All Articles on My Blog
+        </a>
+      </div>
     </section>
   );
 };
