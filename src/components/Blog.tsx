@@ -16,7 +16,7 @@ const Blog = () => {
   const [posts, setPosts] = useState<PostOrPage[]>([]);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [slides, setSlides] = useState<PostOrPage[][]>([]);
-  const blogUrl = import.meta.env.VITE_BLOG_URL || 'http://localhost:5173'; // Subdomain base URL
+  const blogUrl = import.meta.env.VITE_BLOG_URL || 'https://articles.mahendraa.dev'; // Subdomain base URL
 
   useEffect(() => {
     ghostClient.posts.browse({ limit: 'all', include: ['tags'] })
