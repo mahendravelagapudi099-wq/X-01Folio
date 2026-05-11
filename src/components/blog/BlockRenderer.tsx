@@ -38,17 +38,28 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
 const renderBlock = (block: Block) => {
   switch (block.type) {
     case 'heading':
-      const Tag = `h${block.level}` as keyof JSX.IntrinsicElements;
-      const sizes = {
-        h1: 'text-4xl sm:text-5xl font-bold mb-8 font-orbitron',
-        h2: 'text-3xl sm:text-4xl font-bold mb-6 font-orbitron mt-12',
-        h3: 'text-2xl sm:text-3xl font-bold mb-4 font-orbitron mt-8',
-      };
-      return (
-        <Tag className={`${sizes[Tag as keyof typeof sizes]} bg-gradient-primary bg-clip-text text-transparent`}>
-          {block.text}
-        </Tag>
-      );
+      switch (block.level) {
+        case 1:
+          return (
+            <h1 className="text-4xl sm:text-5xl font-bold mb-8 font-orbitron bg-gradient-primary bg-clip-text text-transparent">
+              {block.text}
+            </h1>
+          );
+        case 2:
+          return (
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 font-orbitron mt-12 bg-gradient-primary bg-clip-text text-transparent">
+              {block.text}
+            </h2>
+          );
+        case 3:
+          return (
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4 font-orbitron mt-8 bg-gradient-primary bg-clip-text text-transparent">
+              {block.text}
+            </h3>
+          );
+        default:
+          return null;
+      }
 
     case 'text':
       return (
