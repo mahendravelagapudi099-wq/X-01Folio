@@ -81,6 +81,7 @@ const Blog = () => {
         </div>
 
         <Swiper
+          key={posts.length}
           modules={[Navigation, Autoplay, Pagination]}
           spaceBetween={30}
           slidesPerView={1}
