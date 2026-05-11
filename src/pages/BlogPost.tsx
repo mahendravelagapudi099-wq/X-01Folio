@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Share2, Tag, Bookmark } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { getSingleGhostPost } from '@/lib/ghost';
 import { BlockRenderer, Block } from '@/components/blog/BlockRenderer';
 import { Button } from '@/components/ui/button';
 
@@ -13,7 +14,8 @@ interface Post {
   feature_image: string;
   published_at: string;
   reading_time: string;
-  blocks: Block[];
+  blocks?: Block[];
+  html?: string; // Support Ghost HTML content
   tags: string[];
 }
 
@@ -33,14 +35,38 @@ const BlogPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const { data, error } = await supabase
+        setIsLoading(true);
+        // Try fetching from Supabase first
+        const { data: supabasePost, error: supabaseError } = await supabase
           .from('posts')
           .select('*')
           .eq('slug', slug)
           .single();
 
-        if (error) throw error;
-        setPost(data);
+        if (!supabaseError && supabasePost) {
+          setPost(supabasePost);
+          return;
+        }
+
+        // If not found in Supabase, try Ghost
+        if (slug) {
+          const ghostPost = await getSingleGhostPost(slug);
+          if (ghostPost) {
+            setPost({
+              title: ghostPost.title || '',
+              excerpt: ghostPost.excerpt || '',
+              feature_image: ghostPost.feature_image || '',
+              published_at: ghostPost.published_at || '',
+              reading_time: `${ghostPost.reading_time || 5} min`,
+              html: ghostPost.html || '',
+              tags: ghostPost.tags?.map(t => t.name || '') || []
+            });
+            return;
+          }
+        }
+
+        // If not found in either, redirect
+        navigate('/404');
       } catch (err) {
         console.error('Error fetching post:', err);
         navigate('/404');
@@ -120,7 +146,14 @@ const BlogPost = () => {
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-6 pb-24 -mt-20 relative z-20">
         <article className="glass-card p-8 md:p-12 border border-primary/10 shadow-2xl">
-          <BlockRenderer blocks={post.blocks} />
+          {post.blocks && <BlockRenderer blocks={post.blocks} />}
+          
+          {post.html && (
+            <div 
+              className="prose prose-invert prose-primary max-w-none ghost-content"
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
+          )}
           
           <div className="mt-16 pt-8 border-t border-primary/10 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-4">
