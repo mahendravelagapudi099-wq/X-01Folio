@@ -45,6 +45,8 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_GHOST_URL: ${{ secrets.VITE_GHOST_URL }}
+          VITE_GHOST_CONTENT_API_KEY: ${{ secrets.VITE_GHOST_CONTENT_API_KEY }}
 
 
 
