@@ -85,9 +85,11 @@ const Blog = () => {
           modules={[Navigation, Autoplay, Pagination]}
           spaceBetween={30}
           slidesPerView={1}
-          navigation
+          navigation={posts.length > 0}
           pagination={{ clickable: true }}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
+          observer={true}
+          observeParents={true}
           breakpoints={{
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
