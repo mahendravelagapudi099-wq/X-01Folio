@@ -24,8 +24,8 @@ interface Post {
 const Blog = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const prevRef = useRef<HTMLButtonElement>(null);
-  const nextRef = useRef<HTMLButtonElement>(null);
+  const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
+  const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -84,21 +84,13 @@ const Blog = () => {
 
         <div className="relative group">
           <Swiper
-            key={posts.length}
+            key={`swiper-${posts.length}-${prevEl ? 'ready' : 'waiting'}`}
             modules={[Navigation, Autoplay, Pagination]}
             spaceBetween={30}
             slidesPerView={1}
-            observer={true}
-            observeParents={true}
             navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            onBeforeInit={(swiper) => {
-              if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
-              }
+              prevEl,
+              nextEl,
             }}
             pagination={{ clickable: true, dynamicBullets: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -172,13 +164,13 @@ const Blog = () => {
 
           {/* Custom Navigation Buttons */}
           <button 
-            ref={prevRef}
+            ref={setPrevEl}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-20 w-12 h-12 rounded-full glass-card border border-primary/20 flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 hover:bg-primary hover:text-white"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
           <button 
-            ref={nextRef}
+            ref={setNextEl}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-20 w-12 h-12 rounded-full glass-card border border-primary/20 flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 hover:bg-primary hover:text-white"
           >
             <ChevronRight className="h-6 w-6" />
