@@ -102,7 +102,12 @@ const Blog = () => {
           >
             {posts.map((post) => (
               <SwiperSlide key={post.id} className="h-auto">
-                <Link to={`/blog/${post.slug}`} className="block h-full">
+                <a 
+                  href={`https://articles.mahendraa.dev/post/${post.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                >
                   <motion.div
                     whileHover={{ y: -10 }}
                     className="glass-card group h-full flex flex-col border border-primary/10 hover:border-primary/30 transition-all duration-500 overflow-hidden glow-hover"
@@ -157,7 +162,7 @@ const Blog = () => {
                       </div>
                     </div>
                   </motion.div>
-                </Link>
+                </a>
               </SwiperSlide>
             ))}
           </Swiper>
