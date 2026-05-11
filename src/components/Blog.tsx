@@ -88,26 +88,25 @@ const Blog = () => {
             modules={[Navigation, Autoplay, Pagination]}
             spaceBetween={30}
             slidesPerView={1}
-            onInit={(swiper) => {
-              // Manual re-init for Navigation buttons
-              if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
-                swiper.navigation.init();
-                swiper.navigation.update();
-              }
-            }}
+            observer={true}
+            observeParents={true}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,
             }}
-            pagination={{ clickable: true }}
+            onBeforeInit={(swiper) => {
+              if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
+                swiper.params.navigation.prevEl = prevRef.current;
+                swiper.params.navigation.nextEl = nextRef.current;
+              }
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             breakpoints={{
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
-            className="pb-16"
+            className="pb-20"
           >
             {posts.map((post) => (
               <SwiperSlide key={post.id} className="h-auto">
