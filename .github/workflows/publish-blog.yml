@@ -1,0 +1,100 @@
+# Publishes queued blog posts to the Supabase `posts` table.
+#
+# How it works:
+#   1. A daily job commits one JSON file per post to blog-queue/YYYY-MM-DD-<slug>.json
+#   2. This workflow upserts every file in blog-queue/ into Supabase (by slug, idempotent)
+#   3. The portfolio (mahendraa.dev) blog section reads the `posts` table and renders them
+#
+# Required repo secret: SUPABASE_SERVICE_ROLE_KEY (Supabase dashboard -> Project Settings -> API)
+#
+# Post JSON schema:
+# {
+#   "title": "Post title",
+#   "slug": "unique-url-slug",
+#   "excerpt": "One or two sentence summary",
+#   "feature_image": "https://images.unsplash.com/...?q=80&w=1200&auto=format&fit=crop",
+#   "published_at": "2026-10-18T02:30:00Z",
+#   "featured": false,
+#   "tags": ["python", "data-science"],
+#   "reading_time": "6 min read",
+#   "blocks": [
+#     {"type": "heading", "text": "Section title", "level": 2},
+#     {"type": "text", "content": "Paragraph text."},
+#     {"type": "code", "code": "print('hi')", "language": "python"},
+#     {"type": "quote", "text": "Memorable line."},
+#     {"type": "image", "url": "https://...", "caption": "Optional caption"}
+#   ]
+# }
+
+name: Publish blog queue to Supabase
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blog-queue/*.json'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upsert posts to Supabase
+        env:
+          SUPABASE_URL: https://ltgldkbjifvheiqykvvm.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          python3 - <<'PYEOF'
+          import json, glob, os, sys, urllib.request, urllib.error
+
+          url = os.environ['SUPABASE_URL'].rstrip('/')
+          key = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+          if not key:
+              print('ERROR: SUPABASE_SERVICE_ROLE_KEY secret is not set. '
+                    'Add it in repo Settings -> Secrets and variables -> Actions.')
+              sys.exit(1)
+
+          files = sorted(glob.glob('blog-queue/*.json'))
+          if not files:
+              print('No queued posts found.')
+              sys.exit(0)
+
+          ok, failed = 0, 0
+          for path in files:
+              with open(path) as f:
+                  post = json.load(f)
+              payload = {
+                  'title': post['title'],
+                  'slug': post['slug'],
+                  'excerpt': post.get('excerpt', ''),
+                  'feature_image': post.get('feature_image', ''),
+                  'published_at': post.get('published_at'),
+                  'featured': bool(post.get('featured', False)),
+                  'tags': post.get('tags', []),
+                  'reading_time': post.get('reading_time', ''),
+                  'blocks': post.get('blocks', []),
+              }
+              req = urllib.request.Request(
+                  f"{url}/rest/v1/posts?onConflict=slug",
+                  data=json.dumps(payload).encode(),
+                  headers={
+                      'apikey': key,
+                      'Authorization': f'Bearer {key}',
+                      'Content-Type': 'application/json',
+                      'Prefer': 'resolution=merge-duplicates',
+                  },
+                  method='POST',
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      print(f"OK   {post['slug']} (HTTP {r.status})")
+                  ok += 1
+              except urllib.error.HTTPError as e:
+                  print(f"FAIL {post['slug']} (HTTP {e.code}): {e.read().decode()[:300]}")
+                  failed += 1
+
+          print(f'Done: {ok} upserted, {failed} failed.')
+          sys.exit(1 if failed else 0)
+          PYEOF
