@@ -3,23 +3,19 @@ import profileImage from '@/assets/profilepic.png';
 
 
 const About = () => {
-  const techStack = [
-   "Python",
-  "SQL",
-  "Statistics (Basics)",
-  "Data Cleaning",
-  "Exploratory Data Analysis (EDA)",
-  "Pandas",
-  "NumPy",
-  "Machine Learning (Basics)",
-  "Scikit-learn",
-  "Model Evaluation (Intro)",
-  "Matplotlib",
-  "Seaborn",
-  "Data Visualization",
-  "Jupyter Notebook",
-  "Git & GitHub",
-
+  // Same items as before, grouped by category so they scan instead of reading as a wall.
+  const skillGroups = [
+    { title: 'Programming', items: ['Python', 'SQL', 'Git & GitHub'] },
+    {
+      title: 'Data',
+      items: ['Data Cleaning', 'Exploratory Data Analysis (EDA)', 'Pandas', 'NumPy', 'Statistics (Basics)'],
+    },
+    {
+      title: 'Machine Learning',
+      items: ['Machine Learning (Basics)', 'Scikit-learn', 'Model Evaluation (Intro)'],
+    },
+    { title: 'Visualization', items: ['Matplotlib', 'Seaborn', 'Data Visualization'] },
+    { title: 'Tools', items: ['Jupyter Notebook'] },
   ];
 
   const skills = [
@@ -116,17 +112,22 @@ const About = () => {
         <h3 className="text-2xl font-playfair font-semibold text-center mb-8">
           Technical Skills
         </h3>
-        <div className="glass-card p-8 glow-secondary">
-          <div className="flex flex-wrap justify-center gap-4">
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="glass-card px-4 py-2 text-sm font-medium hover:glow-accent transition-all duration-300 hover:scale-105 cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillGroups.map((group) => (
+            <div key={group.title} className="glass-card p-6 hover:glow-accent transition-all duration-300">
+              <h4 className="font-orbitron font-semibold text-primary mb-4">{group.title}</h4>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="glass-card px-3 py-1.5 text-sm font-medium"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

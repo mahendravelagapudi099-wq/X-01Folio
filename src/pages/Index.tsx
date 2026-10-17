@@ -6,6 +6,7 @@ import Blog from '@/components/Blog';
 import Resume from '@/components/Resume';
 import Contact from '@/components/Contact';
 import Certificates from "@/components/Certificates";
+import Research from '@/components/Research';
 // Footer and QuickConnect live in App.tsx so they render exactly once on every route.
 
 
@@ -32,6 +33,7 @@ const Index = () => {
       <About />
       <Projects />
       <Certificates />
+      <Research />
       <Blog />
       <Resume />
       <Contact />
