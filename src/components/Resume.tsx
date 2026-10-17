@@ -49,14 +49,6 @@ const Resume = () => {
 ];
 
 
-const handleDownload = () => {
-  const link = document.createElement('a');
-  link.href = '/Velagapudi_Mahendra_Resume.pdf'; // just relative path from public
-  link.download = 'Velagapudi_Mahendra_Resume.pdf';
-  link.click();
-};
-
-
   return (
     <section id="resume" className="py-20 px-6 max-w-7xl mx-auto">
       {/* Header */}
@@ -72,13 +64,15 @@ const handleDownload = () => {
 
       {/* Download Button */}
       <div className="fade-in delay-200 text-center mb-16">
-        <Button 
-          onClick={handleDownload}
+        <Button
+          asChild
           size="lg"
           className="glass-card glow-primary px-8 py-4 text-lg font-medium hover:scale-105 transition-all duration-300"
         >
-          <Download className="mr-2 h-5 w-5" />
-          Download PDF Resume
+          <a href="/Velagapudi_Mahendra_Resume.pdf" download="Velagapudi_Mahendra_Resume.pdf">
+            <Download className="mr-2 h-5 w-5" />
+            Download PDF Resume
+          </a>
         </Button>
       </div>
 

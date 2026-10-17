@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
@@ -13,13 +13,8 @@ const Footer = () => {
       label: "LinkedIn"
     },
     {
-      icon: Twitter,
-      href: "https://twitter.com",
-      label: "Twitter"
-    },
-    {
       icon: Mail,
-      href: "mahendravelagapudi099@gmail.com",
+      href: "mailto:mahendravelagapudi099@gmail.com",
       label: "Email"
     }
   ];
@@ -66,7 +61,7 @@ const Footer = () => {
           
           {/* Copyright */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-2 text-sm text-muted-foreground">
-            <span>© 2024 Velagapudi  Mahendra . All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} Velagapudi Mahendra. All rights reserved.</span>
             <span className="hidden sm:inline">•</span>
             <div className="flex items-center gap-1">
               <span>Made with</span>

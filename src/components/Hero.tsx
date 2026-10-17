@@ -1,20 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, ArrowDown, Github, Linkedin, Mail, BarChart3, Database } from 'lucide-react';
 import heroBackground from '@/assets/hero-bg.jpg';
 import profileImage from '@/assets/profilepic.png';
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Parallax written straight to the DOM: mouse movement never re-renders the hero.
+  const parallaxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!parallaxRef.current) return;
+      parallaxRef.current.style.transform = `translate(${e.clientX / 50}px, ${e.clientY / 50}px)`;
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Particle layout fixed once — previously every re-render re-randomized their positions.
+  const particles = useMemo(
+    () =>
+      [...Array(20)].map(() => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 6}s`,
+        animationDuration: `${6 + Math.random() * 4}s`,
+      })),
+    [],
+  );
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -39,25 +53,14 @@ const Hero = () => {
 
       {/* Parallax Overlay */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"
-        style={{
-          transform: `translate(${mousePosition.x / 50}px, ${mousePosition.y / 50}px)`,
-        }}
+        ref={parallaxRef}
+        className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 will-change-transform"
       />
 
       {/* Floating Particles */}
       <div className="particles">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${6 + Math.random() * 4}s`,
-            }}
-          />
+        {particles.map((particle, i) => (
+          <div key={i} className="particle" style={particle} />
         ))}
       </div>
 
@@ -103,7 +106,7 @@ const Hero = () => {
         </div>
 
         <div className="fade-in delay-100">
-          <h1 className="whitespace-nowrap text-[clamp(2rem,6vw,5rem)] font-playfair font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+          <h1 className="text-[clamp(1.75rem,7vw,5rem)] leading-tight font-playfair font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
             Velagapudi Mahendra
           </h1>
         </div>
@@ -183,7 +186,7 @@ const Hero = () => {
           {[
             { Icon: Github, href: "https://github.com/mahendravelagapudi099-wq", label: "GitHub" },
             { Icon: Linkedin, href: "https://www.linkedin.com/in/velagapudi-mahendra-543481353", label: "LinkedIn" },
-            { Icon: Mail, href: "mahendravelagapudi099@gmail.com", label: "Contact" }
+            { Icon: Mail, href: "mailto:mahendravelagapudi099@gmail.com", label: "Contact" }
           ].map(({ Icon, href, label }) => (
             <a
               key={label}

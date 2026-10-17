@@ -29,7 +29,7 @@ const Certifications = () => {
       description: 'Comprehensive program covering data analysis fundamentals, data cleaning, visualization, and statistical analysis using R, SQL, and Tableau.',
       skills: ['Data Analysis', 'R Programming', 'SQL', 'Tableau', 'Data Visualization'],
       credentialId: 'GDA-2024-001',
-      verificationUrl: 'https://coursera.org/verify/professional-cert/xyz123',
+      verificationUrl: '',
       image: '/placeholder.svg'
     },
     {
@@ -139,17 +139,6 @@ const Certifications = () => {
       description: 'Successfully completed a 12-week course on data analytics using Python, including online assignments and a proctored exam.',
       skills: ['Python', 'Data Analysis', 'Pandas', 'NumPy', 'Data Visualization', 'Statistics'],
       credentialId: 'NPTEL25CS17S1147000547',
-      verificationUrl: '',
-      image: '/placeholder.svg'
-    },
-    {
-      id: '12',
-      title: 'Introduction to Generative AI',
-      issuer: 'Google Cloud / Simplilearn',
-      date: '12th December 2025',
-      description: 'Completed an online course on Generative AI, demonstrating initiative and commitment to learning AI fundamentals.',
-      skills: ['Generative AI', 'Machine Learning', 'AI Models', 'Deep Learning', 'Python', 'Prompt Engineering'],
-      credentialId: '9550963',
       verificationUrl: '',
       image: '/placeholder.svg'
     },

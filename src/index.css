@@ -238,3 +238,28 @@ html, body {
   padding: 0;
   width: 100%;
 }
+
+/* Extended stagger delays used by repeated card lists */
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+.animation-delay-75 { animation-delay: 75ms; }
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced motion: neuter animation/transition for users who ask for it.
+   Only transform/opacity-based effects are used in the UI, so this is safe. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

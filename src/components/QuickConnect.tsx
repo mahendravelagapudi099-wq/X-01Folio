@@ -1,22 +1,15 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Twitter, Mail, Instagram, Users, X } from 'lucide-react';
+import { Github, Linkedin, Mail, Users, X } from 'lucide-react';
 
 const QuickConnect = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const socialLinks = [
     {
-      icon: Instagram,
-      href: "https://instagram.com",
-      label: "Instagram",
-      color: "from-pink-300/80 to-purple-300/80",
-      hoverColor: "hover:from-pink-400 hover:to-purple-400"
-    },
-    {
       icon: Linkedin,
       href: "https://www.linkedin.com/in/velagapudi-mahendra-543481353/",
-      label: "LinkedIn", 
+      label: "LinkedIn",
       color: "from-blue-300/80 to-indigo-300/80",
       hoverColor: "hover:from-blue-400 hover:to-indigo-400"
     },
@@ -28,15 +21,8 @@ const QuickConnect = () => {
       hoverColor: "hover:from-slate-400 hover:to-gray-400"
     },
     {
-      icon: Twitter,
-      href: "https://twitter.com",
-      label: "Twitter",
-      color: "from-sky-300/80 to-cyan-300/80",
-      hoverColor: "hover:from-sky-400 hover:to-cyan-400"
-    },
-    {
       icon: Mail,
-      href: "mailto:sarah.watson@email.com",
+      href: "mailto:mahendravelagapudi099@gmail.com",
       label: "Email",
       color: "from-emerald-300/80 to-teal-300/80",
       hoverColor: "hover:from-emerald-400 hover:to-teal-400"
