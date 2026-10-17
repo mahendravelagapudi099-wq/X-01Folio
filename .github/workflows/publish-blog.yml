@@ -43,7 +43,7 @@ jobs:
 
       - name: Upsert posts to Supabase
         env:
-          SUPABASE_URL: https://ltgldkbjifvheiqykvvm.supabase.co
+          SUPABASE_URL: https://ujbecwnuzrpijvjffcun.supabase.co
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           python3 - <<'PYEOF'
