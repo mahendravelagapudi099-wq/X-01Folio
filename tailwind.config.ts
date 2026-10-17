@@ -24,6 +24,7 @@ export default {
 				inter: ['Inter', 'sans-serif'],
 				jetbrains: ['JetBrains Mono', 'monospace'],
 				playfair: ['Playfair Display', 'serif'],
+			orbitron: ['Orbitron', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

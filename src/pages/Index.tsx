@@ -5,9 +5,8 @@ import Projects from '@/components/Projects';
 import Blog from '@/components/Blog';
 import Resume from '@/components/Resume';
 import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import Certificates from "@/components/Certificates";
-import QuickConnect from "@/components/QuickConnect";
+// Footer and QuickConnect live in App.tsx so they render exactly once on every route.
 
 
 
@@ -36,7 +35,6 @@ const Index = () => {
       <Blog />
       <Resume />
       <Contact />
-      <QuickConnect />
     </div>
   );
 };
