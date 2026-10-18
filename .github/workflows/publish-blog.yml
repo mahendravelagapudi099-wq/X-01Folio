@@ -47,7 +47,7 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           python3 - <<'PYEOF'
-          import json, glob, os, sys, urllib.request, urllib.error
+          import json, glob, os, sys, urllib.request, urllib.error, urllib.parse
 
           url = os.environ['SUPABASE_URL'].rstrip('/')
           key = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
@@ -76,8 +76,9 @@ jobs:
                   'reading_time': post.get('reading_time', ''),
                   'blocks': post.get('blocks', []),
               }
+              query_params = urllib.parse.urlencode({'on_conflict': 'slug'})
               req = urllib.request.Request(
-                  f"{url}/rest/v1/posts?onConflict=slug",
+                  f"{url}/rest/v1/posts?{query_params}",
                   data=json.dumps(payload).encode(),
                   headers={
                       'apikey': key,

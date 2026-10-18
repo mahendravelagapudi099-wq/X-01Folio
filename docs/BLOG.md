@@ -22,7 +22,7 @@ is confirmed to exist):
 |----------------|---------|------------------------------------------|
 | id             | uuid    | primary key                              |
 | created_at     | timestamptz | auto                                   |
-| slug           | text    | unique; workflow upserts `onConflict=slug`|
+| slug           | text    | unique; workflow upserts `on_conflict=slug`|
 | title          | text    | required by the workflow                 |
 | excerpt        | text    | nullable                                 |
 | feature_image  | text    | nullable; used for OG image              |
