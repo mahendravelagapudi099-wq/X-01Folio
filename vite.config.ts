@@ -28,7 +28,6 @@ export default defineConfig(({ mode }) => {
           // Otherwise everything lands in one 1.5MB JS chunk.
           manualChunks(id) {
             if (!id.includes("node_modules")) return;
-            if (id.includes("react-router") || /node_modules\/(react|react-dom)\//.test(id)) return "react-vendor";
             if (id.includes("framer-motion")) return "framer";
             if (id.includes("swiper")) return "swiper";
             if (id.includes("radix-ui")) return "radix";
