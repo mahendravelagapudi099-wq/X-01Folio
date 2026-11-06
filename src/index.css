@@ -196,25 +196,97 @@
     background-color: #272727;
   }
 
-  /* High-Craft Aceternity / Magic UI Keyframes */
+  /* ---------------------------------------------------------------- */
+  /* Border beam                                                      */
+  /* ---------------------------------------------------------------- */
   @keyframes border-beam-anim {
-    100% {
-      offset-distance: 100%;
-    }
+    100% { offset-distance: 100%; }
   }
 
   @keyframes pulse-beam {
-    0%, 100% {
-      opacity: 0.2;
-      stroke-dashoffset: 0;
-    }
-    50% {
-      opacity: 1;
-      stroke-dashoffset: -40;
+    0%, 100% { opacity: 0.2; stroke-dashoffset: 0; }
+    50% { opacity: 1; stroke-dashoffset: -40; }
+  }
+  .animate-pulse-beam { animation: pulse-beam 3s ease-in-out infinite; }
+
+  /* ---------------------------------------------------------------- */
+  /* Hero entry — staggered fade-up on page load                       */
+  /* ---------------------------------------------------------------- */
+  @keyframes hero-enter {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-entry {
+      animation: hero-enter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
   }
 
-  .animate-pulse-beam {
-    animation: pulse-beam 3s ease-in-out infinite;
+  /* ---------------------------------------------------------------- */
+  /* Aurora blobs — slow CSS rotation, GPU-only                        */
+  /* ---------------------------------------------------------------- */
+  @keyframes aurora-drift-1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(60px, -40px) scale(1.08); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes aurora-drift-2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(-40px, 30px) scale(0.95); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .aurora-blob-1 {
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      filter: blur(90px);
+      animation: aurora-drift-1 18s ease-in-out infinite;
+      will-change: transform;
+    }
+    .aurora-blob-2 {
+      background: radial-gradient(circle, rgba(160,180,255,0.04) 0%, transparent 70%);
+      filter: blur(110px);
+      animation: aurora-drift-2 22s ease-in-out infinite;
+      will-change: transform;
+    }
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* GlintCard — spotlight effect via CSS custom property             */
+  /* ---------------------------------------------------------------- */
+  .glint-card {
+    --gx: 50%;
+    --gy: 50%;
+    position: relative;
+  }
+  .glint-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      180px circle at var(--gx) var(--gy),
+      rgba(255, 255, 255, 0.055),
+      transparent 80%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .glint-card:hover::after {
+    opacity: 1;
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Noise grain — fixed overlay, pointer-events-none, no repaints    */
+  /* Apply only to .has-grain wrappers via fixed pseudo               */
+  /* ---------------------------------------------------------------- */
+  @keyframes noise-shift {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-3%, 2%); }
+    50%  { transform: translate(2%, -3%); }
+    75%  { transform: translate(-1%, 1%); }
+    100% { transform: translate(0, 0); }
   }
 }
