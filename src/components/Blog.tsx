@@ -31,13 +31,13 @@ const Blog = () => {
         <div className="mb-16 text-center">
           <h2
             id="blog-heading"
-            className="mb-6 inline-block bg-gradient-primary bg-clip-text font-orbitron text-4xl font-bold text-transparent md:text-5xl lg:text-6xl"
+            className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground mb-4"
           >
-            Latest Articles
+            Technical Articles & Deep Dives
           </h2>
-          <div className="mx-auto mb-8 h-1.5 w-24 rounded-full bg-gradient-primary" />
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Deep dives into AI, Machine Learning, and Modern Web Architecture.
+          <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4" />
+          <p className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+            AI AGENTS &bull; MACHINE LEARNING &bull; ARCHITECTURE
           </p>
         </div>
 
@@ -108,3 +108,4 @@ const Blog = () => {
 };
 
 export default Blog;
+

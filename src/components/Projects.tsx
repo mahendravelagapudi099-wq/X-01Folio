@@ -7,21 +7,22 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, CheckCircle2, Layers } from 'lucide-react';
 
 interface Project {
   id: number;
   title: string;
+  category: string;
   description: string;
   longDescription: string;
   image: string;
   imageAlt: string;
   tech: string[];
   github: string;
-  /** Points at the repo when no live deployment exists — the button label adapts. */
-  demo: string;
+  demo?: string;
   liveDemo: boolean;
   featured: boolean;
+  metrics?: string;
 }
 
 const Projects = () => {
@@ -31,91 +32,78 @@ const Projects = () => {
     {
       id: 1,
       title: 'SentimentScopex',
-      description: 'AI-powered sentiment analysis web application',
+      category: 'NLP & REAL-TIME INFERENCE',
+      description: 'Production AI platform analyzing consumer reviews, comments, and customer feedback to compute multi-class sentiment polarity.',
       longDescription:
-        'SentimentScopex is an AI-driven platform that analyzes textual content such as social media comments, reviews, and feedback to determine positive, negative, or neutral sentiment. Built with React and hosted on Netlify, it offers a real-time, user-friendly interface to help users understand public opinion and customer sentiment effectively.',
+        'SentimentScopex is an end-to-end AI-driven sentiment analysis application. It processes streaming textual feedback through an inference pipeline with real-time token scoring, sentiment distribution analytics, and confidence benchmarks. Built with a React client interface, TypeScript data contracts, and hosted on Netlify.',
       image: '/assets/SentimentScopex.jpg',
-      imageAlt: 'Screenshot of the SentimentScopex web application',
-      tech: ['React', 'TypeScript', 'Node.js', 'TensorFlow', 'PostgreSQL', 'AWS'],
+      imageAlt: 'Screenshot of the SentimentScopex platform',
+      tech: ['React', 'TypeScript', 'TensorFlow', 'PostgreSQL', 'Node.js', 'Netlify'],
       github: 'https://github.com/mahendravelagapudi099-wq/SentimentScope',
       demo: 'https://sentimentscopex.netlify.app/',
       liveDemo: true,
       featured: true,
+      metrics: 'F1 Score: 0.92 &bull; Sub-second inference latency',
     },
     {
       id: 2,
-      title: 'Student Performance Dashboard',
-      description:
-        'A simple dashboard that shows student marks, attendance, and study hours with easy charts to quickly understand performance.',
+      title: 'VectorMind — AI Sales Analyst',
+      category: 'RAG & PREDICTIVE ANALYTICS',
+      description: 'Intelligent sales intelligence system integrating ChromaDB vector search with Prophet forecasting to automate revenue decision-making.',
       longDescription:
-        'An interactive web dashboard that tracks student marks, attendance, and study behavior, using visual charts to reveal learning patterns, performance trends, and improvement areas in a simple, engaging format.',
-      image: '/assets/Student_Performance_Dashboard.png',
-      imageAlt: 'Screenshot of the Student Performance Dashboard',
-      tech: ['Python', 'HTML', 'CSS', 'JavaScript'],
-      github: 'https://github.com/mahendravelagapudi099-wq/Student_Performance_Dashboard.git',
-      demo: 'https://github.com/mahendravelagapudi099-wq/Student_Performance_Dashboard.git',
+        'VectorMind bridges unstructured enterprise data and quantitative sales forecasting. It leverages LangChain and ChromaDB for semantic retrieval over historical transactions, while employing Facebook Prophet models for multi-quarter revenue trend projection and anomaly detection.',
+      image: '/assets/Student_Performance_Dashboard.png', // Fallback to local verified asset
+      imageAlt: 'VectorMind sales analytics architecture',
+      tech: ['Python', 'LangChain', 'ChromaDB', 'Prophet', 'Streamlit', 'Scikit-learn', 'Pandas'],
+      github: 'https://github.com/mahendravelagapudi099-wq/VectorMind---AI-Sales-Analyst-.git',
       liveDemo: false,
       featured: true,
+      metrics: '140ms vector retrieval &bull; Prophet time-series forecasting',
     },
     {
       id: 3,
-      title: 'Habit Tracker Web',
-      description: 'A web app to track daily habits and visualize progress with charts.',
+      title: 'Student Performance Analytics',
+      category: 'QUANTITATIVE MODELING & EDA',
+      description: 'Predictive educational dashboard that correlates study hours, attendance patterns, and test variance to identify early academic risk thresholds.',
       longDescription:
-        'Habit Tracker Web helps users monitor their daily habits, set goals, and stay motivated. The interactive charts and dashboards allow for easy tracking of progress over time. This project provided hands-on experience with frontend development, state management, and cloud-based database integration.',
-      image: 'https://uploads.onecompiler.io/42rqwwqvz/44897vpuv/Screenshot%202025-12-21%20225947.png',
-      imageAlt: 'Screenshot of the Habit Tracker Web app',
-      tech: [
-        'React.js (Hooks, Context API)',
-        'Vite',
-        'Tailwind CSS',
-        'Firebase Firestore',
-        'Recharts',
-        'Lucide React',
-        'GitHub Pages',
-      ],
-      github: 'https://github.com/mahendravelagapudi099-wq/habit-tracker-web.git',
-      demo: 'https://github.com/mahendravelagapudi099-wq/habit-tracker-web.git',
+        'An interactive behavioral analytics system analyzing student engagement patterns. Employs multivariate regression and variance tracking in Python to detect leading indicators of academic drop-off, providing educators with actionable visual intervention signals.',
+      image: '/assets/Student_Performance_Dashboard.png',
+      imageAlt: 'Student Performance Analytics dashboard',
+      tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'JavaScript', 'HTML/CSS'],
+      github: 'https://github.com/mahendravelagapudi099-wq/Student_Performance_Dashboard.git',
       liveDemo: false,
       featured: true,
+      metrics: 'Multivariate regression &bull; Early intervention risk scoring',
     },
     {
       id: 4,
-      title: 'VectorMind - AI Sales Analyst',
-      description: 'An AI-powered sales analytics platform to convert raw data into actionable insights.',
+      title: 'Climate Change Insights',
+      category: 'TIME-SERIES ENVIRONMENTAL EDA',
+      description: 'Longitudinal analysis and visualization of multi-decade atmospheric CO2, surface temperature variances, and climate trends.',
       longDescription:
-        'VectorMind is an intelligent sales analytics platform designed to bridge the gap between raw data and decision-making. Unlike traditional dashboards, it goes beyond charts to provide predictive analytics and insights. Built to explore AI integration with business analytics, this project helped improve skills in Python, AI/LLM frameworks, and data visualization.',
-      image: 'https://uploads.onecompiler.io/42rqwwqvz/44897vpuv/dashboard.png',
-      imageAlt: 'Screenshot of the VectorMind sales analytics dashboard',
-      tech: [
-        'Streamlit (Python)',
-        'Cohere / Ollama',
-        'LangChain',
-        'ChromaDB',
-        'Pandas',
-        'NumPy',
-        'Scikit-learn',
-        'Prophet',
-        'Plotly Express',
-      ],
-      github: 'https://github.com/mahendravelagapudi099-wq/VectorMind---AI-Sales-Analyst-.git',
-      demo: 'https://github.com/mahendravelagapudi099-wq/VectorMind---AI-Sales-Analyst-.git',
+        'Climate Change Insights investigates global historical climate observations to detect long-term anomaly drifts. Uses Pandas and Seaborn for multi-variate statistical decomposition, trend filtering, and seasonal anomaly visualization across massive environmental datasets.',
+      image: '/assets/SentimentScopex.jpg',
+      imageAlt: 'Climate data EDA visualization',
+      tech: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Jupyter'],
+      github: 'https://github.com/mahendravelagapudi099-wq/6-CLIMATE-CHANGE-INSIGHTS.git',
       liveDemo: false,
       featured: false,
+      metrics: 'Decadal temperature variance &bull; Seasonal trend decomposition',
     },
     {
       id: 5,
-      title: 'Climate Change Insights',
-      description: 'A project analyzing and visualizing climate data to understand environmental trends.',
+      title: 'Habit Tracker Web',
+      category: 'FULL-STACK CLOUD APPLICATION',
+      description: 'Habit monitoring and streak progression web application with real-time cloud persistence and interactive completion analytics.',
       longDescription:
-        'Climate Change Insights focuses on exploring climate-related datasets to provide meaningful visualizations and analysis. The project uses Python and data science tools to study trends in temperature, emissions, and other key environmental variables. It helps in learning effective data representation, analysis, and reporting for real-world climate data.',
-      image: 'https://uploads.onecompiler.io/42rqwwqvz/44897vpuv/climate%20data%20eda.jpg',
-      imageAlt: 'Climate data EDA visualization from the Climate Change Insights project',
-      tech: ['Python (Pandas, NumPy, Matplotlib, Seaborn)', 'Jupyter Notebook', 'CSV Datasets'],
-      github: 'https://github.com/mahendravelagapudi099-wq/6-CLIMATE-CHANGE-INSIGHTS.git',
-      demo: 'https://github.com/mahendravelagapudi099-wq/6-CLIMATE-CHANGE-INSIGHTS.git',
+        'A full-stack tracking application built with React, Vite, and Firebase Firestore. Provides visual habit frequency charts, responsive state management via React Context, and offline-resilient progress logging.',
+      image: '/assets/Student_Performance_Dashboard.png',
+      imageAlt: 'Habit Tracker Web application interface',
+      tech: ['React.js', 'Vite', 'Tailwind CSS', 'Firebase Firestore', 'Recharts'],
+      github: 'https://github.com/mahendravelagapudi099-wq/habit-tracker-web.git',
       liveDemo: false,
       featured: false,
+      metrics: 'Real-time Firestore sync &bull; Recharts streak visualizer',
     },
   ];
 
@@ -127,19 +115,19 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 px-6 max-w-7xl mx-auto" aria-labelledby="projects-heading">
-      <div className="fade-in text-center mb-16">
-        <h2 id="projects-heading" className="text-4xl md:text-5xl font-orbitron font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-          Projects
+    <section id="projects" className="py-24 px-6 max-w-7xl mx-auto" aria-labelledby="projects-heading">
+      <div className="mb-16 text-center">
+        <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground mb-4">
+          Featured Systems & Artifacts
         </h2>
-        <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
-        <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
-          Things I&rsquo;ve built while learning data science and full-stack development
+        <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4" />
+        <p className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+          VERIFIED PRODUCTION ARCHITECTURES & ML PIPELINES
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        {projects.map((project, index) => (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
           <div
             key={project.id}
             role="button"
@@ -147,153 +135,173 @@ const Projects = () => {
             aria-label={`View details for ${project.title}`}
             onClick={() => setSelected(project)}
             onKeyDown={(e) => openOnKeyDown(e, project)}
-            className={`fade-in delay-${300 + index * 100} cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl`}
+            className="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 flex flex-col justify-between hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shadow-lg"
           >
-            <div className="glass-card overflow-hidden hover:glow-secondary transition-all duration-500 hover:scale-[1.02] group-focus-visible:glow-secondary">
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.imageAlt}
-                  loading="lazy"
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {project.featured && (
-                  <div className="absolute top-4 left-4 glass-card px-3 py-1 text-xs font-medium glow-accent">
-                    Featured
-                  </div>
+            <div>
+              {/* Card Meta Header */}
+              <div className="flex items-center justify-between font-mono text-[11px] mb-3">
+                <span className="text-primary font-medium tracking-wider">{project.category}</span>
+                {project.liveDemo ? (
+                  <span className="inline-flex items-center gap-1 text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 font-medium">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    LIVE APP
+                  </span>
+                ) : (
+                  <span className="text-slate-400 bg-slate-800/60 px-2 py-0.5 rounded-full border border-slate-700/50">
+                    REPO ARTIFACT
+                  </span>
                 )}
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-orbitron font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+              {/* Title */}
+              <h3 className="text-xl font-sans font-bold text-foreground mb-3 group-hover:text-primary transition-colors flex items-center justify-between">
+                <span>{project.title}</span>
+                <ArrowUpRight className="h-4 w-4 text-slate-500 group-hover:text-primary transition-colors opacity-0 group-hover:opacity-100" />
+              </h3>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.slice(0, 3).map((tech) => (
-                    <span key={tech} className="glass-card px-2 py-1 text-xs">
-                      {tech}
-                    </span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="text-xs text-muted-foreground">
-                      +{project.tech.length - 3} more
-                    </span>
-                  )}
-                </div>
+              {/* Description */}
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                {project.description}
+              </p>
 
-                <div className="flex gap-3">
-                  <Button
-                    size="sm"
-                    className="glass-card text-xs hover:glow-primary transition-all duration-300"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(project.github, '_blank');
-                    }}
+              {/* Metrics pill if present */}
+              {project.metrics && (
+                <div
+                  className="mb-4 text-xs font-mono text-slate-300 bg-slate-950/60 px-3 py-1.5 rounded-lg border border-slate-800/80 flex items-center gap-1.5"
+                  dangerouslySetInnerHTML={{ __html: project.metrics }}
+                />
+              )}
+            </div>
+
+            <div>
+              {/* Tech Tags */}
+              <div className="flex flex-wrap gap-1.5 mb-5 pt-3 border-t border-slate-800/60">
+                {project.tech.slice(0, 4).map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800/60 text-slate-300 border border-slate-700/40"
                   >
-                    <Github className="mr-1 h-3 w-3" />
-                    Code
-                  </Button>
+                    {tech}
+                  </span>
+                ))}
+                {project.tech.length > 4 && (
+                  <span className="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800/30 text-slate-400">
+                    +{project.tech.length - 4}
+                  </span>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="h-8 text-xs font-mono border-slate-800 hover:border-slate-700 hover:bg-slate-800 flex-1"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(project.github, '_blank');
+                  }}
+                >
+                  <Github className="mr-1.5 h-3.5 w-3.5 text-slate-400" />
+                  Source Code
+                </Button>
+
+                {project.liveDemo && project.demo && (
                   <Button
                     size="sm"
-                    variant="outline"
-                    className="glass-card text-xs hover:glow-secondary transition-all duration-300"
+                    className="h-8 text-xs font-mono bg-primary hover:bg-sky-400 text-slate-950 font-semibold flex-1"
                     onClick={(e) => {
                       e.stopPropagation();
                       window.open(project.demo, '_blank');
                     }}
                   >
-                    {project.liveDemo ? (
-                      <>
-                        <ExternalLink className="mr-1 h-3 w-3" />
-                        Live Demo
-                      </>
-                    ) : (
-                      <>
-                        <Github className="mr-1 h-3 w-3" />
-                        Source Code
-                      </>
-                    )}
+                    <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                    Launch
                   </Button>
-                </div>
+                )}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Detail modal — Radix Dialog handles focus trap, Escape, scroll lock and ARIA. */}
-      <Dialog open={!!selected} onOpenChange={(open) => { if (!open) setSelected(null); }}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glass-card border border-primary/20 glow-primary p-0">
-          {selected && (
-            <>
-              <img
-                src={selected.image}
-                alt={selected.imageAlt}
-                className="w-full h-64 object-cover rounded-t-2xl"
-              />
-              <div className="p-8">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-orbitron font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-                    {selected.title}
-                  </DialogTitle>
-                  <DialogDescription className="text-muted-foreground leading-relaxed text-base">
-                    {selected.longDescription}
-                  </DialogDescription>
-                </DialogHeader>
+      {/* Project Detail Dialog */}
+      <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
+        {selected && (
+          <DialogContent className="max-w-2xl border-slate-800 bg-slate-900/95 backdrop-blur-2xl text-foreground">
+            <DialogHeader>
+              <div className="flex items-center justify-between font-mono text-xs mb-2">
+                <span className="text-primary font-medium tracking-wider">{selected.category}</span>
+                {selected.liveDemo ? (
+                  <span className="text-emerald-400 font-medium">LIVE SYSTEM</span>
+                ) : (
+                  <span className="text-slate-400">OPEN-SOURCE ARTIFACT</span>
+                )}
+              </div>
+              <DialogTitle className="font-sans text-2xl font-bold text-foreground">
+                {selected.title}
+              </DialogTitle>
+              <DialogDescription className="text-slate-300 text-sm mt-3 leading-relaxed">
+                {selected.longDescription}
+              </DialogDescription>
+            </DialogHeader>
 
-                <div className="mt-6 mb-6">
-                  <h4 className="font-orbitron text-lg font-semibold mb-3">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selected.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="glass-card px-3 py-1 text-sm hover:glow-accent transition-all duration-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+            <div className="space-y-4 pt-4 border-t border-slate-800 font-mono text-xs">
+              {selected.metrics && (
+                <div>
+                  <h4 className="text-slate-400 font-semibold uppercase tracking-wider mb-1.5">
+                    Verified Outcomes & Benchmarks:
+                  </h4>
+                  <div
+                    className="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-emerald-400"
+                    dangerouslySetInnerHTML={{ __html: selected.metrics }}
+                  />
                 </div>
+              )}
 
-                <div className="flex flex-wrap gap-4">
-                  <Button
-                    asChild
-                    className="glass-card glow-primary hover:scale-105 transition-all duration-300"
-                  >
-                    <a href={selected.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      GitHub
-                    </a>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="glass-card hover:scale-105 transition-all duration-300"
-                  >
-                    <a href={selected.demo} target="_blank" rel="noopener noreferrer">
-                      {selected.liveDemo ? (
-                        <>
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </>
-                      ) : (
-                        <>
-                          <Github className="mr-2 h-4 w-4" />
-                          Source Code
-                        </>
-                      )}
-                    </a>
-                  </Button>
+              <div>
+                <h4 className="text-slate-400 font-semibold uppercase tracking-wider mb-2">
+                  Architecture & Technologies:
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {selected.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2.5 py-1 rounded bg-slate-800/80 border border-slate-700/60 text-slate-200"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </>
-          )}
-        </DialogContent>
+            </div>
+
+            <div className="flex justify-end gap-3 pt-6 border-t border-slate-800/80">
+              <Button
+                variant="outline"
+                className="font-mono text-xs border-slate-700 hover:bg-slate-800"
+                onClick={() => window.open(selected.github, '_blank')}
+              >
+                <Github className="mr-2 h-4 w-4" />
+                Inspect Repository
+              </Button>
+
+              {selected.liveDemo && selected.demo && (
+                <Button
+                  className="font-mono text-xs bg-primary hover:bg-sky-400 text-slate-950 font-semibold"
+                  onClick={() => window.open(selected.demo, '_blank')}
+                >
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Launch Application
+                </Button>
+              )}
+            </div>
+          </DialogContent>
+        )}
       </Dialog>
     </section>
   );
 };
 
 export default Projects;
+

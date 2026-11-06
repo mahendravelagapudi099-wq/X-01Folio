@@ -31,7 +31,7 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="flex min-h-[60vh] items-center justify-center px-6 pt-16">
           <div className="w-full max-w-lg glass-card p-8 text-center md:p-12">
-            <h1 className="mb-3 font-orbitron text-3xl font-bold">Something broke</h1>
+            <h1 className="mb-3 font-sans text-3xl font-bold">Something broke</h1>
             <p className="mb-8 text-muted-foreground">
               An unexpected error happened while rendering this page. Try reloading &mdash;
               if it keeps failing, head back home.
@@ -61,3 +61,4 @@ export class ErrorBoundary extends Component<Props, State> {
 }
 
 export default ErrorBoundary;
+

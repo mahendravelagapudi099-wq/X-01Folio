@@ -13,13 +13,13 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 pt-16 text-center">
-      <p className="mb-4 bg-gradient-primary bg-clip-text font-orbitron text-7xl font-bold text-transparent md:text-9xl">
+      <p className="mb-4 bg-gradient-primary bg-clip-text font-sans text-7xl font-bold text-transparent md:text-9xl">
         404
       </p>
-      <h1 className="mb-3 font-orbitron text-2xl font-semibold md:text-3xl">Page not found</h1>
+      <h1 className="mb-3 font-sans text-2xl font-semibold md:text-3xl">Page not found</h1>
       <p className="mb-10 max-w-md text-muted-foreground">
         The link{' '}
-        <span className="font-jetbrains text-primary">{location.pathname}</span>
+        <span className="font-mono text-primary">{location.pathname}</span>
         {' '}doesn&rsquo;t exist. It may have been moved or renamed.
       </p>
 
@@ -42,3 +42,4 @@ const NotFound = () => {
 };
 
 export default NotFound;
+

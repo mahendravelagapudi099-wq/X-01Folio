@@ -76,3 +76,4 @@ export const usePost = (slug: string | undefined) =>
     staleTime: 5 * 60 * 1000,
     retry: 1,
   });
+

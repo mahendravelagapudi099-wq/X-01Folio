@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velagapudi Mahendra — Selected Works & Monograph</title>
+<style>
+/* Direction B: Modern Editorial / Swiss Monograph */
+:root {
+  --bg: #0c0e12;
+  --surface: #141820;
+  --surface-raised: #1c222e;
+  --border: rgba(243, 244, 246, 0.1);
+  --border-focus: rgba(245, 158, 11, 0.5);
+  --text: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-faint: #6b7280;
+  --amber: #f59e0b;
+  --amber-dark: #b45309;
+  --font-serif: 'Newsreader', 'Fraunces', 'Georgia', 'Cambria', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Editorial Top Header */
+.header {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.brand-mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.publication-issue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--amber);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Editorial Hero / Monograph Title */
+.monograph-hero {
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.prospectus-number {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--amber);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.monograph-title {
+  font-family: var(--font-serif);
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.monograph-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--amber);
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.thesis-statement {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #d1d5db;
+  max-width: 720px;
+  margin-bottom: 36px;
+  border-left: 2px solid var(--amber);
+  padding-left: 20px;
+}
+
+.author-credentials {
+  display: flex;
+  gap: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-faint);
+  flex-wrap: wrap;
+}
+
+.author-credentials span strong {
+  color: var(--text-muted);
+}
+
+/* Section Rhythm */
+.section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-head {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 32px;
+  color: #fff;
+}
+
+/* Editorial Research Feature */
+.research-treatise {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 36px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.treatise-title {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.treatise-abstract {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.treatise-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--amber);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Case Study Entries */
+.case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.case-entry {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  padding: 24px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.08);
+}
+
+.case-entry:last-child {
+  border-bottom: none;
+}
+
+.case-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.case-meta .category {
+  color: var(--amber);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.case-content h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.case-content p {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.case-links a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--amber);
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.case-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Mobile Rules */
+@media (max-width: 720px) {
+  .monograph-title {
+    font-size: 36px;
+  }
+  .monograph-subtitle {
+    font-size: 20px;
+  }
+  .case-entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .thesis-statement {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header container">
+  <div class="brand-mono">VM &bull; SCHOLARLY PORTFOLIO &bull; VOL. 2026</div>
+  <div class="publication-issue">MEXT / FELLOWSHIP CANDIDATE</div>
+</header>
+
+<main class="container">
+  <!-- Monograph Opening -->
+  <section class="monograph-hero">
+    <span class="prospectus-number">&sect; 01 / PROSPECTUS & SCHOLAR PROFILE</span>
+    <h1 class="monograph-title">Velagapudi Mahendra</h1>
+    <div class="monograph-subtitle">
+      Data Science Scholar, Machine Learning Systems & Quantitative Analytics
+    </div>
+    <div class="thesis-statement">
+      &ldquo;Investigating the boundaries where statistical certainty meets autonomous artificial intelligence. My work focuses on designing empirical verification gates that prevent silent data corruption and ensure reproducible computational outcomes.&rdquo;
+    </div>
+    <div class="author-credentials">
+      <span><strong>Institution:</strong> Mallareddy Engineering College (MREM)</span>
+      <span><strong>Program:</strong> B.Tech Data Science (2023–2027)</span>
+      <span><strong>Location:</strong> Hyderabad, India</span>
+    </div>
+  </section>
+
+  <!-- Treatise & Ongoing Research -->
+  <section class="section">
+    <span class="section-label">&sect; 02 / WORKING PAPER & THEORETICAL INQUIRY</span>
+    <h2 class="section-head">Primary Academic Research</h2>
+
+    <article class="research-treatise">
+      <h3 class="treatise-title">
+        Risk-Based Verification and Evidence-Grounded Self-Correction for AI Data-Analysis Agents
+      </h3>
+      <p class="treatise-abstract">
+        Autonomous coding agents frequently generate syntactically valid pandas and SQL queries that introduce subtle statistical errors—such as distribution shift, bias leakage, or unchecked null imputations. This treatise outlines a two-tier framework: (1) static abstract syntax tree verification to detect high-risk data transformations prior to runtime, and (2) evidence-grounded evaluation oracles requiring intermediate assertion proofs before conclusions are accepted.
+      </p>
+      <div class="treatise-meta">
+        <span>STATUS: WORKING PAPER IN PREPARATION</span>
+        <span>BENCHMARK: MULTI-DOMAIN TABULAR EDA</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- Selected Computational Artifacts -->
+  <section class="section">
+    <span class="section-label">&sect; 03 / COMPUTATIONAL SYSTEMS & ARTIFACTS</span>
+    <h2 class="section-head">Selected Empirical Works</h2>
+
+    <div class="case-list">
+      <article class="case-entry">
+        <div class="case-meta">
+          <span class="category">APPLIED NLP &bull; LIVE</span>
+          <div>F1 Score: 0.92</div>
+          <div>Stack: React / TF / PG</div>
+        </div>
+        <div class="case-content">
+          <h3>SentimentScopex &mdash; Real-Time Sentiment Polarity Engine</h3>
+          <p>
+            An interactive text-classification platform engineered for real-time consumer review interpretation. Implements token scoring and sentiment distribution visualization with sub-second response times.
+          </p>
+          <div class="case-links">
+            <a href="#sentimentscopex">Launch Live Web Platform &rarr;</a>
+            <a href="#repo-sentimentscope">Repository Source &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-entry">
+        <div class="case-meta">
+          <span class="category">RAG &bull; TIME SERIES</span>
+          <div>Latency: 140ms</div>
+          <div>Stack: Python / ChromaDB</div>
+        </div>
+        <div class="case-content">
+          <h3>VectorMind &mdash; AI Sales Analyst</h3>
+          <p>
+            A multi-quarter sales forecasting architecture integrating LangChain, ChromaDB vector indexing, and Facebook Prophet time-series models to convert transactional records into actionable foresight.
+          </p>
+          <div class="case-links">
+            <a href="#repo-vectormind">Documentation & Code &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-entry">
+        <div class="case-meta">
+          <span class="category">MULTIVARIATE EDA</span>
+          <div>Proctored Exam: Passed</div>
+          <div>IIT Roorkee / NPTEL</div>
+        </div>
+        <div class="case-content">
+          <h3>Student Behavioral Analytics & Climate Trend Decomposition</h3>
+          <p>
+            Quantitative analytical suites evaluating academic intervention thresholds and multi-decade atmospheric temperature drift across observational environmental datasets.
+          </p>
+          <div class="case-links">
+            <a href="#repo-student">Student Dashboard &rarr;</a>
+            <a href="#repo-climate">Climate Insights &rarr;</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="container" style="padding: 40px 0; font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); display: flex; justify-content: space-between;">
+  <div>&copy; 2026 VELAGAPUDI MAHENDRA</div>
+  <div>DESIGN CANDIDATE: DIR-B (SWISS MONOGRAPH)</div>
+</footer>
+
+</body>
+</html>

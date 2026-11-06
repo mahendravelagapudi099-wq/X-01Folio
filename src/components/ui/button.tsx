@@ -5,25 +5,22 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all duration-300 ease-base active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-gradient-primary text-primary-foreground hover:shadow-neon backdrop-blur-md border border-primary/20",
-        destructive:
-          "bg-destructive/20 text-destructive border border-destructive/30 backdrop-blur-md hover:bg-destructive/30",
-        outline:
-          "border border-primary/30 bg-background/10 backdrop-blur-md hover:border-primary hover:bg-primary/10 text-foreground",
-        secondary:
-          "bg-secondary/20 text-secondary-foreground border border-secondary/30 backdrop-blur-md hover:bg-secondary/30",
-        ghost: "hover:bg-accent/20 backdrop-blur-md",
-        link: "text-primary underline-offset-4 hover:underline",
+        default: "bg-[#FFFFFF] text-[#000000] hover:bg-[#FFFFFF]/90 border border-transparent",
+        destructive: "bg-red-950/80 text-red-200 border border-red-900/50 hover:bg-red-900/60",
+        outline: "border border-[#272727] bg-[#181818] hover:bg-[#1F1F1F] text-[#FFFFFF]",
+        secondary: "bg-[#1F1F1F] text-[#FFFFFF] border border-[#272727] hover:bg-[#272727]",
+        ghost: "hover:bg-[#181818] text-[#9B9B9B] hover:text-[#FFFFFF]",
+        link: "text-[#FFFFFF] underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        default: "h-9 px-3 py-2 text-sm", // 8px vertical, 12px horizontal per elayadesign/ai-design-skills
+        sm: "h-8 rounded-md px-2.5 text-xs",
+        lg: "h-10 rounded-md px-4 text-base",
+        icon: "h-9 w-9",
       },
     },
     defaultVariants: {

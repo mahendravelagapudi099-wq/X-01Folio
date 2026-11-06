@@ -22,7 +22,7 @@ const BackToTop = () => {
       type="button"
       onClick={scrollToTop}
       aria-label="Back to top"
-      className={`fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full glass-card border border-primary/20 text-primary transition-all duration-300 hover:glow-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+      className={`fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-card border border-border text-foreground transition-all duration-200 hover:border-foreground/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
         visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >
@@ -32,3 +32,4 @@ const BackToTop = () => {
 };
 
 export default BackToTop;
+

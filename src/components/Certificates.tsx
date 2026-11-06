@@ -1,333 +1,299 @@
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Award, Calendar, ExternalLink } from 'lucide-react';
+import { Award, Calendar, ExternalLink, CheckCircle2, ShieldCheck, FileCheck } from 'lucide-react';
 
 export interface Certificate {
   id: string;
   title: string;
   issuer: string;
+  category: 'data' | 'ai' | 'database' | 'engineering';
   date: string;
   description: string;
   skills: string[];
-  credentialId: string;
-  verificationUrl: string;
-  image: string;
+  credentialId?: string;
+  verificationUrl?: string;
+  image?: string;
 }
 
 const Certifications = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [filter, setFilter] = useState<'all' | 'data' | 'ai' | 'database'>('all');
 
   const certificates: Certificate[] = [
     {
       id: '1',
-      title: 'Google Data Analytics Professional Certificate',
-      issuer: 'Google Career Certificates',
-      date: '2024',
-      description: 'Comprehensive program covering data analysis fundamentals, data cleaning, visualization, and statistical analysis using R, SQL, and Tableau.',
-      skills: ['Data Analysis', 'R Programming', 'SQL', 'Tableau', 'Data Visualization'],
-      credentialId: 'GDA-2024-001',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      title: 'Data Analytics with Python',
+      issuer: 'NPTEL / IIT Roorkee',
+      category: 'data',
+      date: 'Jan - Apr 2025',
+      description: 'Comprehensive 12-week academic program on Python-based statistical analytics, exploratory data analysis, and mathematical modeling with a proctored examination.',
+      skills: ['Python', 'Pandas', 'NumPy', 'Data Visualization', 'Statistical Analysis'],
+      credentialId: 'NPTEL25CS17S1147000547',
+      verificationUrl: 'https://nptel.ac.in/',
+      image: '/certificates/certificate1.jpg',
     },
     {
       id: '2',
       title: 'Introduction to Generative AI',
       issuer: 'Google Cloud / Simplilearn',
-      date: '12th December 2025',
-      description: 'This professional has demonstrated initiative and a commitment to deepening their skills and advancing their career in generative AI.',
-      skills: ['Generative AI', 'Machine Learning', 'AI Models', 'Deep Learning', 'Python', 'Prompt Engineering'],
+      category: 'ai',
+      date: 'December 2025',
+      description: 'Foundational certification covering generative model architectures, LLMs, prompt engineering paradigms, and responsible AI practices.',
+      skills: ['Generative AI', 'LLMs', 'Prompt Engineering', 'Machine Learning', 'Python'],
       credentialId: '9550963',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      verificationUrl: 'https://www.simplilearn.com/',
+      image: '/certificates/certificate2.jpg',
     },
     {
       id: '3',
       title: 'MongoDB Data Modeling Intro',
-      issuer: 'MongoDB',
-      date: '18th December 2025',
-      description: 'Completed an introductory course on MongoDB data modeling, covering schema design, indexing, and database best practices.',
-      skills: ['MongoDB', 'Data Modeling', 'Database Design', 'Indexing', 'NoSQL'],
+      issuer: 'MongoDB, Inc.',
+      category: 'database',
+      date: 'December 2025',
+      description: 'Coursework on document database architecture, high-performance schema design patterns, indexing principles, and aggregation query optimization.',
+      skills: ['MongoDB', 'Data Modeling', 'NoSQL', 'Indexing', 'Schema Optimization'],
       credentialId: 'MDBeiehqbzv9n',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      verificationUrl: 'https://learn.mongodb.com/',
+      image: '/certificates/certificate3.jpg',
     },
     {
       id: '4',
-      title: 'Data Analyst 101',
-      issuer: 'Microsoft / Simplilearn',
-      date: '4th December 2025',
-      description: 'Completed an introductory data analysis course covering data cleaning, visualization, and basic statistical analysis.',
-      skills: ['Data Analysis', 'Data Cleaning', 'Data Visualization', 'Excel', 'SQL', 'Python'],
-      credentialId: '9528126',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      title: 'MongoDB and the Document Model',
+      issuer: 'MongoDB, Inc.',
+      category: 'database',
+      date: 'December 2025',
+      description: 'Deep dive into document structure, atomicity, nested documents vs referencing tradeoffs, and distributed database scaling concepts.',
+      skills: ['MongoDB', 'Document Model', 'NoSQL', 'Database Design'],
+      credentialId: 'MDB3dllkpvir8',
+      verificationUrl: 'https://learn.mongodb.com/',
     },
     {
       id: '5',
-      title: 'MongoDB and the Document Model',
-      issuer: 'MongoDB, Inc.',
-      date: '20th December 2025',
-      description: 'Completed a course on MongoDB document modeling, covering schema design, collections, and best practices for document databases.',
-      skills: ['MongoDB', 'Document Model', 'NoSQL', 'Database Design', 'Data Modeling'],
-      credentialId: 'MDB3dllkpvir8',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      title: 'SQL Bootcamp Certification',
+      issuer: 'LetsUpgrade / NSDC / GDG MAD',
+      category: 'database',
+      date: 'August 2024',
+      description: 'Intensive practical program focused on SQL querying, relational schema constraints, multi-table joins, subqueries, and window functions.',
+      skills: ['SQL', 'Relational Databases', 'Query Optimization', 'Data Manipulation'],
+      credentialId: 'LUESQLAUG124491',
+      verificationUrl: 'https://www.letsupgrade.in/verify',
     },
     {
       id: '6',
-      title: 'Gemini Certified Student',
-      issuer: 'Google for Education / University',
-      date: '7th December 2025',
-      description: 'Demonstrated knowledge, skills, and basic competencies needed to use Google AI.',
-      skills: ['Artificial Intelligence', 'Machine Learning', 'Google AI', 'AI Fundamentals'],
-      credentialId: '',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      title: 'Data Analytics & Visualization Job Simulation',
+      issuer: 'Accenture / Forage',
+      category: 'data',
+      date: 'February 2025',
+      description: 'Industry simulation completing real-world analytics workflows: client dataset audit, data sanitization, visualization narrative, and executive presentations.',
+      skills: ['Data Cleaning', 'Data Modeling', 'Tableau', 'Executive Storytelling'],
+      credentialId: 'TtuRuZiFOz6MBpjAJ',
+      verificationUrl: 'https://www.theforage.com/verify',
     },
     {
       id: '7',
-      title: 'Data Analytics and Visualization Job Simulation',
-      issuer: 'Accenture / Forage',
-      date: '27th February 2025',
-      description: 'Completed practical tasks in project understanding, data cleaning & modeling, data visualization & storytelling, and client presentation.',
-      skills: ['Data Analysis', 'Data Cleaning', 'Data Modeling', 'Data Visualization', 'Storytelling', 'Project Management'],
-      credentialId: 'TtuRuZiFOz6MBpjAJ',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      title: 'Software Engineering Job Simulation',
+      issuer: 'Skyscanner / Forage',
+      category: 'engineering',
+      date: 'February 2025',
+      description: 'Completed engineering assignments creating microservices, architecting React frontend modules, and implementing mobile flight itinerary flows.',
+      skills: ['React', 'Microservices', 'API Contracts', 'Web Engineering'],
+      credentialId: 'pHebmieZOnoP64ZJ5',
+      verificationUrl: 'https://www.theforage.com/verify',
     },
     {
       id: '8',
-      title: 'Data Analytics Job Simulation',
-      issuer: 'Deloitte / Forage',
-      date: '26th February 2025',
-      description: 'Completed practical tasks in data analysis and forensic technology, demonstrating applied analytics skills in a professional simulation environment.',
-      skills: ['Data Analysis', 'Forensic Technology', 'Data Modeling', 'Reporting'],
-      credentialId: '',
-      verificationUrl: '',
-      image: '/placeholder.svg'
+      title: 'Data Analyst 101',
+      issuer: 'Microsoft / Simplilearn',
+      category: 'data',
+      date: 'December 2025',
+      description: 'Foundational analytical methodology course covering spreadsheet data processing, relational querying, and business dashboard presentation.',
+      skills: ['Data Analysis', 'Excel Analytics', 'SQL Queries', 'Reporting'],
+      credentialId: '9528126',
+      verificationUrl: 'https://www.simplilearn.com/',
     },
     {
       id: '9',
-      title: 'Software Engineering Job Simulation',
-      issuer: 'Skyscanner / Forage',
-      date: '13th February 2025',
-      description: 'Completed practical tasks including creating a Backpack React web app, building microservices, developing a mobile flight itinerary, and creating a user-friendly platform.',
-      skills: ['React', 'Microservices', 'Mobile Development', 'Web Development', 'UI/UX'],
-      credentialId: 'pHebmieZOnoP64ZJ5',
-      verificationUrl: '',
-      image: '/placeholder.svg'
-    },
-    {
-      id: '10',
-      title: 'SQL Bootcamp',
-      issuer: 'LetsUpgrade / NSDC / GDG MAD',
-      date: '10th August 2024',
-      description: 'Completed a 5-day SQL Bootcamp covering database querying, data manipulation, and SQL fundamentals.',
-      skills: ['SQL', 'Database Queries', 'Data Manipulation', 'Database Management'],
-      credentialId: 'LUESQLAUG124491',
-      verificationUrl: 'https://www.letsupgrade.in/verify',
-      image: '/placeholder.svg'
-    },
-    {
-      id: '11',
-      title: 'Data Analytics with Python',
-      issuer: 'NPTEL / IIT Roorkee',
-      date: 'Jan-Apr 2025',
-      description: 'Successfully completed a 12-week course on data analytics using Python, including online assignments and a proctored exam.',
-      skills: ['Python', 'Data Analysis', 'Pandas', 'NumPy', 'Data Visualization', 'Statistics'],
-      credentialId: 'NPTEL25CS17S1147000547',
-      verificationUrl: '',
-      image: '/placeholder.svg'
-    },
-    {
-      id: '13',
-      title: 'DevOps Webinar Participation',
-      issuer: 'Google Developer Groups / Malla Reddy Engineering College',
-      date: '30th September 2025',
-      description: 'Successfully participated in a DevOps webinar covering collaboration, CI/CD concepts, and cloud development practices.',
-      skills: ['DevOps', 'CI/CD', 'Cloud Development', 'Collaboration', 'Webinar Participation'],
-      credentialId: '',
-      verificationUrl: '',
-      image: '/placeholder.svg'
-    },
-    {
-      id: '14',
-      title: 'Hands-on Workshop on DevOps — Git, GitHub & Docker',
-      issuer: 'GeeksforGeeks / Malla Reddy Engineering College',
-      date: '16th October 2025',
-      description: 'Participated in a hands-on DevOps workshop focused on Git, GitHub, Docker, and automation practices.',
-      skills: ['DevOps', 'Git', 'GitHub', 'Docker', 'Automation'],
+      title: 'Hands-on DevOps: Git, GitHub & Docker',
+      issuer: 'GeeksforGeeks / MREM',
+      category: 'engineering',
+      date: 'October 2025',
+      description: 'Practical workshop on version control branching workflows, CI/CD automated test pipelines, and containerization with Docker.',
+      skills: ['Git', 'GitHub Actions', 'Docker', 'CI/CD Pipelines'],
       credentialId: 'MREMGFG041',
-      verificationUrl: '',
-      image: '/placeholder.svg'
-    }
+    },
   ];
 
-  const handleLoadMore = () => {
-    setVisibleCount(prev => Math.min(prev + 6, certificates.length));
-  };
-
-  const visibleCertificates = certificates.slice(0, visibleCount);
-  const hasMore = visibleCount < certificates.length;
+  const filteredCertificates = filter === 'all'
+    ? certificates
+    : certificates.filter(c => c.category === filter);
 
   return (
-    <section id="certifications" className="py-20 px-6 max-w-7xl mx-auto">
-      <div className="fade-in text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-          Certifications
+    <section id="certifications" className="py-24 px-6 max-w-7xl mx-auto" aria-labelledby="cert-heading">
+      <div className="mb-16 text-center">
+        <h2 id="cert-heading" className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground mb-4">
+          Credentials & Certifications
         </h2>
-        <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
-        <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
-          Professional certifications that validate my expertise in data science and technology.
+        <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4" />
+        <p className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+          VERIFIED ACADEMIC & INDUSTRY QUALIFICATIONS
         </p>
+
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mt-8">
+          {[
+            { id: 'all', label: 'All Credentials' },
+            { id: 'data', label: 'Data & Analytics' },
+            { id: 'ai', label: 'AI & Machine Learning' },
+            { id: 'database', label: 'Databases & Systems' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setFilter(tab.id as typeof filter)}
+              className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all duration-150 ${
+                filter === tab.id
+                  ? 'bg-primary text-slate-950 font-semibold shadow-md shadow-primary/20'
+                  : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {visibleCertificates.map((cert, index) => (
-          <Dialog key={cert.id}>
-            <DialogTrigger asChild>
-              <div
-                onClick={() => setSelectedCertificate(cert)}
-                className={`glass-card p-6 hover:glow-primary transition-all duration-300 cursor-pointer group fade-in`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="glass-card p-3 rounded-xl glow-accent group-hover:scale-110 transition-transform duration-300">
-                    <Award className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-orbitron font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                      {cert.title}
-                    </h3>
-                    <p className="text-primary font-medium mb-1">{cert.issuer}</p>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      {cert.date}
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-muted-foreground mb-4 line-clamp-2">
-                  {cert.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {cert.skills.slice(0, 3).map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="secondary"
-                      className="glass-card bg-primary/10 text-primary border-primary/20 text-xs"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                  {cert.skills.length > 3 && (
-                    <Badge
-                      variant="secondary"
-                      className="glass-card bg-accent/10 text-accent border-accent/20 text-xs"
-                    >
-                      +{cert.skills.length - 3}
-                    </Badge>
-                  )}
-                </div>
-
-                <div className="mt-4 text-primary text-sm font-medium group-hover:text-accent transition-colors">
-                  Click to view details →
-                </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredCertificates.map((cert) => (
+          <div
+            key={cert.id}
+            onClick={() => setSelectedCertificate(cert)}
+            className="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 flex flex-col justify-between hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 shadow-lg"
+          >
+            <div>
+              {/* Card Header */}
+              <div className="flex items-center justify-between font-mono text-[11px] mb-3 text-slate-400">
+                <span className="flex items-center gap-1.5 text-primary font-medium">
+                  <ShieldCheck className="h-3.5 w-3.5" />
+                  {cert.issuer}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="h-3 w-3" />
+                  {cert.date}
+                </span>
               </div>
-            </DialogTrigger>
 
-            <DialogContent className="glass-card border-glass-border/50 bg-background/95 backdrop-blur-xl max-w-2xl">
-              <DialogHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4">
-                    <div className="glass-card p-3 rounded-xl glow-accent">
-                      <Award className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <DialogTitle className="font-orbitron text-xl mb-2">
-                        {cert.title}
-                      </DialogTitle>
-                      <p className="text-primary font-medium">{cert.issuer}</p>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                        <Calendar className="h-4 w-4" />
-                        Earned in {cert.date}
-                      </div>
-                    </div>
-                  </div>
+              {/* Title */}
+              <h3 className="text-lg font-sans font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                {cert.title}
+              </h3>
+
+              <p className="text-xs text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                {cert.description}
+              </p>
+
+              {/* Credential ID badge */}
+              {cert.credentialId && (
+                <div className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-950/80 border border-slate-800 font-mono text-[11px] text-slate-300">
+                  <FileCheck className="h-3 w-3 text-emerald-400" />
+                  <span>ID: {cert.credentialId}</span>
                 </div>
-              </DialogHeader>
+              )}
+            </div>
 
-              <div className="space-y-6 mt-6">
-                <div>
-                  <h4 className="font-orbitron font-semibold mb-3">Description</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {cert.description}
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-orbitron font-semibold mb-3">Skills Covered</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {cert.skills.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="glass-card bg-primary/10 text-primary border-primary/20"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {cert.credentialId && (
-                  <div>
-                    <h4 className="font-orbitron font-semibold mb-2">Credential Information</h4>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      <span className="font-medium">Credential ID:</span> {cert.credentialId}
-                    </p>
-                    {cert.verificationUrl && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="glass-card bg-transparent border-primary/30 hover:bg-primary/10 text-primary"
-                        onClick={() => window.open(cert.verificationUrl, '_blank')}
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Verify Certificate
-                      </Button>
-                    )}
-                  </div>
+            <div>
+              {/* Skills tags */}
+              <div className="flex flex-wrap gap-1.5 mb-4 pt-3 border-t border-slate-800/60">
+                {cert.skills.slice(0, 3).map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2 py-0.5 text-[10px] font-mono rounded bg-slate-800/60 text-slate-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+                {cert.skills.length > 3 && (
+                  <span className="px-2 py-0.5 text-[10px] font-mono rounded bg-slate-800/30 text-slate-400">
+                    +{cert.skills.length - 3}
+                  </span>
                 )}
               </div>
-            </DialogContent>
-          </Dialog>
+
+              {/* Action Link */}
+              <div className="flex items-center justify-between text-xs font-mono text-primary group-hover:underline">
+                <span>View Details</span>
+                <ExternalLink className="h-3.5 w-3.5" />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
-      {hasMore && (
-        <div className="text-center mt-12 fade-in">
-          <Button
-            onClick={handleLoadMore}
-            className="glass-card bg-primary/20 hover:bg-primary/30 border-primary/30 text-primary px-8 py-6 text-lg font-orbitron glow-primary"
-          >
-            Load More Certifications
-          </Button>
-        </div>
-      )}
+      {/* Certificate Modal Dialog */}
+      <Dialog open={!!selectedCertificate} onOpenChange={(open) => !open && setSelectedCertificate(null)}>
+        {selectedCertificate && (
+          <DialogContent className="max-w-xl border-slate-800 bg-slate-900/95 backdrop-blur-2xl text-foreground">
+            <DialogHeader>
+              <div className="flex items-center gap-2 text-xs font-mono text-primary mb-1">
+                <ShieldCheck className="h-4 w-4" />
+                <span>{selectedCertificate.issuer}</span> &bull; <span>{selectedCertificate.date}</span>
+              </div>
+              <DialogTitle className="font-sans text-2xl font-bold text-foreground">
+                {selectedCertificate.title}
+              </DialogTitle>
+            </DialogHeader>
 
-      <div className="text-center mt-12 fade-in delay-500">
-        <div className="glass-card p-6 glow-purple inline-block">
-          <h3 className="font-orbitron font-semibold mb-2">Continuous Learning</h3>
-          <p className="text-muted-foreground text-sm">
-            Currently pursuing additional certifications in Advanced Machine Learning and Cloud Architecture
-          </p>
-        </div>
-      </div>
+            {/* If authentic image exists, show preview */}
+            {selectedCertificate.image && (
+              <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 my-2 max-h-60 flex items-center justify-center">
+                <img
+                  src={selectedCertificate.image}
+                  alt={selectedCertificate.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            )}
+
+            <p className="text-sm text-slate-300 leading-relaxed mt-2">
+              {selectedCertificate.description}
+            </p>
+
+            <div className="space-y-3 pt-3 border-t border-slate-800 font-mono text-xs">
+              {selectedCertificate.credentialId && (
+                <div className="flex items-center justify-between py-1 border-b border-slate-800/40">
+                  <span className="text-slate-400">Credential Verification ID:</span>
+                  <span className="text-emerald-400 font-medium">{selectedCertificate.credentialId}</span>
+                </div>
+              )}
+
+              <div>
+                <span className="text-slate-400 block mb-2">Verified Competencies:</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {selectedCertificate.skills.map((s) => (
+                    <span
+                      key={s}
+                      className="px-2.5 py-1 rounded bg-slate-800/80 border border-slate-700/60 text-slate-200"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+              {selectedCertificate.verificationUrl && (
+                <Button
+                  className="font-mono text-xs bg-primary hover:bg-sky-400 text-slate-950 font-semibold"
+                  onClick={() => window.open(selectedCertificate.verificationUrl, '_blank')}
+                >
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Official Issuer Portal
+                </Button>
+              )}
+            </div>
+          </DialogContent>
+        )}
+      </Dialog>
     </section>
   );
 };

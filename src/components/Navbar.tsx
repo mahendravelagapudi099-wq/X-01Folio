@@ -1,145 +1,111 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 
-const SECTION_ITEMS = [
-  { id: 'about', label: 'About' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'certifications', label: 'Certifications' },
-  { id: 'research', label: 'Research' },
-  { id: 'contact', label: 'Contact' },
+const NAV_ITEMS = [
+  { path: '/projects', label: 'Projects' },
+  { path: '/research', label: 'Research' },
+  { path: '/credentials', label: 'Credentials' },
+  { path: '/about', label: 'About' },
+  { path: '/blog', label: 'Blog' },
+  { path: '/contact', label: 'Contact' },
 ];
 
-const Navbar = () => {
+export default function Navbar() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
 
   // Close the mobile drawer on every route change.
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Highlight whichever section is actually in view (home page only).
-  useEffect(() => {
-    if (location.pathname !== '/') {
-      setActiveSection('');
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActiveSection(visible.target.id);
-      },
-      { rootMargin: '-30% 0px -60% 0px', threshold: [0, 0.25, 0.5] },
-    );
-
-    SECTION_ITEMS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, [location.pathname]);
-
-  const scrollToSection = (id: string) => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (location.pathname !== '/') {
-      navigate('/');
-      // let the home page render, then scroll
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
-      }, 90);
-      return;
-    }
-    document.getElementById(id)?.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
-  };
-
-  const onBlog = location.pathname.startsWith('/blog');
-  const linkBase =
-    'rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
-  const linkIdle = 'text-muted-foreground hover:text-foreground';
-  const linkActive = 'text-primary';
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `px-3 py-1.5 rounded-md text-xs font-mono transition-colors duration-300 ease-base ${
+      isActive
+        ? 'text-foreground bg-[#1F1F1F] font-semibold border border-[#272727]'
+        : 'text-muted-foreground hover:text-foreground hover:bg-[#181818]'
+    }`;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-glass-border/20 bg-background/70 backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 pt-3 px-4 sm:px-6">
+      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6 rounded-xl border border-[#272727] bg-[#181818]/90 backdrop-blur-md shadow-lg shadow-black/40">
+        {/* Brand Logo Lockup */}
         <Link
           to="/"
-          className="bg-gradient-primary bg-clip-text font-orbitron text-lg font-bold text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+          aria-label="Home - Velagapudi Mahendra"
         >
-          VM
+          <Logo size={26} showWordmark={true} />
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden items-center gap-1 md:flex">
-          {SECTION_ITEMS.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => scrollToSection(id)}
-              className={`${linkBase} ${activeSection === id ? linkActive : linkIdle}`}
-            >
+        {/* Desktop Navigation Links */}
+        <div className="hidden items-center gap-1 sm:flex">
+          {NAV_ITEMS.map(({ path, label }) => (
+            <NavLink key={path} to={path} className={navLinkClass}>
               {label}
-            </button>
+            </NavLink>
           ))}
-          <Link
-            to="/blog"
-            className={`${linkBase} ${onBlog ? linkActive : linkIdle}`}
-          >
-            Blog
-          </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setIsOpen((prev) => !prev)}
-          aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={isOpen}
-          className="flex h-10 w-10 items-center justify-center rounded-lg glass-card text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:hidden"
-        >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        {/* Action Button & Mobile Toggle */}
+        <div className="flex items-center gap-3">
+          <Link
+            to="/contact"
+            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FFFFFF] text-[#000000] font-sans text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-all duration-300 ease-base"
+          >
+            Inquire
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-[#1F1F1F] sm:hidden transition-colors"
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile drawer */}
+      {/* Mobile Menu Panel */}
       {isOpen && (
-        <div className="md:hidden">
-          <div
-            className="fixed inset-0 top-16 z-30 bg-background/60 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
-            aria-hidden="true"
-          />
-          <div className="relative z-40 space-y-1 border-t border-glass-border/20 bg-background/95 p-4 backdrop-blur-lg">
-            {SECTION_ITEMS.map(({ id, label }) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => scrollToSection(id)}
-                className={`block w-full rounded-lg px-4 py-3 text-left text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                  activeSection === id ? 'bg-primary/10 text-primary' : 'text-foreground hover:bg-glass/50'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-            <Link
-              to="/blog"
-              className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                onBlog ? 'bg-primary/10 text-primary' : 'text-foreground hover:bg-glass/50'
-              }`}
+        <div className="sm:hidden mt-2 mx-auto max-w-5xl rounded-xl border border-[#272727] bg-[#181818]/95 backdrop-blur-xl p-4 flex flex-col gap-1 shadow-2xl">
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              `px-3 py-2 rounded-md text-sm font-sans ${
+                isActive ? 'text-foreground bg-[#1F1F1F] font-semibold' : 'text-muted-foreground hover:text-foreground'
+              }`
+            }
+          >
+            Home
+          </NavLink>
+          {NAV_ITEMS.map(({ path, label }) => (
+            <NavLink
+              key={path}
+              to={path}
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md text-sm font-sans ${
+                  isActive ? 'text-foreground bg-[#1F1F1F] font-semibold' : 'text-muted-foreground hover:text-foreground'
+                }`
+              }
             >
-              Blog
+              {label}
+            </NavLink>
+          ))}
+          <div className="pt-2 mt-2 border-t border-[#272727]">
+            <Link
+              to="/contact"
+              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-md bg-[#FFFFFF] text-[#000000] font-sans text-xs font-semibold"
+            >
+              Inquire <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
       )}
     </header>
   );
-};
-
-export default Navbar;
+}

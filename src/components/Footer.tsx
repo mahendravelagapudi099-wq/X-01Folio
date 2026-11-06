@@ -1,79 +1,103 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 
 const Footer = () => {
-  const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/mahendravelagapudi099-wq",
-      label: "GitHub"
-    },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/velagapudi-mahendra-543481353",
-      label: "LinkedIn"
-    },
-    {
-      icon: Mail,
-      href: "mailto:mahendravelagapudi099@gmail.com",
-      label: "Email"
-    }
-  ];
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer className="py-16 px-6 border-t border-glass-border/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="fade-in text-center">
-          {/* Logo/Name */}
-          <button 
-            onClick={scrollToTop}
-            className="text-3xl font-orbitron font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer"
-          >
-            VELAGAPUDI   MAHENDRA
-          </button>
-          
-          {/* Tagline */}
-          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-            Building the future through innovative technology solutions and meaningful digital experiences.
-          </p>
-          
-          {/* Social Links */}
-          <div className="flex justify-center gap-6 mb-8">
-            {socialLinks.map(({ icon: Icon, href, label }) => (
+    <footer className="border-t border-[#272727] bg-[#181818] py-16 px-6 font-sans">
+      <div className="max-w-5xl mx-auto flex flex-col gap-10">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
+          {/* Brand & Mission */}
+          <div className="max-w-md flex flex-col gap-3">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+              aria-label="Velagapudi Mahendra"
+            >
+              <Logo size={28} showWordmark={true} />
+            </Link>
+            <p className="text-sm text-[#9B9B9B] leading-relaxed">
+              Undergraduate researcher in Computer Science &amp; Data Science at MREM. Investigating runtime verification, autonomous agent safety, and empirical machine learning pipelines.
+            </p>
+          </div>
+
+          {/* Quick Route Links */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-xs font-mono">
+            <div className="flex flex-col gap-2">
+              <span className="font-semibold text-foreground uppercase tracking-wider text-[11px]">
+                Systems
+              </span>
+              <Link to="/projects" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                All Projects
+              </Link>
+              <Link to="/projects/sentimentscopex" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                SentimentScopex
+              </Link>
+              <Link to="/projects/vectormind" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                VectorMind RAG
+              </Link>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="font-semibold text-foreground uppercase tracking-wider text-[11px]">
+                Research &amp; CV
+              </span>
+              <Link to="/research" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                Working Paper
+              </Link>
+              <Link to="/credentials" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                Verified Credentials
+              </Link>
+              <Link to="/about" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                Trajectory &amp; Bio
+              </Link>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <span className="font-semibold text-foreground uppercase tracking-wider text-[11px]">
+                Channels
+              </span>
               <a
-                key={label}
-                href={href}
+                href="https://github.com/mahendravelagapudi099-wq"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card p-4 rounded-full hover:glow-accent transition-all duration-300 hover:scale-110 group"
-                aria-label={label}
+                className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base flex items-center gap-1"
               >
-                <Icon className="h-5 w-5 text-primary group-hover:text-accent transition-colors duration-300" />
+                GitHub <ArrowUpRight className="w-3 h-3" />
               </a>
-            ))}
-          </div>
-          
-          {/* Divider */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-glass-border to-transparent mb-8" />
-          
-          {/* Copyright */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-2 text-sm text-muted-foreground">
-            <span>&copy; {new Date().getFullYear()} Velagapudi Mahendra. All rights reserved.</span>
-            <span className="hidden sm:inline">•</span>
-            <div className="flex items-center gap-1">
-              <span>Made with</span>
-              <Heart className="h-4 w-4 text-accent animate-pulse" />
-              <span>and lots of caffeine</span>
+              <a
+                href="https://www.linkedin.com/in/velagapudi-mahendra-543481353"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base flex items-center gap-1"
+              >
+                LinkedIn <ArrowUpRight className="w-3 h-3" />
+              </a>
+              <Link to="/contact" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                Contact &amp; Inquiries
+              </Link>
             </div>
           </div>
-          
-          {/* Tech Stack Credit */}
-          <p className="text-xs text-muted-foreground/60 mt-4">
-            Built with React, TypeScript & Tailwind CSS
-          </p>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-[#272727] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#9B9B9B]">
+          <span>
+            &copy; {new Date().getFullYear()} Velagapudi Mahendra &bull; MREM Data Science &bull; elayadesign/ai-design-skills
+          </span>
+          <div className="flex items-center gap-4">
+            <Link to="/blog" className="hover:text-foreground transition-colors duration-300 ease-base">
+              Technical Monograph
+            </Link>
+            <span>&bull;</span>
+            <a
+              href="mailto:contact@mahendraa.dev"
+              className="hover:text-foreground transition-colors duration-300 ease-base"
+            >
+              contact@mahendraa.dev
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,120 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Redaction+50:ital,wght@0,400;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Data Science Student Portfolio Design System */
+/* 
+ * elayadesign/ai-design-skills + figma-designer Token Architecture
+ * Strict Dark Foundations:
+ * Base: #000000 (Pure Obsidian)
+ * Elevation 1 (Card/Surface): #181818
+ * Elevation 2 (Elevated): #1F1F1F
+ * Elevation 3 (Subtle): #272727
+ * Border: #272727
+ */
 
 @layer base {
   :root {
-    /* Academic dark theme - data science focused */
-    --background: 215 25% 5%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 0%; /* #000000 */
+    --foreground: 0 0% 100%; /* #FFFFFF */
 
-    /* Glass morphism card colors */
-    --card: 215 25% 8%;
-    --card-foreground: 210 40% 98%;
-    --glass: 215 25% 12%;
-    --glass-border: 215 25% 16%;
+    /* Layer 2: Semantic Color System */
+    --card: 0 0% 9.4%; /* #181818 */
+    --card-foreground: 0 0% 100%;
 
-    /* Data science color palette - blues and teals for analytical feel */
-    --primary: 200 100% 60%;
-    --primary-foreground: 215 25% 5%;
-    --primary-glow: 200 100% 75%;
+    --popover: 0 0% 9.4%; /* #181818 */
+    --popover-foreground: 0 0% 100%;
 
-    --secondary: 180 100% 50%;
-    --secondary-foreground: 210 40% 98%;
-    --secondary-glow: 180 100% 70%;
+    --primary: 0 0% 100%; /* #FFFFFF */
+    --primary-foreground: 0 0% 0%; /* #000000 */
 
-    /* Muted glass elements */
-    --muted: 215 25% 10%;
-    --muted-foreground: 215 15% 65%;
+    --secondary: 0 0% 12.2%; /* #1F1F1F */
+    --secondary-foreground: 0 0% 100%;
 
-    --accent: 150 100% 50%;
-    --accent-foreground: 210 40% 98%;
-    --accent-glow: 150 100% 70%;
+    --muted: 0 0% 12.2%; /* #1F1F1F */
+    --muted-foreground: 0 0% 60.8%; /* #9B9B9B */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 0 0% 15.3%; /* #272727 */
+    --accent-foreground: 0 0% 100%;
 
-    /* Glass morphism borders and inputs */
-    --border: 215 25% 16%;
-    --input: 215 25% 12%;
-    --ring: 200 100% 60%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.75rem;
+    --border: 0 0% 15.3%; /* #272727 */
+    --input: 0 0% 15.3%; /* #272727 */
+    --ring: 0 0% 100%; /* #FFFFFF */
 
-    /* Academic/scientific gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
-    --gradient-glass: linear-gradient(135deg, hsl(var(--glass) / 0.1) 0%, hsl(var(--glass) / 0.05) 100%);
-    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.25) 0%, transparent 50%), 
-                    radial-gradient(ellipse at 0% 100%, hsl(var(--secondary) / 0.15) 0%, transparent 50%),
-                    radial-gradient(ellipse at 100% 100%, hsl(var(--accent) / 0.15) 0%, transparent 50%);
-
-    /* Academic shadows and glows */
-    --shadow-glass: 0 8px 32px 0 hsl(var(--background) / 0.4);
-    --shadow-primary: 0 0 20px hsl(var(--primary) / 0.4);
-    --shadow-secondary: 0 0 20px hsl(var(--secondary) / 0.4);
-    --shadow-accent: 0 0 20px hsl(var(--accent) / 0.4);
-
-    /* Smooth academic transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 0.5rem; /* 8px default */
   }
 }
 
@@ -123,143 +54,148 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-inter overflow-x-hidden;
-    background: var(--gradient-hero), hsl(var(--background));
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
   }
 
+  body {
+    @apply bg-black text-white font-sans overflow-x-hidden;
+    background-color: #000000;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Browser Selection Craft Floor */
+  ::selection {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+
+  /* Caret */
+  input, textarea {
+    caret-color: #FFFFFF;
+  }
+
+  /* Tabular Numerals for all data, tables, benchmarks and dates */
+  .tabular-nums, table, time, code, [data-metric] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Headings per B1: no italics, no ultra-bold, balance wrap */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair;
+    @apply font-sans font-semibold tracking-tight;
+    text-wrap: balance;
+  }
+
+  /* Prose copy: pretty wrap, max readability */
+  p {
+    text-wrap: pretty;
   }
 }
 
 @layer components {
-  /* Glass morphism card */
-  .glass-card {
-    @apply relative backdrop-blur-md border border-glass-border/20 rounded-2xl;
-    background: var(--gradient-glass);
-    box-shadow: var(--shadow-glass);
+  /* elayadesign/ai-design-skills Named Text Styles */
+  .heading-1 {
+    @apply text-6xl font-semibold leading-tight tracking-tight;
+  }
+  .heading-2 {
+    @apply text-5xl font-semibold leading-tight tracking-tight;
+  }
+  .heading-3 {
+    @apply text-4xl font-semibold leading-snug tracking-tight;
+  }
+  .heading-4 {
+    @apply text-3xl font-semibold leading-snug tracking-tight;
+  }
+  .heading-5 {
+    @apply text-2xl font-semibold leading-snug tracking-tight;
+  }
+  .heading-6 {
+    @apply text-xl font-semibold leading-snug tracking-tight;
   }
 
-  .glass-card::before {
-    content: '';
-    @apply absolute inset-0 rounded-2xl;
-    background: linear-gradient(135deg, hsl(var(--glass) / 0.1) 0%, transparent 50%);
-    border: 1px solid hsl(var(--glass-border) / 0.2);
-    z-index: -1;
+  .title-1 {
+    @apply text-xl font-medium leading-snug;
+  }
+  .title-2 {
+    @apply text-lg font-medium leading-snug;
+  }
+  .title-3 {
+    @apply text-base font-medium leading-normal;
+  }
+  .title-4 {
+    @apply text-sm font-medium leading-normal;
+  }
+  .title-5 {
+    @apply text-xs font-medium leading-normal;
   }
 
-  /* Academic glow effects */
-  .glow-primary {
-    box-shadow: var(--shadow-primary);
+  .body-1 {
+    @apply text-base font-semibold leading-relaxed;
+  }
+  .body-2 {
+    @apply text-base font-medium leading-relaxed;
+  }
+  .body-3 {
+    @apply text-base font-normal leading-relaxed;
+  }
+  .body-4 {
+    @apply text-sm font-semibold leading-relaxed;
+  }
+  .body-5 {
+    @apply text-sm font-medium leading-relaxed;
+  }
+  .body-6 {
+    @apply text-sm font-normal leading-relaxed;
   }
 
-  .glow-secondary {
-    box-shadow: var(--shadow-secondary);
+  /* elayadesign standard buttons: 8px vertical, 12px horizontal */
+  .button-main {
+    @apply inline-flex items-center justify-center gap-2 py-2 px-3 text-base font-semibold rounded-md transition-all duration-300 ease-base active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white;
+  }
+  .button-sm {
+    @apply inline-flex items-center justify-center gap-1.5 py-1.5 px-2.5 text-sm font-semibold rounded-md transition-all duration-300 ease-base active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white;
   }
 
-  .glow-accent {
-    box-shadow: var(--shadow-accent);
+  /* Dark theme hero heading text gradient: #FFFFFF -> #9B9B9B */
+  .hero-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FFFFFF] to-[#9B9B9B];
   }
 
-  /* Animated background particles */
-  .particles {
-    @apply absolute inset-0 overflow-hidden pointer-events-none;
+  /* Solid Flat Surfaces (No background gradients) */
+  .surface-card {
+    background-color: #181818;
+    border: 1px solid #272727;
+  }
+  .surface-elevated {
+    background-color: #1F1F1F;
+    border: 1px solid #272727;
+  }
+  .surface-subtle {
+    background-color: #272727;
   }
 
-  .particle {
-    @apply absolute w-1 h-1 rounded-full opacity-20;
-    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)));
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* Floating animation */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(120deg); }
-    66% { transform: translateY(-10px) rotate(240deg); }
-  }
-
-  @keyframes animate-float {
-    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.2; }
-    25% { transform: translateY(-30px) translateX(20px) rotate(90deg); opacity: 0.4; }
-    50% { transform: translateY(-10px) translateX(-15px) rotate(180deg); opacity: 0.1; }
-    75% { transform: translateY(-25px) translateX(10px) rotate(270deg); opacity: 0.3; }
-  }
-
-  .animate-float {
-    animation: animate-float 8s ease-in-out infinite;
-  }
-
-  /* Fade in animations */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  /* High-Craft Aceternity / Magic UI Keyframes */
+  @keyframes border-beam-anim {
+    100% {
+      offset-distance: 100%;
     }
   }
 
-  /* Stagger animation delays */
-  .delay-100 { animation-delay: 0.1s; }
-  .delay-200 { animation-delay: 0.2s; }
-  .delay-300 { animation-delay: 0.3s; }
-  .delay-400 { animation-delay: 0.4s; }
-  .delay-500 { animation-delay: 0.5s; }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
+  @keyframes pulse-beam {
+    0%, 100% {
+      opacity: 0.2;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      opacity: 1;
+      stroke-dashoffset: -40;
+    }
   }
 
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--secondary)));
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, hsl(var(--primary-glow)), hsl(var(--secondary-glow)));
-  }
-}
-
-/* Prevent horizontal scroll / shaking issue */
-html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-/* Extended stagger delays used by repeated card lists */
-.delay-600 { animation-delay: 0.6s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-800 { animation-delay: 0.8s; }
-
-.animation-delay-75 { animation-delay: 75ms; }
-
-/* Visible keyboard focus everywhere */
-:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Respect reduced motion: neuter animation/transition for users who ask for it.
-   Only transform/opacity-based effects are used in the UI, so this is safe. */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .animate-pulse-beam {
+    animation: pulse-beam 3s ease-in-out infinite;
   }
 }

@@ -5,14 +5,22 @@ import {
   ArrowUpRight, 
   BookOpen, 
   Check, 
-  ChevronDown 
+  ChevronDown,
+  Terminal,
+  Cpu,
+  Layers,
+  Sparkles,
+  ShieldCheck,
+  Code2
 } from 'lucide-react';
 import { PROJECTS } from '@/data/projectsData';
 import { RESEARCH_PAPER } from '@/data/researchData';
 import { CERTIFICATES } from '@/data/credentialsData';
 import { TaglineReveal } from '@/components/TaglineReveal';
 import { Logo } from '@/components/Logo';
-import { InvariantMonitor } from '@/components/InvariantMonitor';
+import { SpotlightGrid } from '@/components/effects/SpotlightGrid';
+import { BorderBeam } from '@/components/effects/BorderBeam';
+import { InteractiveArchitecture } from '@/components/InteractiveArchitecture';
 
 interface FaqItem {
   question: string;
@@ -50,7 +58,7 @@ export default function Home() {
   const featuredProjects = PROJECTS.filter((p) => p.featured).slice(0, 3);
   const topCredentials = CERTIFICATES.slice(0, 4);
 
-  // FAQ open state
+  // FAQ accordion open state
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -61,69 +69,93 @@ export default function Home() {
     <div className="min-h-screen bg-[#000000] text-[#FFFFFF] font-sans selection:bg-[#FFFFFF] selection:text-[#000000]">
       {/* 
         A2. SECTION 1: HERO SECTION
-        Strict B5 rules:
-        - Max width 680px for heading and subheading
-        - Dark theme text gradient from #FFFFFF to #9B9B9B
-        - Meaningful line breaks
-        - One clear primary action + one proof signal
+        Features:
+        - Redaction 50 Display Font with balanced harmonious scale (capping H1 at text-3xl sm:text-4xl lg:text-5xl)
+        - Interactive SpotlightGrid canvas tracking mouse cursor
+        - Outcome-first dual-punch SEO positioning
+        - Visual skill chips
+        - Interactive System Architecture centerpiece
       */}
-      <section className="pt-24 sm:pt-32 pb-20 px-6 max-w-5xl mx-auto border-b border-[#272727]">
-        <div className="flex flex-col items-start gap-8">
-          {/* Proof signal badge */}
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-md bg-[#181818] border border-[#272727] text-xs font-mono text-[#9B9B9B]">
-            <span className="w-2 h-2 rounded-full bg-[#FFFFFF] animate-pulse" />
-            <span>MREM B.Tech CSE Data Science &bull; IIT Roorkee Certified</span>
+      <section className="relative pt-20 sm:pt-28 pb-20 px-6 max-w-5xl mx-auto border-b border-[#272727] overflow-hidden">
+        {/* Aceternity / Magic UI Spotlight Grid */}
+        <SpotlightGrid />
+
+        <div className="relative z-10 flex flex-col items-start gap-8">
+          {/* Institutional proof badge */}
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-md bg-[#181818] border border-[#272727] text-xs font-mono text-[#9B9B9B] shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>MREM B.Tech CSE Data Science &bull; IIT Roorkee Certified &bull; JNTUH</span>
           </div>
 
-          {/* Heading with B5 left-to-right text gradient and 680px cap */}
-          <div className="max-w-[680px]">
-            <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08] hero-gradient-text">
-              Building verifiable machine learning systems and reliable data pipelines.
+          {/* Primary SEO Headline set in Redaction 50 with balanced scale */}
+          <div className="max-w-[720px]">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-[1.14] hero-gradient-text">
+              Architecting Verifiable AI &amp; High-Throughput Data Systems.
             </h1>
           </div>
 
-          {/* Subheading: max width 680px, outcome + audience */}
-          <div className="max-w-[680px]">
-            <p className="text-lg sm:text-xl text-[#9B9B9B] leading-relaxed">
-              Undergraduate researcher and full-stack data scientist. I eliminate hallucination loops in autonomous workflows through deterministic AST gates and empirical invariant proofs.
+          {/* Subheading: balanced readability */}
+          <div className="max-w-[660px]">
+            <p className="text-base sm:text-lg text-[#9B9B9B] leading-relaxed">
+              Undergraduate researcher at <strong className="text-[#FFFFFF] font-medium">MREM</strong>. I engineer deterministic static AST gates and runtime statistical oracles that eliminate hallucination loops in autonomous analytical pipelines.
             </p>
           </div>
 
-          {/* Primary CTA + Secondary Link */}
+          {/* Visual Technical Skill Chips */}
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono bg-[#181818] text-[#FFFFFF] border border-[#272727]">
+              <Cpu className="w-3.5 h-3.5 text-emerald-400" />
+              Python / PyTorch
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono bg-[#181818] text-[#FFFFFF] border border-[#272727]">
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+              Runtime AST Verification
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono bg-[#181818] text-[#FFFFFF] border border-[#272727]">
+              <Code2 className="w-3.5 h-3.5 text-neutral-300" />
+              Full-Stack TypeScript
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono bg-[#181818] text-[#FFFFFF] border border-[#272727]">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              IIT Roorkee / NPTEL
+            </span>
+          </div>
+
+          {/* Call to Actions */}
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <Link
               to="/projects"
-              className="button-main bg-[#FFFFFF] text-[#000000] hover:bg-[#FFFFFF]/90"
+              className="button-main bg-[#FFFFFF] text-[#000000] hover:bg-[#FFFFFF]/90 text-sm font-semibold"
             >
               Explore Case Studies <ArrowRight className="w-4 h-4" />
             </Link>
 
             <Link
               to="/research"
-              className="button-main bg-[#181818] text-[#FFFFFF] border border-[#272727] hover:bg-[#1F1F1F]"
+              className="button-main bg-[#181818] text-[#FFFFFF] border border-[#272727] hover:bg-[#1F1F1F] text-sm font-medium"
             >
               <BookOpen className="w-4 h-4 text-[#9B9B9B]" /> Read Working Paper
             </Link>
 
             <a
               href="mailto:contact@mahendraa.dev"
-              className="button-main bg-transparent text-[#9B9B9B] hover:text-[#FFFFFF]"
+              className="button-main bg-transparent text-[#9B9B9B] hover:text-[#FFFFFF] text-sm"
             >
               contact@mahendraa.dev &rarr;
             </a>
           </div>
 
           {/* 
-            HERO VISUAL ARTIFACT (B5 + B8 Content Realism)
-            A tangible, verifiable invariant runtime telemetry panel proving real engineering craft.
+            INTERACTIVE SYSTEM ARCHITECTURE & LIVE PIPELINE CANVAS
+            The agreed visual centerpiece replacing text-only hero presentation.
           */}
-          <InvariantMonitor />
+          <InteractiveArchitecture />
         </div>
       </section>
 
       {/* 
         A2. SECTION 2 / B11: MANDATORY TAGLINE REVEAL SECTION
-        Scroll-driven word-by-word reveal in reading order on base curve.
+        Set in Redaction 50 with scroll-activated word-by-word reveal.
       */}
       <TaglineReveal
         phrase="Empirical verification eliminates generative ambiguity. True software quality is proven by invariant benchmarks, never by declarative resume claims."
@@ -131,7 +163,7 @@ export default function Home() {
       />
 
       {/* 
-        A2. SECTION 3: PROBLEM TO SOLUTION (Mid-Page Argument)
+        A2. SECTION 3: PROBLEM TO SOLUTION
       */}
       <section className="py-24 px-6 max-w-5xl mx-auto border-b border-[#272727]">
         <div className="flex flex-col gap-12">
@@ -139,7 +171,7 @@ export default function Home() {
             <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest block mb-2">
               Problem to Solution
             </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#FFFFFF] leading-snug">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-[#FFFFFF] leading-snug">
               Why autonomous pipelines fail, and how deterministic invariant checks solve it.
             </h2>
           </div>
@@ -151,7 +183,7 @@ export default function Home() {
                 <span className="w-2 h-2 rounded-full bg-red-400" />
                 <span>The Industry Default Failure</span>
               </div>
-              <h3 className="text-xl font-semibold text-[#FFFFFF]">
+              <h3 className="text-lg font-semibold text-[#FFFFFF]">
                 Unchecked Generative Loops
               </h3>
               <p className="text-sm text-[#9B9B9B] leading-relaxed">
@@ -176,7 +208,7 @@ export default function Home() {
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 <span>The Monograph Solution</span>
               </div>
-              <h3 className="text-xl font-semibold text-[#FFFFFF]">
+              <h3 className="text-lg font-semibold text-[#FFFFFF]">
                 Deterministic Static and Runtime Gates
               </h3>
               <p className="text-sm text-[#9B9B9B] leading-relaxed">
@@ -207,7 +239,7 @@ export default function Home() {
             <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest block mb-2">
               Methodology
             </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#FFFFFF] leading-snug">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-[#FFFFFF] leading-snug">
               Three-step verification pipeline from source to proof.
             </h2>
           </div>
@@ -215,7 +247,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="rounded-xl border border-[#272727] bg-[#181818] p-6 flex flex-col gap-3">
               <span className="text-xs font-mono text-[#9B9B9B]">01 / AST Extraction</span>
-              <h3 className="text-lg font-semibold text-[#FFFFFF]">Static Tree Analysis</h3>
+              <h3 className="text-base font-semibold text-[#FFFFFF]">Static Tree Analysis</h3>
               <p className="text-sm text-[#9B9B9B] leading-relaxed">
                 Before code or analytical queries execute, Python AST nodes are validated against strict security policies and memory allocation ceilings.
               </p>
@@ -223,7 +255,7 @@ export default function Home() {
 
             <div className="rounded-xl border border-[#272727] bg-[#181818] p-6 flex flex-col gap-3">
               <span className="text-xs font-mono text-[#9B9B9B]">02 / Oracle Evaluation</span>
-              <h3 className="text-lg font-semibold text-[#FFFFFF]">Distribution Boundaries</h3>
+              <h3 className="text-base font-semibold text-[#FFFFFF]">Distribution Boundaries</h3>
               <p className="text-sm text-[#9B9B9B] leading-relaxed">
                 Calculates real-time statistical significance between candidate predictions and ground-truth distributions to halt runtime model drift.
               </p>
@@ -231,7 +263,7 @@ export default function Home() {
 
             <div className="rounded-xl border border-[#272727] bg-[#181818] p-6 flex flex-col gap-3">
               <span className="text-xs font-mono text-[#9B9B9B]">03 / Audit Ledger</span>
-              <h3 className="text-lg font-semibold text-[#FFFFFF]">Verifiable Telemetry</h3>
+              <h3 className="text-base font-semibold text-[#FFFFFF]">Verifiable Telemetry</h3>
               <p className="text-sm text-[#9B9B9B] leading-relaxed">
                 Produces immutable provenance records for every model evaluation, with unrounded metric coordinates exported for public replication.
               </p>
@@ -241,7 +273,7 @@ export default function Home() {
       </section>
 
       {/* 
-        A2. SECTION 5: FEATURED ENGINEERING CASE STUDIES
+        A2. SECTION 5: FEATURED CASE STUDIES
       */}
       <section className="py-24 px-6 max-w-5xl mx-auto border-b border-[#272727]">
         <div className="flex flex-col gap-10">
@@ -250,7 +282,7 @@ export default function Home() {
               <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest block mb-1">
                 Portfolio Systems
               </span>
-              <h2 className="text-3xl font-semibold tracking-tight text-[#FFFFFF]">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-[#FFFFFF]">
                 Featured Engineering Case Studies
               </h2>
             </div>
@@ -279,7 +311,7 @@ export default function Home() {
 
                 {/* Content column */}
                 <div className="md:w-1/2 flex flex-col gap-3">
-                  <h3 className="text-2xl font-semibold text-[#FFFFFF] group-hover:text-neutral-300 transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-[#FFFFFF] group-hover:text-neutral-300 transition-colors">
                     <Link to={`/projects/${project.slug}`}>
                       {project.title}
                     </Link>
@@ -352,7 +384,7 @@ export default function Home() {
       </section>
 
       {/* 
-        A2. SECTION 6: WORKING PAPER MONOGRAPH SPOTLIGHT
+        A2. SECTION 6: RESEARCH MONOGRAPH (with BorderBeam)
       */}
       <section className="py-24 px-6 max-w-5xl mx-auto border-b border-[#272727]">
         <div className="flex flex-col gap-8">
@@ -361,7 +393,7 @@ export default function Home() {
               <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest block mb-1">
                 Peer Review &amp; Working Papers
               </span>
-              <h2 className="text-3xl font-semibold tracking-tight text-[#FFFFFF]">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-[#FFFFFF]">
                 Research Monograph
               </h2>
             </div>
@@ -373,7 +405,9 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="rounded-xl border border-[#272727] bg-[#181818] p-6 sm:p-10 flex flex-col gap-6 shadow-xl">
+          <div className="relative rounded-xl border border-[#272727] bg-[#181818] p-6 sm:p-10 flex flex-col gap-6 shadow-xl overflow-hidden">
+            <BorderBeam size={200} duration={12} colorFrom="#FFFFFF" colorTo="transparent" />
+
             <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
               <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#1F1F1F] text-[#FFFFFF] border border-[#272727]">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -384,7 +418,7 @@ export default function Home() {
               </span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-semibold text-[#FFFFFF] leading-snug">
+            <h3 className="text-xl sm:text-2xl font-semibold text-[#FFFFFF] leading-snug">
               <Link to="/research" className="hover:text-neutral-300 transition-colors">
                 {RESEARCH_PAPER.title}
               </Link>
@@ -397,7 +431,7 @@ export default function Home() {
             <div className="pt-2">
               <Link
                 to="/research"
-                className="button-sm bg-[#FFFFFF] text-[#000000] hover:bg-[#FFFFFF]/90"
+                className="button-sm bg-[#FFFFFF] text-[#000000] hover:bg-[#FFFFFF]/90 text-xs font-semibold"
               >
                 Inspect Mathematical Formulation &amp; Benchmark Logs &rarr;
               </Link>
@@ -407,7 +441,7 @@ export default function Home() {
       </section>
 
       {/* 
-        A2. SECTION 7: VERIFIED ACADEMIC & TECHNICAL CREDENTIALS
+        A2. SECTION 7: VERIFIED CREDENTIALS
       */}
       <section className="py-24 px-6 max-w-5xl mx-auto border-b border-[#272727]">
         <div className="flex flex-col gap-8">
@@ -416,7 +450,7 @@ export default function Home() {
               <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest block mb-1">
                 Audited Knowledge
               </span>
-              <h2 className="text-3xl font-semibold tracking-tight text-[#FFFFFF]">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-[#FFFFFF]">
                 Verified Credentials &amp; Certifications
               </h2>
             </div>
@@ -470,7 +504,7 @@ export default function Home() {
       </section>
 
       {/* 
-        A2. SECTION 8: FAQ (Objection Handling per Part A4)
+        A2. SECTION 8: FAQ ACCORDION
       */}
       <section className="py-24 px-6 max-w-5xl mx-auto border-b border-[#272727]">
         <div className="flex flex-col gap-10">
@@ -478,7 +512,7 @@ export default function Home() {
             <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest block mb-2">
               Common Questions
             </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#FFFFFF] leading-snug">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-[#FFFFFF] leading-snug">
               Frequently Asked Questions for Collaborators &amp; Recruiters
             </h2>
           </div>
@@ -517,15 +551,17 @@ export default function Home() {
       </section>
 
       {/* 
-        A2. SECTION 9: RISK REVERSAL & FINAL CTA (Part A2)
+        A2. SECTION 9: RISK REVERSAL & FINAL CTA (with BorderBeam)
       */}
       <section className="py-28 px-6 max-w-5xl mx-auto">
-        <div className="rounded-xl border border-[#272727] bg-[#181818] p-8 sm:p-14 flex flex-col md:flex-row md:items-center justify-between gap-10 shadow-2xl">
-          <div className="max-w-xl flex flex-col gap-3">
+        <div className="relative rounded-xl border border-[#272727] bg-[#181818] p-8 sm:p-14 flex flex-col md:flex-row md:items-center justify-between gap-10 shadow-2xl overflow-hidden">
+          <BorderBeam size={220} duration={14} colorFrom="#FFFFFF" colorTo="transparent" />
+
+          <div className="max-w-xl flex flex-col gap-3 relative z-10">
             <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest">
               Direct Dialogue
             </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#FFFFFF] leading-snug">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-[#FFFFFF] leading-snug">
               Let us discuss runtime verification or distributed data engineering.
             </h2>
             <p className="text-sm text-[#9B9B9B] leading-relaxed">
@@ -533,16 +569,16 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0 relative z-10">
             <Link
               to="/contact"
-              className="button-main bg-[#FFFFFF] text-[#000000] hover:bg-[#FFFFFF]/90"
+              className="button-main bg-[#FFFFFF] text-[#000000] hover:bg-[#FFFFFF]/90 text-sm font-semibold"
             >
               Initiate Inquiry <ArrowRight className="w-4 h-4" />
             </Link>
             <a
               href="mailto:contact@mahendraa.dev"
-              className="button-main bg-[#1F1F1F] text-[#FFFFFF] border border-[#272727] hover:bg-[#272727]"
+              className="button-main bg-[#1F1F1F] text-[#FFFFFF] border border-[#272727] hover:bg-[#272727] text-sm"
             >
               contact@mahendraa.dev
             </a>

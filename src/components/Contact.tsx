@@ -92,36 +92,36 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full overflow-hidden">
-      <div className="fade-in text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-          Get In Touch
+    <section id="contact" className="py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full overflow-hidden">
+      <div className="mb-16 text-center">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground mb-4">
+          Contact & Collaboration
         </h2>
-        <div className="w-20 sm:w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
-        <p className="text-muted-foreground mt-6 max-w-2xl mx-auto px-2">
-          Have a project in mind or want to collaborate? I&rsquo;d love to hear from you.
+        <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4" />
+        <p className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+          REACH OUT FOR RESEARCH, INTERNSHIPS & COLLABORATION
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         {/* Contact Info */}
-        <div className="fade-in delay-200 space-y-8">
-          <h3 className="text-xl sm:text-2xl font-orbitron font-semibold">Let&rsquo;s Connect</h3>
-          <div className="space-y-6">
+        <div className="space-y-8">
+          <h3 className="text-xl sm:text-2xl font-sans font-bold text-foreground">Direct Channels</h3>
+          <div className="space-y-4">
             {contactInfo.map((info) => (
               <a
                 key={info.label}
                 href={info.href}
                 target={info.href.startsWith('http') ? '_blank' : undefined}
                 rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="glass-card p-5 sm:p-6 hover:glow-secondary transition-all duration-300 group flex items-center gap-4 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="glass-card p-5 hover:border-primary/40 transition-all duration-200 group flex items-center gap-4 rounded-xl border border-slate-800 bg-slate-900/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                <div className="glass-card p-3 rounded-xl glow-accent group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                  <info.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 text-primary flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <info.icon className="h-5 w-5" />
                 </div>
                 <div className="overflow-hidden">
-                  <h4 className="font-orbitron font-medium mb-1">{info.label}</h4>
-                  <p className="text-muted-foreground break-words">{info.value}</p>
+                  <h4 className="font-sans font-semibold text-foreground text-sm mb-0.5">{info.label}</h4>
+                  <p className="font-mono text-xs text-muted-foreground break-words">{info.value}</p>
                 </div>
               </a>
             ))}
@@ -233,3 +233,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

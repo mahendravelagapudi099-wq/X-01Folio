@@ -30,22 +30,21 @@ export const PostCard = ({
       <Link
         to={`/blog/${post.slug}`}
         aria-label={`Read article: ${post.title}`}
-        className="group relative flex h-full flex-col overflow-hidden rounded-2xl glass-card transition-all duration-500 hover:scale-[1.02] hover:glow-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors duration-200 hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-48 overflow-hidden bg-muted">
           {post.feature_image ? (
             <img
               src={post.feature_image}
               alt=""
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-90"
             />
           ) : (
-            <div className="h-full w-full bg-gradient-primary opacity-30" />
+            <div className="h-full w-full bg-muted" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           {post.featured && (
-            <div className="absolute left-4 top-4 glass-card border border-primary/30 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+            <div className="absolute left-3 top-3 border border-border bg-background/90 px-2 py-0.5 text-[11px] font-mono font-semibold uppercase tracking-wider text-primary rounded">
               Featured
             </div>
           )}
@@ -71,7 +70,7 @@ export const PostCard = ({
             )}
           </div>
 
-          <Heading className="mb-3 line-clamp-2 font-orbitron text-xl font-bold transition-colors group-hover:text-primary">
+          <Heading className="mb-3 line-clamp-2 font-sans text-xl font-bold tracking-tight transition-colors group-hover:text-primary">
             {post.title}
           </Heading>
 
@@ -103,3 +102,4 @@ export const PostCard = ({
     </motion.div>
   );
 };
+

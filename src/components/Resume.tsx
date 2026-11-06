@@ -1,143 +1,151 @@
 import { Button } from '@/components/ui/button';
-import { Download, Award, Briefcase, GraduationCap } from 'lucide-react';
+import { Download, Award, Briefcase, GraduationCap, ArrowUpRight } from 'lucide-react';
 
 const Resume = () => {
   const experience = [
     {
-  title: "Python Intern",
-  company: "Micro IT",
-  period: "2024",
-  description: "Worked on Python-based automation and mini projects while learning real-world coding practices and version control workflows."
-},
-{
-  title: "Web Development Intern",
-  company: "CodeC",
-  period: "2025",
-  description: "Supported the development of frontend components using HTML, CSS, and JavaScript. Improved UI responsiveness and user interactions."
-},
-{
-  title: "Data Science Intern",
-  company: "CodeAlpha",
-  period: "2025",
-  description: "Gained hands-on experience in data preprocessing, visualization, and model building using Python and machine learning libraries."
-}
-
+      title: "Data Science Intern",
+      company: "CodeAlpha",
+      period: "2025",
+      description: "Implemented machine learning pipelines and exploratory data preprocessing workflows using Python, Pandas, and Scikit-learn."
+    },
+    {
+      title: "Web Development Intern",
+      company: "CodeC",
+      period: "2025",
+      description: "Engineered responsive frontend interfaces and data presentation components using modern JavaScript, HTML5, and CSS3."
+    },
+    {
+      title: "Python Intern",
+      company: "Micro IT",
+      period: "2024",
+      description: "Developed automation scripts and core Python utilities while practicing version control workflows and test execution."
+    }
   ];
 
   const education = [
     {
-  degree: "B.Tech in Computer Science Engineering (Data Science)",
-  school: "Mallareddy Engineering College and Management Sciences",
-  period: "2023 - 2027",
-  focus: "Data Science, Artificial Intelligence, Machine Learning"
-},
-{
-  degree: "Intermediate (MPC)",
-  school: "Vandana Junior College",
-  period: "2021 - 2023",
-  focus: "Mathematics, Physics & Chemistry"
-}
-
+      degree: "B.Tech in Computer Science Engineering (Data Science)",
+      school: "Mallareddy Engineering College and Management Sciences",
+      period: "2023 - 2027",
+      focus: "Specialization in Applied AI, Machine Learning, Statistical Modeling, and Database Architecture"
+    },
+    {
+      degree: "Intermediate Higher Secondary (MPC)",
+      school: "Vandana Junior College",
+      period: "2021 - 2023",
+      focus: "Mathematics, Physics & Chemistry"
+    }
   ];
 
-  const achievements = [
-  "Google Data Analytics Certified",
-  "Completed Generative AI and Data Science Courses",
-  "MongoDB Data Modeling Certified",
-  "Data Analytics & Visualization Simulations",
-  "Participated in DevOps and GitHub Workshops"
-];
-
+  const keyHighlights = [
+    "Published working paper on Risk-Based Verification for AI Data Agents",
+    "NPTEL / IIT Roorkee Certified in Data Analytics with Python",
+    "MongoDB Certified in Data Modeling & Document Database Architecture",
+    "Shipped SentimentScopex (Live NLP application with sub-second inference)",
+    "Engineered VectorMind RAG sales analytics platform with ChromaDB"
+  ];
 
   return (
-    <section id="resume" className="py-20 px-6 max-w-7xl mx-auto">
-      {/* Header */}
-      <div className="fade-in text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-          Resume
+    <section id="resume" className="py-24 px-6 max-w-7xl mx-auto" aria-labelledby="resume-heading">
+      <div className="mb-16 text-center">
+        <h2 id="resume-heading" className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground mb-4">
+          Experience & Education
         </h2>
-        <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
-        <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
-          My professional journey in technology and innovation
+        <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4" />
+        <p className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+          CHRONOLOGICAL TRAJECTORY & TECHNICAL FORMATION
         </p>
       </div>
 
-      {/* Download Button */}
-      <div className="fade-in delay-200 text-center mb-16">
+      {/* Download Action */}
+      <div className="text-center mb-16">
         <Button
           asChild
           size="lg"
-          className="glass-card glow-primary px-8 py-4 text-lg font-medium hover:scale-105 transition-all duration-300"
+          className="bg-primary hover:bg-sky-400 text-slate-950 font-sans font-semibold px-8 h-12 shadow-lg shadow-primary/20 transition-all duration-200"
         >
           <a href="/Velagapudi_Mahendra_Resume.pdf" download="Velagapudi_Mahendra_Resume.pdf">
-            <Download className="mr-2 h-5 w-5" />
-            Download PDF Resume
+            <Download className="mr-2 h-4 w-4" />
+            Download Official CV (PDF)
           </a>
         </Button>
       </div>
 
-      {/* Content */}
-      <div className="grid lg:grid-cols-2 gap-16">
-        {/* Experience */}
-        <div className="fade-in delay-300">
+      <div className="grid lg:grid-cols-2 gap-12">
+        {/* Experience Column */}
+        <div>
           <div className="flex items-center gap-3 mb-8">
-            <div className="glass-card p-3 rounded-xl glow-accent">
-              <Briefcase className="h-6 w-6 text-primary" />
+            <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary">
+              <Briefcase className="h-5 w-5" />
             </div>
-            <h3 className="text-2xl font-orbitron font-semibold">Experience</h3>
+            <h3 className="text-2xl font-sans font-bold text-foreground">Practical Experience</h3>
           </div>
+
           <div className="space-y-6">
             {experience.map((job, index) => (
-              <div key={index} className="glass-card p-6 hover:glow-secondary transition-all duration-300">
-                <h4 className="text-xl font-orbitron font-semibold mb-2">{job.title}</h4>
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-primary font-medium">{job.company}</span>
-                  <span className="text-sm text-muted-foreground">{job.period}</span>
+              <div
+                key={index}
+                className="glass-card p-6 border border-slate-800 bg-slate-900/60 rounded-xl hover:border-primary/40 transition-all duration-200"
+              >
+                <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
+                  <h4 className="text-lg font-sans font-bold text-foreground">{job.title}</h4>
+                  <span className="font-mono text-xs text-primary font-medium px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20">
+                    {job.period}
+                  </span>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">{job.description}</p>
+                <div className="text-sm font-mono text-slate-300 mb-3">{job.company}</div>
+                <p className="text-xs text-muted-foreground leading-relaxed">{job.description}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Education & Achievements */}
+        {/* Education & Highlights Column */}
         <div className="space-y-12">
           {/* Education */}
-          <div className="fade-in delay-400">
+          <div>
             <div className="flex items-center gap-3 mb-8">
-              <div className="glass-card p-3 rounded-xl glow-accent">
-                <GraduationCap className="h-6 w-6 text-primary" />
+              <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary">
+                <GraduationCap className="h-5 w-5" />
               </div>
-              <h3 className="text-2xl font-orbitron font-semibold">Education</h3>
+              <h3 className="text-2xl font-sans font-bold text-foreground">Formal Education</h3>
             </div>
+
             <div className="space-y-6">
               {education.map((edu, index) => (
-                <div key={index} className="glass-card p-6 hover:glow-secondary transition-all duration-300">
-                  <h4 className="text-lg font-orbitron font-semibold mb-2">{edu.degree}</h4>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-primary font-medium">{edu.school}</span>
-                    <span className="text-sm text-muted-foreground">{edu.period}</span>
+                <div
+                  key={index}
+                  className="glass-card p-6 border border-slate-800 bg-slate-900/60 rounded-xl hover:border-primary/40 transition-all duration-200"
+                >
+                  <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
+                    <h4 className="text-lg font-sans font-bold text-foreground">{edu.degree}</h4>
+                    <span className="font-mono text-xs text-primary font-medium px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20">
+                      {edu.period}
+                    </span>
                   </div>
-                  <p className="text-muted-foreground">{edu.focus}</p>
+                  <div className="text-sm font-mono text-slate-300 mb-2">{edu.school}</div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{edu.focus}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Achievements */}
-          <div className="fade-in delay-500">
+          {/* Key Highlights */}
+          <div>
             <div className="flex items-center gap-3 mb-8">
-              <div className="glass-card p-3 rounded-xl glow-accent">
-                <Award className="h-6 w-6 text-primary" />
+              <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary">
+                <Award className="h-5 w-5" />
               </div>
-              <h3 className="text-2xl font-orbitron font-semibold">Achievements</h3>
+              <h3 className="text-2xl font-sans font-bold text-foreground">Key Technical Highlights</h3>
             </div>
-            <div className="glass-card p-6 glow-purple">
-              <ul className="space-y-3">
-                {achievements.map((achievement, index) => (
+
+            <div className="glass-card p-6 border border-slate-800 bg-slate-900/60 rounded-xl">
+              <ul className="space-y-3 font-mono text-xs text-slate-300">
+                {keyHighlights.map((highlight, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <span className="text-muted-foreground">{achievement}</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                    <span className="leading-relaxed">{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -150,3 +158,4 @@ const Resume = () => {
 };
 
 export default Resume;
+

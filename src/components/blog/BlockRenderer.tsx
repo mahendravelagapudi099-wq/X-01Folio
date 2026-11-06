@@ -1,6 +1,7 @@
+import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { motion } from 'framer-motion';
+import { Check, Copy } from 'lucide-react';
 
 export type Block = 
   | { type: 'text'; content: string }
@@ -17,43 +18,84 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
   if (!blocks || !Array.isArray(blocks)) return null;
 
   return (
-    <div className="space-y-8">
-      {blocks.map((block, index) => {
-        return (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-          >
-            {renderBlock(block)}
-          </motion.div>
-        );
-      })}
+    <div className="space-y-6 text-foreground">
+      {blocks.map((block, index) => (
+        <React.Fragment key={index}>
+          {renderBlock(block, index)}
+        </React.Fragment>
+      ))}
     </div>
   );
 };
 
-const renderBlock = (block: Block) => {
+const CodeBlock = ({ code, language }: { code: string; language: string }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="my-6 rounded border border-border bg-card overflow-hidden">
+      <div className="bg-muted px-4 py-2 text-xs font-mono text-muted-foreground border-b border-border flex items-center justify-between">
+        <span className="uppercase tracking-wider font-medium">{language || 'text'}</span>
+        <button 
+          onClick={handleCopy}
+          className="hover:text-foreground transition-colors flex items-center gap-1.5"
+          aria-label="Copy code block"
+        >
+          {copied ? (
+            <>
+              <Check className="w-3.5 h-3.5 text-foreground" />
+              <span>Copied!</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-3.5 h-3.5" />
+              <span>Copy</span>
+            </>
+          )}
+        </button>
+      </div>
+      <SyntaxHighlighter
+        language={language || 'text'}
+        style={vscDarkPlus}
+        customStyle={{
+          margin: 0,
+          padding: '1.25rem',
+          fontSize: '0.85rem',
+          lineHeight: '1.6',
+          backgroundColor: '#0c0e12',
+          fontFamily: 'JetBrains Mono, monospace',
+        }}
+      >
+        {code}
+      </SyntaxHighlighter>
+    </div>
+  );
+};
+
+const renderBlock = (block: Block, index: number) => {
   switch (block.type) {
     case 'heading':
       switch (block.level) {
         case 1:
           return (
-            <h1 className="text-4xl sm:text-5xl font-bold mb-8 font-orbitron bg-gradient-primary bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl font-sans font-bold text-foreground mt-10 mb-4 leading-tight">
               {block.text}
             </h1>
           );
         case 2:
           return (
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 font-orbitron mt-12 bg-gradient-primary bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold text-foreground mt-8 mb-3 leading-snug">
               {block.text}
             </h2>
           );
         case 3:
           return (
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4 font-orbitron mt-8 bg-gradient-primary bg-clip-text text-transparent">
+            <h3 className="text-xl sm:text-2xl font-sans font-semibold text-foreground mt-6 mb-2">
               {block.text}
             </h3>
           );
@@ -63,54 +105,26 @@ const renderBlock = (block: Block) => {
 
     case 'text':
       return (
-        <p className="text-lg leading-relaxed text-muted-foreground/90 whitespace-pre-wrap">
+        <p className="text-base sm:text-lg leading-relaxed text-muted-foreground max-w-[68ch] whitespace-pre-wrap">
           {block.content}
         </p>
       );
 
     case 'code':
-      return (
-        <div className="relative group my-8">
-          <div className="absolute -inset-0.5 bg-gradient-primary rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-          <div className="relative rounded-lg overflow-hidden border border-primary/20">
-            <div className="bg-muted px-4 py-2 text-xs font-mono text-muted-foreground border-b border-primary/10 flex justify-between">
-              <span>{block.language}</span>
-              <button 
-                onClick={() => navigator.clipboard.writeText(block.code)}
-                className="hover:text-primary transition-colors"
-              >
-                Copy
-              </button>
-            </div>
-            <SyntaxHighlighter
-              language={block.language}
-              style={vscDarkPlus}
-              customStyle={{
-                margin: 0,
-                padding: '1.5rem',
-                fontSize: '0.9rem',
-                backgroundColor: 'transparent',
-              }}
-            >
-              {block.code}
-            </SyntaxHighlighter>
-          </div>
-        </div>
-      );
+      return <CodeBlock code={block.code} language={block.language} />;
 
     case 'image':
       return (
-        <figure className="my-10 space-y-3">
-          <div className="relative rounded-2xl overflow-hidden border border-primary/20 glow-secondary">
-            <img 
-              src={block.url} 
-              alt={block.caption || 'Blog image'} 
-              className="w-full h-auto object-cover"
-            />
-          </div>
+        <figure className="my-8 rounded border border-border overflow-hidden bg-card">
+          <img
+            src={block.url}
+            alt={block.caption || 'Article illustration'}
+            className="w-full h-auto object-cover max-h-[500px]"
+            loading="lazy"
+          />
           {block.caption && (
-            <figcaption className="text-center text-sm text-muted-foreground italic font-light">
-              — {block.caption}
+            <figcaption className="p-3 text-xs font-mono text-muted-foreground border-t border-border bg-background/60 text-center">
+              {block.caption}
             </figcaption>
           )}
         </figure>
@@ -118,9 +132,13 @@ const renderBlock = (block: Block) => {
 
     case 'quote':
       return (
-        <blockquote className="my-10 pl-6 border-l-4 border-primary italic">
-          <p className="text-2xl font-light text-foreground mb-2">"{block.text}"</p>
-          {block.author && <cite className="text-sm text-primary font-medium">— {block.author}</cite>}
+        <blockquote className="my-6 border-l-2 border-primary pl-5 italic text-foreground/90 max-w-[68ch] text-base leading-relaxed">
+          &ldquo;{block.text}&rdquo;
+          {block.author && (
+            <cite className="block not-italic text-xs font-mono text-muted-foreground mt-2 uppercase tracking-wider">
+              &mdash; {block.author}
+            </cite>
+          )}
         </blockquote>
       );
 
@@ -128,3 +146,4 @@ const renderBlock = (block: Block) => {
       return null;
   }
 };
+

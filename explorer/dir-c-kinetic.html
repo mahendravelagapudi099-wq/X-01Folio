@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velagapudi Mahendra — Linear Systems & Engineering</title>
+<style>
+/* Direction C: Minimal Kinetic / Linear Studio */
+:root {
+  --bg: #050505;
+  --surface: #0f0f10;
+  --surface-raised: #171718;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-focus: #ffffff;
+  --text: #ededed;
+  --text-muted: #888888;
+  --text-faint: #555555;
+  --emerald: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.2);
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Command Bar Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-dot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: var(--emerald);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.command-cta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+  padding: 64px 0 48px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--emerald);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.hero-h1 span {
+  color: #888888;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.action-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-black {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-ghost {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* Bento Grid */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.bento-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.bento-primary {
+  grid-column: span 8;
+}
+
+.bento-secondary {
+  grid-column: span 4;
+}
+
+.bento-half {
+  grid-column: span 6;
+}
+
+.card-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--emerald);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.card-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.stack-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.telemetry-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+}
+
+.telemetry-row:last-child {
+  border-bottom: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 800px) {
+  .hero-h1 {
+    font-size: 34px;
+  }
+  .bento-primary, .bento-secondary, .bento-half {
+    grid-column: span 12;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav-row">
+    <div class="brand-dot">
+      <span>VM.ENGINEERING</span>
+    </div>
+    <div class="status-pill">
+      <span>&bull;</span>
+      <span>OPEN TO WORK 2026</span>
+    </div>
+    <a href="#contact" class="command-cta">&rarr; CONTACT</a>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Minimal Hero -->
+  <section class="hero">
+    <div class="hero-pill">&bull; B.TECH DATA SCIENCE &bull; MREM HYDERABAD</div>
+    <h1 class="hero-h1">Velagapudi Mahendra.<br><span>Building Verified Systems.</span></h1>
+    <p class="hero-sub">
+      Software engineer and data science practitioner. Developing machine learning inference pipelines, vector-powered retrieval engines, and high-performance web applications.
+    </p>
+    <div class="action-row">
+      <a href="#sentimentscopex" class="btn-black">Launch SentimentScopex &rarr;</a>
+      <a href="#github" class="btn-ghost">View GitHub &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Bento Grid -->
+  <section class="bento">
+    <!-- Primary Project: SentimentScopex -->
+    <article class="bento-card bento-primary">
+      <div class="card-tag">PRODUCTION WEB APP &bull; INFERENCE PIPELINE</div>
+      <h2 class="card-title">SentimentScopex &mdash; Real-Time Sentiment Polarity</h2>
+      <p class="card-desc">
+        End-to-end sentiment analytics platform processing real-time text reviews. Features tokenized feature scoring, multi-class confidence analysis, and sub-second classification benchmarks.
+      </p>
+      <div class="stack-chips">
+        <span class="chip">React</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">TensorFlow</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">Node.js</span>
+      </div>
+    </article>
+
+    <!-- Side Telemetry Card -->
+    <aside class="bento-card bento-secondary">
+      <div class="card-tag">VERIFIED BENCHMARKS</div>
+      <div class="telemetry-row">
+        <span style="color: var(--text-muted);">SentimentScopex F1</span>
+        <span style="color: var(--emerald);">0.92</span>
+      </div>
+      <div class="telemetry-row">
+        <span style="color: var(--text-muted);">VectorMind Retrieval</span>
+        <span style="color: #fff;">140ms</span>
+      </div>
+      <div class="telemetry-row">
+        <span style="color: var(--text-muted);">Repos Shipped</span>
+        <span style="color: #fff;">5 Repos</span>
+      </div>
+      <div class="telemetry-row">
+        <span style="color: var(--text-muted);">Research</span>
+        <span style="color: var(--emerald);">Active</span>
+      </div>
+    </aside>
+
+    <!-- Second Row Bento: VectorMind -->
+    <article class="bento-card bento-half">
+      <div class="card-tag">RAG & REVENUE FORECASTING</div>
+      <h2 class="card-title">VectorMind &bull; AI Sales Analyst</h2>
+      <p class="card-desc">
+        RAG analytics engine pairing ChromaDB vector indexing with Prophet forecasting to automate multi-quarter sales projections and anomaly discovery.
+      </p>
+      <div class="stack-chips">
+        <span class="chip">Python</span>
+        <span class="chip">LangChain</span>
+        <span class="chip">ChromaDB</span>
+        <span class="chip">Prophet</span>
+      </div>
+    </article>
+
+    <!-- Third Row Bento: Research Invariants -->
+    <article class="bento-card bento-half">
+      <div class="card-tag">ONGOING RESEARCH</div>
+      <h2 class="card-title">Risk-Based Verification for AI Agents</h2>
+      <p class="card-desc">
+        Architecting AST execution gates and runtime test oracles to eliminate statistical hallucinations in autonomous data analysis agents.
+      </p>
+      <div class="stack-chips">
+        <span class="chip">AST Inspection</span>
+        <span class="chip">Dataframe Invariants</span>
+        <span class="chip">Self-Correction</span>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="container" style="padding: 40px 0; margin-top: 40px; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); display: flex; justify-content: space-between;">
+  <div>VELAGAPUDI MAHENDRA &bull; 2026</div>
+  <div>DESIGN CANDIDATE: DIR-C (LINEAR KINETIC)</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "project": "X-01Folio (Velagapudi Mahendra)",
+  "brief": "Explore three distinct design directions for Velagapudi Mahendra's portfolio (CS & Data Science Researcher-Builder): Lab Obsidian, Modern Editorial Monograph, and Minimal Kinetic Studio.",
+  "round": "01",
+  "candidates": [
+    {
+      "id": "dir-a-lab",
+      "name": "Lab Obsidian (Technical Systems & AI Research)",
+      "concept": "Precision scientific lab instrument emphasizing empirical verification, live telemetry, and systems thinking over decorative gimmicks.",
+      "typography": "Space Grotesk (headings) + Inter (body) + JetBrains Mono (telemetry & code)",
+      "palette": ["#090d13", "#0f1722", "#38bdf8", "#34d399", "#f1f5f9"],
+      "traits": ["Asymmetric telemetry card", "Sky-blue signal accents", "Live F1 & latency benchmarks", "Surgical dark slate foundation"],
+      "source": "dir-a-lab.html"
+    },
+    {
+      "id": "dir-b-editorial",
+      "name": "Swiss Monograph (Scholar & Fellow)",
+      "concept": "Academic treatise meets modern Stripe Press publication; tailored for prestigious scholarship review panels (MEXT/Honjo) and research fellowships.",
+      "typography": "Newsreader / Fraunces (editorial serif headings) + Inter (grotesque body) + JetBrains Mono (metadata)",
+      "palette": ["#0c0e12", "#141820", "#f59e0b", "#d97706", "#f3f4f6"],
+      "traits": ["Editorial thesis & pull quotes", "Numbered § section markers", "Scholarly research prospectus", "Warm amber bookplate tones"],
+      "source": "dir-b-editorial.html"
+    },
+    {
+      "id": "dir-c-kinetic",
+      "name": "Linear Studio (Minimal Kinetic Builder)",
+      "concept": "High-velocity product engineering craft inspired by Linear and Vercel; focused on shipped software, dense scan-ability, and crisp contrast.",
+      "typography": "Plus Jakarta Sans (geometric sans) + JetBrains Mono (command bar & metrics)",
+      "palette": ["#050505", "#0f0f10", "#171718", "#10b981", "#ededed"],
+      "traits": ["Bento grid composition", "High-density modular hierarchy", "Terminal emerald indicators", "Monochrome void backdrop"],
+      "source": "dir-c-kinetic.html"
+    }
+  ]
+}

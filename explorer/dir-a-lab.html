@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velagapudi Mahendra — Systems & AI Research</title>
+<style>
+/* Direction A: Lab Obsidian (Technical Systems & AI Research) */
+:root {
+  --bg: #090d13;
+  --surface: #0f1722;
+  --surface-raised: #15202e;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(56, 189, 248, 0.4);
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.15);
+  --emerald: #34d399;
+  --emerald-glow: rgba(52, 211, 153, 0.15);
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, Monaco, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Background grid telemetry pattern */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Top Nav */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(9, 13, 19, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  color: var(--emerald);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 8px var(--emerald);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  transition: color 0.15s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.btn-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-contact:hover {
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.1);
+}
+
+/* Hero Section */
+.hero {
+  padding: 72px 0 60px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.hero-title span {
+  color: var(--accent);
+}
+
+.hero-bio {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 540px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #040911;
+  font-weight: 600;
+  font-size: 13.5px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13.5px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--surface-raised);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Telemetry Card (Hero Right) */
+.telemetry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.telemetry-header {
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.telemetry-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.telemetry-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.telemetry-body {
+  padding: 20px;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.metric-row:last-child {
+  border-bottom: none;
+}
+
+.metric-label {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.metric-val-accent {
+  color: var(--accent);
+}
+
+.metric-val-emerald {
+  color: var(--emerald);
+}
+
+/* Section Title */
+.section {
+  padding: 56px 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s;
+}
+
+.project-card:hover {
+  border-color: var(--border-focus);
+  transform: translateY(-2px);
+  background: var(--surface-raised);
+}
+
+.project-top {
+  margin-bottom: 16px;
+}
+
+.project-type {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.project-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.project-links {
+  display: flex;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.project-links a {
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+
+.project-links a:hover {
+  color: var(--accent);
+}
+
+/* Skills Spectrum */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.skill-cluster {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.cluster-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.cluster-items {
+  list-style: none;
+}
+
+.cluster-items li {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cluster-items li::before {
+  content: "›";
+  margin-right: 8px;
+  color: var(--text-faint);
+}
+
+/* Mobile Layout Adaptations */
+@media (max-width: 820px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero-title {
+    font-size: 32px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Mobile Quick Navigation Bar */
+.mobile-bar {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(9, 13, 19, 0.95);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    justify-content: space-around;
+    z-index: 100;
+  }
+  .mobile-bar a {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .mobile-bar a.active {
+    color: var(--accent);
+  }
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  margin-top: 60px;
+  font-size: 13px;
+  color: var(--text-faint);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+}
+
+svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        <span>VM // DS-LAB</span>
+      </a>
+      <div class="status-indicator">
+        <span class="pulse-dot"></span>
+        <span>SEEKING 2026 DS INTERNSHIPS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#systems">SYSTEMS & SKILLS</a></li>
+        <li><a href="#credentials">CREDENTIALS</a></li>
+      </ul>
+      <a href="#contact" class="btn-contact">CONTACT &rarr;</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-tagline">
+            <span>&bull; HYDERABAD, IN &bull; B.TECH DATA SCIENCE (MREM)</span>
+          </div>
+          <h1 class="hero-title">
+            Velagapudi <span>Mahendra</span>
+          </h1>
+          <p class="hero-bio">
+            Undergraduate Data Scientist & Full-Stack Builder. Focused on applied machine learning pipelines, LLM-powered analytics systems, and high-signal statistical modeling.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary">Explore Benchmarks &rarr;</a>
+            <a href="#github" class="btn-secondary">GitHub Artifacts</a>
+          </div>
+        </div>
+
+        <!-- Right Empirical Telemetry Card -->
+        <div class="telemetry-card">
+          <div class="telemetry-header">
+            <span>PIPELINE_TELEMETRY.SYS</span>
+            <div class="telemetry-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="telemetry-body">
+            <div class="metric-row">
+              <span class="metric-label">Primary Stack</span>
+              <span class="metric-value">Python / Pandas / PyTorch / React</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label">SentimentScopex Pipeline</span>
+              <span class="metric-value metric-val-emerald">F1 0.92 &bull; Active Node</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label">VectorMind RAG Latency</span>
+              <span class="metric-value metric-val-accent">140ms &bull; ChromaDB</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label">Production Repositories</span>
+              <span class="metric-value">5 Verified Artifacts</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label">Target Roles</span>
+              <span class="metric-value">AI/ML Engineering, Data Science</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title"><span class="section-num">01/</span>Featured Systems & Artifacts</h2>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-faint);">EVALUATED AGAINST REAL DATASETS</span>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-type">
+              <span>NLP & INFERENCE</span>
+              <span>LIVE</span>
+            </div>
+            <h3 class="project-title">SentimentScopex</h3>
+            <p class="project-desc">
+              AI-driven sentiment classification platform analyzing textual streams from consumer reviews. Engineered with end-to-end tokenization, sentiment scoring, and interactive telemetry visualization.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Node.js</span>
+            </div>
+            <div class="project-links">
+              <a href="#sentimentscopex">Launch App &rarr;</a>
+              <a href="#repo-sentimentscope">Source Code &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-type">
+              <span>RAG & AGENTIC ANALYTICS</span>
+              <span>LOCAL LLM</span>
+            </div>
+            <h3 class="project-title">VectorMind &bull; AI Sales Analyst</h3>
+            <p class="project-desc">
+              Multi-source sales intelligence engine converting raw revenue transactions into automated predictive trends. Employs ChromaDB vector search and Prophet forecasting models.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">LangChain</span>
+              <span class="tech-tag">ChromaDB</span>
+              <span class="tech-tag">Prophet</span>
+              <span class="tech-tag">Streamlit</span>
+            </div>
+            <div class="project-links">
+              <a href="#repo-vectormind">Source & Documentation &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-type">
+              <span>STATISTICAL ANALYTICS</span>
+              <span>EDA</span>
+            </div>
+            <h3 class="project-title">Student Performance Predictor</h3>
+            <p class="project-desc">
+              Quantitative academic behavioral analytics tracking study hour regressions, attendance metrics, and test variance to detect early academic risk factors.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Scikit-learn</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#repo-student">Repository &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-type">
+              <span>CLIMATE INTELLIGENCE</span>
+              <span>TIME SERIES</span>
+            </div>
+            <h3 class="project-title">Climate Change Insights</h3>
+            <p class="project-desc">
+              Exploratory time-series and temperature variance analysis examining atmospheric CO2 metrics across global multi-decade environmental observation datasets.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech">
+              <span class="tech-tag">Jupyter</span>
+              <span class="tech-tag">NumPy</span>
+              <span class="tech-tag">Matplotlib</span>
+              <span class="tech-tag">Seaborn</span>
+            </div>
+            <div class="project-links">
+              <a href="#repo-climate">Notebooks & Insights &rarr;</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills / Systems Section -->
+  <section id="systems" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title"><span class="section-num">02/</span>Methodologies & Core Stack</h2>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-faint);">SYSTEMATIC ENGINEERING</span>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-cluster">
+          <h3 class="cluster-title">Machine Learning & Data</h3>
+          <ul class="cluster-items">
+            <li><span>Supervised Regression & Trees</span><span>Scikit-Learn</span></li>
+            <li><span>Vector Stores & RAG</span><span>ChromaDB</span></li>
+            <li><span>Data Wrangling & Pipeline</span><span>Pandas / NumPy</span></li>
+            <li><span>Statistical Forecasting</span><span>Prophet</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-cluster">
+          <h3 class="cluster-title">Software Engineering</h3>
+          <ul class="cluster-items">
+            <li><span>Typed Client Interfaces</span><span>TypeScript / React</span></li>
+            <li><span>Relational Database Modeling</span><span>PostgreSQL / SQL</span></li>
+            <li><span>Document Modeling</span><span>MongoDB</span></li>
+            <li><span>Version Control & Actions</span><span>Git / CI-CD</span></li>
+          </ul>
+        </div>
+
+        <div class="skill-cluster">
+          <h3 class="cluster-title">Analytics & Exploration</h3>
+          <ul class="cluster-items">
+            <li><span>Interactive Dashboards</span><span>Streamlit / Recharts</span></li>
+            <li><span>Statistical Visualizations</span><span>Seaborn / Plotly</span></li>
+            <li><span>Computational Notebooks</span><span>Jupyter</span></li>
+            <li><span>Systematic Verification</span><span>TDD & Profiling</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer container">
+  <div>VELAGAPUDI MAHENDRA &bull; 2026 PORTFOLIO SYSTEM</div>
+  <div>DESIGN CANDIDATE: DIR-A (LAB OBSIDIAN)</div>
+</footer>
+
+<!-- Mobile Bottom Bar -->
+<nav class="mobile-bar">
+  <a href="#" class="active">HOME</a>
+  <a href="#projects">PROJECTS</a>
+  <a href="#systems">SKILLS</a>
+  <a href="#contact">CONTACT</a>
+</nav>
+
+</body>
+</html>

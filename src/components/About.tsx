@@ -1,126 +1,136 @@
-import { TrendingUp, Brain, Database, BarChart3 } from "lucide-react";
+import { TrendingUp, Brain, Database, BarChart3, Code2, ShieldCheck } from "lucide-react";
 import profileImage from '@/assets/profilepic.png';
 
-
 const About = () => {
-  // Same items as before, grouped by category so they scan instead of reading as a wall.
-  const skillGroups = [
-    { title: 'Programming', items: ['Python', 'SQL', 'Git & GitHub'] },
+  const skillClusters = [
     {
-      title: 'Data',
-      items: ['Data Cleaning', 'Exploratory Data Analysis (EDA)', 'Pandas', 'NumPy', 'Statistics (Basics)'],
+      title: 'Programming & Web',
+      items: ['Python', 'SQL', 'TypeScript', 'React', 'Node.js', 'Git & GitHub'],
+    },
+    {
+      title: 'Data Science & Analytics',
+      items: ['Exploratory Data Analysis (EDA)', 'Pandas', 'NumPy', 'Data Cleaning', 'Statistical Modeling'],
     },
     {
       title: 'Machine Learning',
-      items: ['Machine Learning (Basics)', 'Scikit-learn', 'Model Evaluation (Intro)'],
+      items: ['Scikit-learn', 'Supervised & Unsupervised Learning', 'Model Evaluation & Cross-Validation', 'TensorFlow Basics'],
     },
-    { title: 'Visualization', items: ['Matplotlib', 'Seaborn', 'Data Visualization'] },
-    { title: 'Tools', items: ['Jupyter Notebook'] },
+    {
+      title: 'Data Storage & Retrieval',
+      items: ['PostgreSQL', 'MongoDB', 'ChromaDB (Vector Search)', 'Schema Design & Indexing'],
+    },
+    {
+      title: 'Visualization & Tooling',
+      items: ['Matplotlib', 'Seaborn', 'Streamlit', 'Recharts', 'Jupyter Notebooks', 'Vite'],
+    },
   ];
 
-  const skills = [
+  const focusAreas = [
     {
       icon: TrendingUp,
-      title: "Data Analysis",
+      title: "Data Engineering & Analytics",
       description:
-        "Understanding data analysis concepts including data cleaning, exploratory data analysis, and basic statistical techniques.",
+        "Building reliable data wrangling workflows, identifying anomalies, and deriving actionable statistical distributions from complex raw datasets.",
     },
     {
       icon: Brain,
-      title: "Machine Learning (Beginner)",
+      title: "Applied Machine Learning",
       description:
-        "Learning fundamentals of machine learning such as supervised and unsupervised learning, model training, and evaluation.",
+        "Developing predictive regression and classification pipelines with rigorous cross-validation, feature selection, and evaluation benchmarks.",
     },
     {
       icon: Database,
-      title: "Databases & Data Modeling",
+      title: "Database Architecture",
       description:
-        "Working with MongoDB basics including schema design, indexing concepts, and query optimization fundamentals.",
+        "Designing relational (PostgreSQL) and document-based (MongoDB) data schemas with indexing strategies tailored for analytical throughput.",
     },
     {
-      icon: BarChart3,
-      title: "Data Visualization",
+      icon: ShieldCheck,
+      title: "Agent Verification & Reliability",
       description:
-        "Creating basic visualizations using tools like Tableau, spreadsheets, and Python libraries to present insights clearly.",
+        "Investigating risk-based validation techniques to prevent hallucination in autonomous data-analysis and code-generation agents.",
     },
   ];
 
-
   return (
-    <section id="about" className="py-20 px-6 max-w-7xl mx-auto">
-      <div className="fade-in text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-          About Me
+    <section id="about" className="py-24 px-6 max-w-7xl mx-auto" aria-labelledby="about-heading">
+      <div className="mb-16 text-center">
+        <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold tracking-tight text-foreground mb-4">
+          About & Technical Profile
         </h2>
-        <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
+        <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4" />
+        <p className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+          ENGINEERING DISCIPLINE &bull; ACADEMIC RIGOR
+        </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        {/* Profile Section */}
-        <div className="fade-in delay-200">
-          <div className="glass-card p-8 glow-primary">
-            <div className="w-48 h-48 mx-auto mb-8 relative">
-              <div className="w-full h-full rounded-full bg-gradient-primary p-1">
-                <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
-                  <img
-                    src={profileImage}
-                    alt="Profile"
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
+      <div className="grid lg:grid-cols-12 gap-12 items-start mb-20">
+        {/* Profile Card */}
+        <div className="lg:col-span-5">
+          <div className="glass-card p-8 border border-slate-800 bg-slate-900/60 rounded-2xl">
+            <div className="w-36 h-36 mx-auto mb-6 relative">
+              <div className="w-full h-full rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-800 shadow-xl">
+                <img
+                  src={profileImage}
+                  alt="Velagapudi Mahendra"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
             <div className="text-center">
-              <h3 className="text-2xl font-playfair font-semibold mb-4">
+              <h3 className="text-xl font-sans font-bold text-foreground mb-1">
                 Velagapudi Mahendra
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
-               I’m a Data Science student passionate about transforming raw data into meaningful insights. Currently pursuing my B.Tech in Data Science at MREM, I enjoy working on projects that combine analytical thinking with creative problem-solving. I aspire to apply data-driven approaches to make a positive impact in healthcare and social good initiatives.
+              <p className="text-xs font-mono text-primary mb-4">
+                B.Tech in Data Science (2023 - 2027) &bull; MREM
+              </p>
+              <p className="text-sm text-slate-300 leading-relaxed text-left">
+                I build software at the intersection of data engineering and machine learning. Currently pursuing my B.Tech in Data Science at Mallareddy Engineering College and Management Sciences, my work focuses on applied ML pipelines, RAG systems, and risk-based verification for AI analytics agents. I believe code should be benchmarked, evidence-backed, and built to solve tangible operational problems.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Skills Grid */}
-        <div className="space-y-8">
-          {skills.map((skill, index) => (
+        {/* Focus Areas 2x2 Grid */}
+        <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+          {focusAreas.map((area) => (
             <div
-              key={skill.title}
-              className={`fade-in delay-${300 + index * 100}`}
+              key={area.title}
+              className="glass-card p-6 border border-slate-800/80 bg-slate-900/40 rounded-xl hover:border-primary/40 transition-all duration-200"
             >
-              <div className="glass-card p-6 hover:glow-secondary transition-all duration-300 group">
-                <div className="flex items-start gap-4">
-                  <div className="glass-card p-3 rounded-xl glow-accent group-hover:scale-110 transition-transform duration-300">
-                    <skill.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-playfair font-semibold mb-2">
-                      {skill.title}
-                    </h4>
-                    <p className="text-muted-foreground">{skill.description}</p>
-                  </div>
-                </div>
+              <div className="p-2.5 rounded-lg bg-primary/10 border border-primary/20 w-fit mb-4 text-primary">
+                <area.icon className="h-5 w-5" />
               </div>
+              <h4 className="text-base font-sans font-semibold text-foreground mb-2">
+                {area.title}
+              </h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {area.description}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Tech Stack */}
-      <div className="mt-20 fade-in delay-500">
-        <h3 className="text-2xl font-playfair font-semibold text-center mb-8">
-          Technical Skills
+      {/* Structured Technical Skills by Cluster */}
+      <div className="glass-card p-8 border border-slate-800/80 bg-slate-900/40 rounded-2xl">
+        <h3 className="text-xl font-sans font-bold text-foreground mb-6 flex items-center gap-2">
+          <Code2 className="h-5 w-5 text-primary" />
+          Technical Stack & Tooling
         </h3>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillGroups.map((group) => (
-            <div key={group.title} className="glass-card p-6 hover:glow-accent transition-all duration-300">
-              <h4 className="font-orbitron font-semibold text-primary mb-4">{group.title}</h4>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
+          {skillClusters.map((cluster) => (
+            <div key={cluster.title} className="p-4 rounded-xl bg-slate-950/40 border border-slate-800/60">
+              <h4 className="text-xs font-mono font-semibold text-primary uppercase tracking-wider mb-3">
+                {cluster.title}
+              </h4>
+              <div className="flex flex-wrap gap-1.5">
+                {cluster.items.map((item) => (
                   <span
                     key={item}
-                    className="glass-card px-3 py-1.5 text-sm font-medium"
+                    className="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-800/60 text-slate-300 border border-slate-700/50"
                   >
                     {item}
                   </span>
@@ -134,5 +144,5 @@ const About = () => {
   );
 };
 
-
 export default About;
+

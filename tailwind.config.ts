@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
@@ -21,10 +20,12 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				inter: ['Inter', 'sans-serif'],
-				jetbrains: ['JetBrains Mono', 'monospace'],
-				playfair: ['Playfair Display', 'serif'],
-			orbitron: ['Orbitron', 'sans-serif'],
+				sans: ['Geist', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+				mono: ['"Geist Mono"', 'monospace'],
+				display: ['"Redaction 50"', 'serif'],
+				redaction: ['"Redaction 50"', 'serif'],
+				geist: ['Geist', 'sans-serif'],
+				'geist-mono': ['"Geist Mono"', 'monospace'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -35,12 +36,10 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
-					glow: 'hsl(var(--secondary-glow))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -53,7 +52,6 @@ export default {
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
-					glow: 'hsl(var(--accent-glow))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -63,35 +61,38 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				glass: {
-					DEFAULT: 'hsl(var(--glass))',
-					border: 'hsl(var(--glass-border))'
+				// elayadesign/ai-design-skills allowed flat dark surfaces
+				obsidian: '#000000',
+				surface: {
+					1: '#181818',
+					2: '#1F1F1F',
+					3: '#272727',
+					4: '#313131',
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				mutedGray: '#9B9B9B',
 			},
-			backgroundImage: {
-				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-glass': 'var(--gradient-glass)',
-				'gradient-hero': 'var(--gradient-hero)'
-			},
-			boxShadow: {
-				'glass': 'var(--shadow-glass)',
-				'primary': 'var(--shadow-primary)',
-				'secondary': 'var(--shadow-secondary)',
-				'accent': 'var(--shadow-accent)'
+			spacing: {
+				'0': '0px',
+				'25': '2px',
+				'50': '4px',
+				'75': '8px',
+				'100': '12px',
+				'200': '16px',
+				'300': '24px',
+				'400': '32px',
+				'500': '40px',
+				'600': '48px',
+				'700': '64px',
+				'800': '80px',
+				'900': '96px',
 			},
 			transitionTimingFunction: {
-				'smooth': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-				'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+				'smooth': 'cubic-bezier(0.22, 1, 0.36, 1)',
+				'base': 'cubic-bezier(0.22, 1, 0.36, 1)',
+			},
+			transitionDuration: {
+				'300': '300ms',
+				'500': '500ms',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -100,20 +101,12 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				}
 			},
 			animation: {
