@@ -1,4 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Redaction+50:ital,wght@0,400;0,700;1,400&display=swap');
+/* Fonts loaded via <link> in index.html */
+
+/* Redaction 50 utility classes — exact spec from Google Fonts */
+.redaction-50-regular {
+  font-family: "Redaction 50", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.redaction-50-bold {
+  font-family: "Redaction 50", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.redaction-50-regular-italic {
+  font-family: "Redaction 50", serif;
+  font-weight: 400;
+  font-style: italic;
+}
 
 @tailwind base;
 @tailwind components;

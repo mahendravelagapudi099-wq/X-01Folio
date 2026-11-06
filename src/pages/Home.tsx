@@ -20,7 +20,6 @@ import { TaglineReveal } from '@/components/TaglineReveal';
 import { Logo } from '@/components/Logo';
 import { SpotlightGrid } from '@/components/effects/SpotlightGrid';
 import { BorderBeam } from '@/components/effects/BorderBeam';
-import { InteractiveArchitecture } from '@/components/InteractiveArchitecture';
 
 interface FaqItem {
   question: string;
@@ -145,11 +144,6 @@ export default function Home() {
             </a>
           </div>
 
-          {/* 
-            INTERACTIVE SYSTEM ARCHITECTURE & LIVE PIPELINE CANVAS
-            The agreed visual centerpiece replacing text-only hero presentation.
-          */}
-          <InteractiveArchitecture />
         </div>
       </section>
 
