@@ -7,7 +7,7 @@ interface LogoProps {
 }
 
 /**
- * Bespoke Architectural Emblem for Velagapudi Mahendra / Folio
+ * Bespoke Architectural Emblem for Velagapudi Mahendra
  * Designed according to elayadesign/ai-design-skills:
  * Pure geometric vector with crisp monochrome precision, no clashing gradients,
  * representing data synthesis (M) and precision runtime verification.
@@ -69,14 +69,9 @@ export const Logo: React.FC<LogoProps> = ({
       </svg>
 
       {showWordmark && (
-        <div className="flex flex-col">
-          <span className="font-sans text-sm font-semibold tracking-tight text-foreground leading-tight">
-            Mahendra
-          </span>
-          <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest leading-none">
-            Folio
-          </span>
-        </div>
+        <span className="font-sans text-sm font-semibold tracking-tight text-foreground leading-none">
+          Mahendra
+        </span>
       )}
     </div>
   );
