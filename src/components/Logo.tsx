@@ -7,10 +7,10 @@ interface LogoProps {
 }
 
 /**
- * Bespoke Architectural Emblem for Velagapudi Mahendra / X-01Folio
+ * Bespoke Architectural Emblem for Velagapudi Mahendra / Folio
  * Designed according to elayadesign/ai-design-skills:
  * Pure geometric vector with crisp monochrome precision, no clashing gradients,
- * representing data synthesis (M) and precision runtime verification (X-01).
+ * representing data synthesis (M) and precision runtime verification.
  */
 export const Logo: React.FC<LogoProps> = ({
   className = '',
@@ -26,7 +26,7 @@ export const Logo: React.FC<LogoProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="shrink-0 transition-transform duration-300 ease-base group-hover:scale-105"
-        aria-label="Velagapudi Mahendra X-01 Logo"
+        aria-label="Velagapudi Mahendra Logo"
       >
         {/* Background shield surface */}
         <rect
@@ -40,7 +40,7 @@ export const Logo: React.FC<LogoProps> = ({
           strokeWidth="1.5"
         />
 
-        {/* Faceted M / X-01 Architectural Mark */}
+        {/* Faceted M Architectural Mark */}
         {/* Left upright pillar */}
         <path
           d="M8 23V9L13.5 17L16 13.5"
@@ -74,7 +74,7 @@ export const Logo: React.FC<LogoProps> = ({
             Mahendra
           </span>
           <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest leading-none">
-            X-01 Folio
+            Folio
           </span>
         </div>
       )}
