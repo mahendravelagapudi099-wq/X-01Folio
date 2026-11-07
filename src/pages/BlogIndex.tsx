@@ -29,14 +29,14 @@ export default function BlogIndex() {
         <title>Technical Blog &amp; Writings | Velagapudi Mahendra</title>
         <meta
           name="description"
-          content="Deep dives into runtime verification, autonomous AI agent safety, and empirical data science by Velagapudi Mahendra."
+          content="Practical deep dives into Telugu NLP, RAG architecture, air quality data pipelines, and reinforcement learning by Velagapudi Mahendra."
         />
         <link rel="canonical" href="https://mahendraa.dev/blog" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Technical Blog | Velagapudi Mahendra" />
         <meta
           property="og:description"
-          content="Deep dives into runtime verification, autonomous AI agent safety, and empirical data science by Velagapudi Mahendra."
+          content="Practical deep dives into Telugu NLP, RAG architecture, air quality data pipelines, and reinforcement learning by Velagapudi Mahendra."
         />
       </Helmet>
 
@@ -52,10 +52,10 @@ export default function BlogIndex() {
       {/* Header */}
       <header className="border-b border-border pb-8 mb-12">
         <h1 className="text-4xl sm:text-5xl font-sans font-bold text-foreground mb-4">
-          Writings &amp; Technical Essays
+          Writings &amp; Technical Notes
         </h1>
         <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-          Analytical essays and research notes covering autonomous AI agent runtime safety, abstract syntax tree (AST) execution gates, and scalable data systems.
+          Practical notes, benchmarks, and walk-throughs covering multilingual NLP, RAG systems, data engineering pipelines, and reinforcement learning experiments.
         </p>
 
         {/* Filter Tags */}

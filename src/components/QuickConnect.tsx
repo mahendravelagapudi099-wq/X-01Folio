@@ -68,7 +68,7 @@ const QuickConnect = () => {
                 Connect with Mahendra
               </h3>
               <p className="text-xs text-[#9B9B9B] mt-1 leading-relaxed">
-                Available for research fellowships, data science internships, and technical collaboration.
+                Available for data science internships, research collaborations, and technical discussions.
               </p>
             </div>
 

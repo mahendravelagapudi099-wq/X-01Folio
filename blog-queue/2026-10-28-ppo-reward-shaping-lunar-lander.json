@@ -1,0 +1,53 @@
+{
+  "title": "Reinforcement Learning Reward Shaping Experiments on LunarLander-v3",
+  "slug": "ppo-reward-shaping-lunar-lander",
+  "excerpt": "Comparing four reward-shaping formulations using PPO in Gymnasium with Stable-Baselines3 across 3 seeds and 1M training steps.",
+  "feature_image": "https://mahendraa.dev/assets/project-04-lunar-lander.png",
+  "published_at": "2026-10-28T10:00:00Z",
+  "featured": false,
+  "tags": [
+    "Reinforcement Learning",
+    "PyTorch",
+    "PPO",
+    "Gymnasium"
+  ],
+  "reading_time": "4 min read",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Reward Shaping Matters in RL"
+    },
+    {
+      "type": "text",
+      "content": "In reinforcement learning, reward design directly determines policy convergence velocity and stability. Naive sparse rewards lead to sample inefficiency, while poorly tuned dense rewards can introduce unintended policy side effects."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Experimental Setup"
+    },
+    {
+      "type": "text",
+      "content": "Using Gymnasium's LunarLander-v3 and Stable-Baselines3 PPO, we evaluated four distinct reward formulations systematically across 3 seeds for 1,000,000 steps each."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "import gymnasium as gym\nfrom stable_baselines3 import PPO\n\nenv = gym.make(\"LunarLander-v3\")\nmodel = PPO(\"MlpPolicy\", env, learning_rate=3e-4, seed=42)"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reproducibility & Verification"
+    },
+    {
+      "type": "text",
+      "content": "All training logs and evaluation benchmarks are covered by 51 passing unit and regression tests, verifying deterministic seed execution and rollout consistency."
+    },
+    {
+      "type": "text",
+      "content": "Check the source code and experiment logs:\nhttps://github.com/mahendravelagapudi099-wq/lunar-lander-reward-shaping-lab"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
@@ -148,43 +149,63 @@ function GlintCard({
 /* ------------------------------------------------------------------ */
 const FAQS = [
   {
-    q: 'What is your primary research focus?',
-    a: 'Runtime verification for autonomous AI agents. I construct deterministic static AST gates and runtime statistical oracles that bound system behavior and eliminate ungrounded hallucinations in production pipelines.',
+    q: 'Who are you?',
+    a: 'I am Velagapudi Mahendra, a B.Tech Computer Science and Engineering (Data Science) student at Malla Reddy Engineering College and Management Sciences, Hyderabad, 2023–2027. I am currently pursuing my degree (7th semester).',
   },
   {
-    q: 'Available for research fellowships or engineering roles?',
-    a: 'Yes. Actively seeking international research fellowships (MEXT, Honjo), data science internships, and software engineering roles for 2025-2026. Based in Hyderabad; open to remote or on-site.',
+    q: 'What do you work on?',
+    a: 'I build data science and machine learning projects. My main projects are a Telugu text classifier, a Hyderabad air quality monitor, a RAG chatbot over technical PDFs, and a Lunar Lander reward-shaping lab, plus a sentiment analysis web app, a sales-analytics platform, a student performance dashboard, and a climate insights dashboard.',
   },
   {
-    q: 'How do you verify ML models?',
-    a: 'Every pipeline enforces pre-execution dataset partitioning, Kolmogorov-Smirnov distribution drift testing, and deterministic metric logging. Benchmarks ship with unrounded tabular precision and full test-set artifacts.',
+    q: 'What is your research about?',
+    a: 'My research proposal is titled "Risk-Based Verification and Evidence-Grounded Self-Correction for AI Data-Analysis Agents". It is a proposal, finalized in October 2026. No experiments have been run yet and there are no results yet.',
   },
   {
-    q: 'Can I inspect source code and reproducible benchmarks?',
-    a: 'All primary systems (SentimentScopex, VectorMind RAG, working paper benchmarks) are open-source on GitHub with reproducible environment definitions, automated test suites, and Docker configs.',
+    q: 'What internship experience do you have?',
+    a: 'I was a Data Science Intern at Codec Technologies Pvt. Ltd (Remote) from May to June 2025, where I contributed to VectorMind, a sales-analytics platform that explains trends, forecasts sales, and answers natural-language questions about sales data.',
   },
   {
-    q: 'What is your primary development stack?',
-    a: 'Research: Python, PyTorch, Scikit-learn, Pandas, NumPy, AST parsers. Production: React, TypeScript, Node.js, PostgreSQL, Tailwind, FastAPI.',
+    q: 'What are your strongest skills?',
+    a: 'Python, SQL, PyTorch, scikit-learn, Hugging Face Transformers, PostgreSQL, Streamlit, and Pandas. I also work with Java, JavaScript, TypeScript, Docker, and Git.',
   },
   {
-    q: 'Response time for technical inquiries?',
-    a: 'All academic, recruiter, and research collaboration messages receive a direct personal response within 24 hours via contact@mahendraa.dev or the inquiry portal.',
+    q: 'What certifications do you hold?',
+    a: 'Data Analytics with Python (NPTEL / IIT Roorkee), Introduction to Generative AI (Google Cloud / Simplilearn), two MongoDB certifications (Data Modeling Intro and MongoDB and the Document Model), SQL and Relational Databases 101 (IBM / Coursera), and API Fundamentals Student Expert (Postman). The full list with IDs is on the Credentials page.',
+  },
+  {
+    q: 'Have you won anything or led anything?',
+    a: 'I participated in the Google Tech Sprint Hackathon 2025, where I built MDM, a tamper-evident digital certificate platform. I have been Student Chair of the CODE FORGE student club since February 2025. I was also a GeeksforGeeks Campus Mantri from January to July 2026 (6 months).',
+  },
+  {
+    q: 'How can I contact you?',
+    a: 'Email me at contact@mahendraa.dev. You can also find me on GitHub and LinkedIn — the links are in the footer and on the Contact page.',
+  },
+  {
+    q: 'How fast will you reply?',
+    a: 'I usually reply within 24 hours.',
   },
 ];
 
 /* ================================================================== */
 export default function Home() {
-  const featuredProjects = PROJECTS.filter((p) => p.featured).slice(0, 3);
-  const topCredentials = CERTIFICATES.slice(0, 4);
+  const featuredProjects = PROJECTS.filter((p) => p.featured).slice(0, 4);
+  const topCredentials = CERTIFICATES.slice(0, 6);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
-  const headline = 'Architecting Verifiable AI & High-Throughput Data Systems.';
+  const headline = 'B.Tech CSE (Data Science) student building data science and ML projects.';
   const { displayed, done } = useTypewriter(reduce ? '' : headline, 30);
 
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-white selection:text-black">
+      <Helmet>
+        <title>Velagapudi Mahendra | Data Science Student and AI Researcher</title>
+        <meta
+          name="description"
+          content="B.Tech CSE (Data Science) student at Malla Reddy Engineering College and Management Sciences, Hyderabad. I build data science and machine learning projects and I am working on a research proposal on risk-based verification and evidence-grounded self-correction for AI data-analysis agents."
+        />
+        <link rel="canonical" href="https://mahendraa.dev/" />
+      </Helmet>
 
       {/* ============================================================ */}
       {/* HERO — left-aligned, asymmetric, SpotlightGrid BG            */}
@@ -210,7 +231,7 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0E0E0E] border border-[#1E1E1E] text-[11px] font-mono text-[#666666]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" style={{ boxShadow: '0 0 6px rgba(52,211,153,0.6)' }} />
-              MREM B.Tech CSE · IIT Roorkee Certified · JNTUH
+              MREM B.Tech CSE · Hyderabad, India
             </div>
           </motion.div>
 
@@ -237,10 +258,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
           >
-            Undergraduate researcher at{' '}
-            <strong className="text-white font-medium">MREM</strong>. Building
-            deterministic static AST gates and runtime statistical oracles that
-            eliminate hallucination loops in autonomous analytical pipelines.
+            B.Tech CSE (Data Science) student at{' '}
+            <strong className="text-white font-medium">Malla Reddy Engineering College and Management Sciences</strong>
+            {', '}Hyderabad. I build data science and machine learning projects and I am working on a research proposal on risk-based verification and evidence-grounded self-correction for AI data-analysis agents.
           </motion.p>
 
           {/* 4. CTAs — primary + secondary only */}
@@ -279,10 +299,10 @@ export default function Home() {
           >
             {[
               { icon: <Cpu className="w-3 h-3 text-emerald-500" />, label: 'Python · PyTorch' },
-              { icon: <ShieldCheck className="w-3 h-3 text-blue-400" />, label: 'Runtime AST Verification' },
-              { icon: <Code2 className="w-3 h-3 text-neutral-500" />, label: 'Full-Stack TypeScript' },
-              { icon: <Sparkles className="w-3 h-3 text-amber-400" />, label: 'IIT Roorkee · NPTEL' },
-              { icon: <Terminal className="w-3 h-3 text-neutral-500" />, label: 'FastAPI · PostgreSQL' },
+              { icon: <ShieldCheck className="w-3 h-3 text-blue-400" />, label: 'scikit-learn' },
+              { icon: <Code2 className="w-3 h-3 text-neutral-500" />, label: 'PostgreSQL' },
+              { icon: <Sparkles className="w-3 h-3 text-amber-400" />, label: 'Streamlit' },
+              { icon: <Terminal className="w-3 h-3 text-neutral-500" />, label: 'TypeScript' },
             ].map(({ icon, label }) => (
               <span
                 key={label}
@@ -301,10 +321,20 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <CounterStat value={PROJECTS.length} suffix="+" label="Shipped Projects" />
-          <CounterStat value={CERTIFICATES.length} suffix="" label="Certifications" />
-          <CounterStat value={94} suffix="%" label="Best Model Accuracy" />
-          <CounterStat value={24} suffix="h" label="Response Guarantee" />
+          <CounterStat value={8} suffix="" label="Projects" />
+          <CounterStat value={6} suffix="" label="Certifications" />
+          <div ref={null as unknown as React.RefObject<HTMLDivElement>} className="flex flex-col gap-1">
+            <span className="font-display text-5xl sm:text-6xl font-normal tracking-tight text-white tabular-nums">
+              0.733
+            </span>
+            <span className="text-[10px] font-mono text-[#555555] uppercase tracking-[0.18em]">Macro-F1 — Telugu Classifier</span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="font-display text-5xl sm:text-6xl font-normal tracking-tight text-white tabular-nums">
+              24h
+            </span>
+            <span className="text-[10px] font-mono text-[#555555] uppercase tracking-[0.18em]">Reply Within 24 Hours</span>
+          </div>
         </motion.div>
       </section>
 
@@ -312,13 +342,12 @@ export default function Home() {
       {/* TAGLINE REVEAL                                               */}
       {/* ============================================================ */}
       <TaglineReveal
-        phrase="Empirical verification eliminates generative ambiguity. True software quality is proven by invariant benchmarks, never by declarative resume claims."
-        subtext="Bridging formal static AST validation and runtime data science for resilient, production-ready architectures."
+        phrase="Real results come from real data, not invented numbers or unverified claims."
+        subtext="Every metric on this site is traceable to a project repository or verified source."
       />
 
       {/* ============================================================ */}
-      {/* PROBLEM → SOLUTION                                            */}
-      {/* Two-column contrast, no eyebrow (eyebrow budget used by hero) */}
+      {/* ABOUT — honest intro replacing invented research sections    */}
       {/* ============================================================ */}
       <section className="py-28 px-6 max-w-6xl mx-auto border-b border-[#141414]">
         <div className="flex flex-col gap-14">
@@ -332,12 +361,11 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.8rem] font-normal tracking-tight text-white leading-[1.1]">
-              Why autonomous pipelines fail, and how invariant checks fix it.
+              Building data science and ML projects, one verified result at a time.
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Failure — tinted red surface */}
             <motion.div
               variants={fadeUp}
               custom={0}
@@ -345,53 +373,19 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <GlintCard className="h-full rounded-2xl border border-[#2A1010] bg-[#0A0404] p-7 flex flex-col gap-5">
-                <div className="inline-flex items-center gap-2 text-[11px] font-mono text-red-500">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                  Industry default failure
-                </div>
-                <h3 className="text-xl font-semibold text-white leading-snug">
-                  Unchecked Generative Loops
-                </h3>
-                <p className="text-sm text-[#7A7A7A] leading-relaxed">
-                  Standard AI agents generate uncontrolled code and queries directly
-                  into execution runtimes. Silent data leakage, infinite retry spirals,
-                  synthetic hallucinations, zero reproducible guarantees.
-                </p>
-                <ul className="flex flex-col gap-2.5 text-xs font-mono text-[#666666]">
-                  {['Silent cartesian cross-join queries', 'Unbounded context window degradation', 'Synthetic benchmark inflation'].map(item => (
-                    <li key={item} className="flex items-start gap-2.5">
-                      <span className="text-red-600 mt-0.5 leading-none shrink-0">x</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </GlintCard>
-            </motion.div>
-
-            {/* Solution — tinted green surface */}
-            <motion.div
-              variants={fadeUp}
-              custom={0.08}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <GlintCard className="h-full rounded-2xl border border-[#0E2A14] bg-[#040A05] p-7 flex flex-col gap-5">
+              <GlintCard className="h-full rounded-2xl border border-[#1E1E1E] bg-[#080808] p-7 flex flex-col gap-5">
                 <div className="inline-flex items-center gap-2 text-[11px] font-mono text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  The monograph solution
+                  What I build
                 </div>
                 <h3 className="text-xl font-semibold text-white leading-snug">
-                  Deterministic Static &amp; Runtime Gates
+                  Data Science & Machine Learning
                 </h3>
                 <p className="text-sm text-[#7A7A7A] leading-relaxed">
-                  A two-phase mathematical invariant barrier between agent code
-                  generation and live production execution. Hazardous syntax pruned
-                  pre-runtime; outputs verified against grounded historical baselines.
+                  Telugu sentiment classification with IndicBERTv2 (macro-F1 0.733), air quality monitoring with PostgreSQL and rolling-MAD anomaly detection, RAG chatbots over technical PDFs (Hit Rate@5 0.926), and reinforcement learning reward-shaping experiments.
                 </p>
                 <ul className="flex flex-col gap-2.5 text-xs font-mono text-[#666666]">
-                  {['Pre-execution AST traversal filter', 'Kolmogorov-Smirnov distribution bounds', 'Full provenance coordinate citations'].map(item => (
+                  {['Python · PyTorch · Hugging Face Transformers', 'PostgreSQL · ChromaDB · Streamlit', 'Stable-Baselines3 · Gymnasium'].map(item => (
                     <li key={item} className="flex items-start gap-2.5">
                       <Check className="w-3 h-3 text-emerald-500 mt-0.5 shrink-0" />
                       {item}
@@ -400,98 +394,35 @@ export default function Home() {
                 </ul>
               </GlintCard>
             </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* ============================================================ */}
-      {/* METHODOLOGY — bento-style asymmetric trio (not 3 equal cards) */}
-      {/* ============================================================ */}
-      <section className="py-28 px-6 max-w-6xl mx-auto border-b border-[#141414]">
-        <div className="flex flex-col gap-14">
-
-          <motion.div
-            className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
-            variants={fadeUp}
-            custom={0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.8rem] font-normal tracking-tight text-white leading-[1.1] max-w-[480px]">
-              Verification pipeline from source to proof.
-            </h2>
-            <p className="text-sm text-[#555555] leading-relaxed max-w-xs sm:text-right">
-              Three deterministic steps enforced before any output reaches production.
-            </p>
-          </motion.div>
-
-          {/* Asymmetric bento: 1 large + 2 small */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {/* Large tile */}
             <motion.div
-              className="md:col-span-3"
               variants={fadeUp}
-              custom={0}
+              custom={0.08}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <GlintCard className="h-full rounded-2xl border border-[#1E1E1E] bg-[#080808] p-8 flex flex-col gap-6 min-h-[260px]">
-                <div className="flex items-start justify-between">
-                  <span className="text-[10px] font-mono text-[#444444] uppercase tracking-[0.18em]">
-                    Static Tree Analysis
-                  </span>
-                  <span className="font-display text-[80px] leading-none text-[#111111] select-none font-normal">
-                    01
-                  </span>
+              <GlintCard className="h-full rounded-2xl border border-[#1E1E1E] bg-[#080808] p-7 flex flex-col gap-5">
+                <div className="inline-flex items-center gap-2 text-[11px] font-mono text-blue-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  What I am researching
                 </div>
-                <div className="mt-auto flex flex-col gap-3">
-                  <h3 className="text-xl font-semibold text-white">AST Extraction Gate</h3>
-                  <p className="text-sm text-[#7A7A7A] leading-relaxed max-w-sm">
-                    Before code or analytical queries execute, Python AST nodes are
-                    validated against strict security policies and memory allocation
-                    ceilings. Hazardous patterns are pruned with zero runtime overhead.
-                  </p>
-                </div>
+                <h3 className="text-xl font-semibold text-white leading-snug">
+                  Research Proposal (In Progress)
+                </h3>
+                <p className="text-sm text-[#7A7A7A] leading-relaxed">
+                  "Risk-Based Verification and Evidence-Grounded Self-Correction for AI Data-Analysis Agents." A proposal for checking risky agent steps before they run, grounding answers in evidence, and correcting agents when evidence does not support their output.
+                </p>
+                <ul className="flex flex-col gap-2.5 text-xs font-mono text-[#666666]">
+                  {['Proposal finalized October 2026', 'No experiments run yet', 'No results yet'].map(item => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="text-blue-400 mt-0.5 leading-none shrink-0">·</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </GlintCard>
             </motion.div>
-
-            {/* Two small tiles stacked */}
-            <div className="md:col-span-2 flex flex-col gap-4">
-              {[
-                {
-                  n: '02',
-                  label: 'Oracle Evaluation',
-                  title: 'Distribution Boundaries',
-                  body: 'Real-time statistical significance between candidate predictions and ground-truth halts model drift before it reaches production.',
-                },
-                {
-                  n: '03',
-                  label: 'Audit Ledger',
-                  title: 'Verifiable Telemetry',
-                  body: 'Immutable provenance records for every evaluation. Unrounded metric coordinates exported for public replication and peer review.',
-                },
-              ].map((s, i) => (
-                <motion.div
-                  key={s.n}
-                  variants={fadeUp}
-                  custom={0.08 + i * 0.08}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <GlintCard className="rounded-2xl border border-[#1E1E1E] bg-[#080808] p-6 flex flex-col gap-3">
-                    <div className="flex items-baseline justify-between">
-                      <span className="text-[10px] font-mono text-[#444444] uppercase tracking-[0.18em]">{s.label}</span>
-                      <span className="font-display text-4xl leading-none text-[#111111] select-none font-normal">{s.n}</span>
-                    </div>
-                    <h3 className="text-base font-semibold text-white">{s.title}</h3>
-                    <p className="text-xs text-[#666666] leading-relaxed">{s.body}</p>
-                  </GlintCard>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -571,14 +502,20 @@ export default function Home() {
                     >
                       Read <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#444444] hover:text-white flex items-center gap-1 transition-colors"
-                    >
-                      GitHub <ArrowUpRight className="w-3 h-3" />
-                    </a>
+                    {project.github ? (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#444444] hover:text-white flex items-center gap-1 transition-colors"
+                      >
+                        GitHub <ArrowUpRight className="w-3 h-3" />
+                      </a>
+                    ) : (
+                      <span className="text-[#444444]">
+                        {project.githubLabel || 'Private'}
+                      </span>
+                    )}
                   </div>
                 </GlintCard>
               </motion.div>
@@ -616,9 +553,9 @@ export default function Home() {
                 <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0A1A0A] text-emerald-400 border border-[#122012]">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    {RESEARCH_PAPER.status}
+                    Research Proposal
                   </span>
-                  <span className="text-[#444444]">{RESEARCH_PAPER.affiliation}</span>
+                  <span className="text-[#444444]">Velagapudi Mahendra · Malla Reddy Engineering College</span>
                 </div>
 
                 <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-white leading-[1.1]">
@@ -628,8 +565,9 @@ export default function Home() {
                 </h2>
 
                 <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
-                  {RESEARCH_PAPER.abstract}
+                  {RESEARCH_PAPER.summary}
                 </p>
+                <p className="text-xs font-mono text-[#444444]">{RESEARCH_PAPER.status}</p>
               </div>
 
               <div className="shrink-0 flex flex-col gap-3">
@@ -637,7 +575,7 @@ export default function Home() {
                   to="/research"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-black text-sm font-semibold hover:bg-white/90 active:scale-[0.97] transition-all duration-200 whitespace-nowrap"
                 >
-                  Inspect Formulation <ArrowUpRight className="w-4 h-4" />
+                  View Research Proposal <ArrowUpRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
@@ -786,11 +724,10 @@ export default function Home() {
 
             <div className="max-w-xl flex flex-col gap-4 relative z-10">
               <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.6rem] font-normal tracking-tight text-white leading-[1.08]">
-                Let's discuss runtime verification or distributed data engineering.
+                Let's work together on data science or machine learning.
               </h2>
               <p className="text-sm text-[#666666] leading-relaxed">
-                Open to research fellowships, data science internships, and technical
-                collaborations. Personal response within 24 hours, guaranteed.
+                Open to data science internships, research collaborations, and technical projects. I usually reply within 24 hours.
               </p>
             </div>
 

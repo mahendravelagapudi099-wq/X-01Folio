@@ -12,7 +12,12 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# Antigravity & Agent workspace artifacts
+.kilo/
+.reticle/
+ANTIGRAVITY_FINAL_AUDIT.md
+corrections/
+
 .vscode/*
 !.vscode/extensions.json
 .idea

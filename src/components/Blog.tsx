@@ -37,7 +37,7 @@ const Blog = () => {
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4" />
           <p className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
-            AI AGENTS &bull; MACHINE LEARNING &bull; ARCHITECTURE
+            NLP &bull; DATA SYSTEMS &bull; REINFORCEMENT LEARNING
           </p>
         </div>
 
@@ -99,7 +99,7 @@ const Blog = () => {
             </Link>
           </Button>
           <p className="text-sm text-muted-foreground">
-            Powered by Supabase &amp; Open Source Technology
+            Open Source &amp; Reproducible Engineering
           </p>
         </div>
       </div>

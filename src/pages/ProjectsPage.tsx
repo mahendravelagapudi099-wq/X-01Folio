@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, ArrowUpRight, Github, ExternalLink } from 'lucide-react';
 import { PROJECTS, Project } from '@/data/projectsData';
 
@@ -7,24 +8,38 @@ export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
   const categories = [
-    { id: 'all', label: 'All Systems' },
-    { id: 'nlp', label: 'NLP & Inference' },
-    { id: 'rag', label: 'RAG & Analytics' },
-    { id: 'eda', label: 'Quantitative & EDA' },
-    { id: 'app', label: 'Full-Stack Apps' }
+    { id: 'all', label: 'All Projects' },
+    { id: 'nlp', label: 'NLP & Language' },
+    { id: 'data', label: 'Data Science & ML' },
+    { id: 'rag', label: 'RAG & Retrieval' },
+    { id: 'rl', label: 'Reinforcement Learning' },
   ];
 
   const filteredProjects = PROJECTS.filter((p) => {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'nlp') return p.category.toLowerCase().includes('nlp');
     if (activeFilter === 'rag') return p.category.toLowerCase().includes('rag');
-    if (activeFilter === 'eda') return p.category.toLowerCase().includes('eda') || p.category.toLowerCase().includes('quantitative');
-    if (activeFilter === 'app') return p.category.toLowerCase().includes('application');
+    if (activeFilter === 'rl') return p.category.toLowerCase().includes('reinforcement');
+    if (activeFilter === 'data') {
+      return (
+        p.category.toLowerCase().includes('data') ||
+        p.category.toLowerCase().includes('monitoring') ||
+        p.category.toLowerCase().includes('visualization')
+      );
+    }
     return true;
   });
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-28 pb-20 px-6 max-w-5xl mx-auto font-sans">
+      <Helmet>
+        <title>Projects &amp; Case Studies | Velagapudi Mahendra</title>
+        <meta
+          name="description"
+          content="Data science, machine learning, and engineering projects by Velagapudi Mahendra."
+        />
+        <link rel="canonical" href="https://mahendraa.dev/projects" />
+      </Helmet>
       {/* Header */}
       <div className="flex flex-col gap-4 mb-12 border-b border-border pb-8">
         <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
@@ -94,15 +109,17 @@ export default function ProjectsPage() {
               </p>
 
               {/* Benchmarks Strip with Tabular Numerals */}
-              <div className="p-3.5 rounded border border-border bg-card text-xs font-mono tabular-nums space-y-1">
-                {project.benchmarks.map((b, idx) => (
-                  <div key={idx} className="flex items-baseline justify-between gap-2">
-                    <span className="text-muted-foreground text-[11px] uppercase">{b.metric}:</span>
-                    <span className="font-semibold text-foreground">{b.value}</span>
-                    <span className="text-muted-foreground text-[10px] hidden sm:inline">({b.note})</span>
-                  </div>
-                ))}
-              </div>
+              {project.benchmarks && project.benchmarks.length > 0 && (
+                <div className="p-3.5 rounded border border-border bg-card text-xs font-mono tabular-nums space-y-1">
+                  {project.benchmarks.map((b, idx) => (
+                    <div key={idx} className="flex items-baseline justify-between gap-2">
+                      <span className="text-muted-foreground text-[11px] uppercase">{b.metric}:</span>
+                      <span className="font-semibold text-foreground">{b.value}</span>
+                      <span className="text-muted-foreground text-[10px] hidden sm:inline">({b.note})</span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {/* Tech Stack */}
               <div className="flex flex-wrap gap-1.5 pt-1">
@@ -137,14 +154,20 @@ export default function ProjectsPage() {
                     Live Demo <ArrowUpRight className="w-3 h-3" />
                   </a>
                 )}
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground flex items-center gap-1 transition-colors"
-                >
-                  GitHub <ArrowUpRight className="w-3 h-3" />
-                </a>
+                {project.github ? (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-foreground flex items-center gap-1 transition-colors"
+                  >
+                    GitHub <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                ) : (
+                  <span className="text-muted-foreground/60">
+                    {project.githubLabel || 'Private repo'}
+                  </span>
+                )}
               </div>
             </div>
           </article>

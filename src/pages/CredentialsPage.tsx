@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Award, ExternalLink, Eye } from 'lucide-react';
-import { CERTIFICATES, Certificate } from '@/data/credentialsData';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Helmet } from 'react-helmet-async';
+import { ExternalLink } from 'lucide-react';
+import { CERTIFICATES, ALSO_COMPLETED } from '@/data/credentialsData';
 
 export default function CredentialsPage() {
   const [filter, setFilter] = useState<string>('all');
-  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   const categories = [
     { id: 'all', label: 'All Certifications' },
@@ -23,6 +22,14 @@ export default function CredentialsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-28 pb-24 px-6 max-w-5xl mx-auto font-sans">
+      <Helmet>
+        <title>Verified Credentials | Velagapudi Mahendra</title>
+        <meta
+          name="description"
+          content="Verified academic certifications and credentials of Velagapudi Mahendra."
+        />
+        <link rel="canonical" href="https://mahendraa.dev/credentials" />
+      </Helmet>
       {/* Breadcrumbs */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">
         <Link to="/" className="hover:text-foreground">
@@ -32,14 +39,14 @@ export default function CredentialsPage() {
         <span className="text-foreground">Verified Credentials</span>
       </div>
 
-      {/* Header (No Eyebrow, Direct Weight) */}
+      {/* Header */}
       <div className="flex flex-col gap-4 mb-10 border-b border-border pb-8">
         <h1 className="text-4xl sm:text-5xl font-sans font-bold text-foreground">
           Verified Credentials &amp; Certifications
         </h1>
 
         <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-          Proctored academic certifications, technical competency verifications, and enterprise coursework. Every credential is cited with its unique issuer verification identifier and proctored examination details.
+          6 featured proctored academic certifications and technical competency verifications. Each credential includes its verified issuer, date, and credential ID.
         </p>
 
         {/* Filter Pills */}
@@ -104,14 +111,6 @@ export default function CredentialsPage() {
             </div>
 
             <div className="md:w-1/6 shrink-0 flex md:flex-col md:items-end justify-between md:justify-start gap-3 pt-1 text-xs font-mono">
-              {cert.image && (
-                <button
-                  onClick={() => setSelectedCert(cert)}
-                  className="inline-flex items-center gap-1.5 text-foreground hover:text-primary transition-colors font-medium"
-                >
-                  <Eye className="w-3.5 h-3.5" /> Certificate
-                </button>
-              )}
               {cert.verificationUrl && (
                 <a
                   href={cert.verificationUrl}
@@ -127,44 +126,20 @@ export default function CredentialsPage() {
         ))}
       </div>
 
-      {/* Certificate Preview Dialog */}
-      <Dialog open={!!selectedCert} onOpenChange={(open) => !open && setSelectedCert(null)}>
-        <DialogContent className="max-w-3xl bg-background border border-border p-6 sm:p-8 font-sans">
-          <DialogHeader>
-            <div className="text-xs font-mono text-primary uppercase tracking-wider mb-1">
-              {selectedCert?.issuer} &bull; {selectedCert?.date}
-            </div>
-            <DialogTitle className="text-2xl font-sans font-bold text-foreground">
-              {selectedCert?.title}
-            </DialogTitle>
-          </DialogHeader>
-
-          {selectedCert?.image && (
-            <div className="my-4 rounded overflow-hidden border border-border bg-card">
-              <img
-                src={selectedCert.image}
-                alt={`Certificate for ${selectedCert.title}`}
-                className="w-full h-auto max-h-[500px] object-contain"
-              />
-            </div>
-          )}
-
-          <div className="flex items-center justify-between pt-2 border-t border-border text-xs font-mono text-muted-foreground">
-            <span>Credential ID: {selectedCert?.credentialId || 'N/A'}</span>
-            {selectedCert?.verificationUrl && (
-              <a
-                href={selectedCert.verificationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline flex items-center gap-1 font-medium"
-              >
-                Official Verification Portal <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            )}
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Also Completed Section */}
+      <section className="mt-14 pt-8 border-t border-border">
+        <h2 className="text-lg font-sans font-bold text-foreground mb-3">
+          Also Completed
+        </h2>
+        <ul className="space-y-2 text-xs font-mono text-muted-foreground">
+          {ALSO_COMPLETED.map((item, idx) => (
+            <li key={idx} className="flex items-start gap-2">
+              <span className="text-foreground/40">&bull;</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }
-

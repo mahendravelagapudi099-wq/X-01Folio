@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Primary Metadata -->
-  <title>Velagapudi Mahendra | Architecting Verifiable AI &amp; High-Throughput Data Systems</title>
+  <title>Velagapudi Mahendra | Data Science Student and AI Researcher</title>
   <meta name="description"
-    content="Undergraduate researcher at MREM. Building deterministic static AST gates and runtime statistical oracles that eliminate hallucination in autonomous pipelines." />
+    content="B.Tech CSE (Data Science) student at Malla Reddy Engineering College and Management Sciences, Hyderabad. I build data science and machine learning projects and I am working on a research proposal on risk-based verification and evidence-grounded self-correction for AI data-analysis agents." />
   <meta name="author" content="Velagapudi Mahendra" />
   <meta name="keywords"
-    content="Velagapudi Mahendra, Mahendra, Verifiable AI, High-Throughput Data Systems, Runtime Verification, Invariant Oracles, AST Analysis, Autonomous Agents, JNTUH, MREM, Python, PyTorch, React, TypeScript" />
+    content="Velagapudi Mahendra, Data Science, Machine Learning, Telugu NLP, RAG, Air Quality Monitoring, Reinforcement Learning, MREM, Python, PyTorch, React, TypeScript" />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://mahendraa.dev/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -24,19 +24,19 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mahendraa.dev/" />
-  <meta property="og:site_name" content="Velagapudi Mahendra (X-01 Folio)" />
-  <meta property="og:title" content="Velagapudi Mahendra | Architecting Verifiable AI &amp; High-Throughput Data Systems" />
+  <meta property="og:site_name" content="Velagapudi Mahendra" />
+  <meta property="og:title" content="Velagapudi Mahendra | Data Science Student and AI Researcher" />
   <meta property="og:description"
-    content="Undergraduate researcher at MREM. Building deterministic static AST gates and runtime statistical oracles that eliminate hallucination in autonomous pipelines." />
+    content="B.Tech CSE (Data Science) student at Malla Reddy Engineering College and Management Sciences, Hyderabad. I build data science and machine learning projects and I am working on a research proposal on risk-based verification and evidence-grounded self-correction for AI data-analysis agents." />
   <meta property="og:image" content="https://mahendraa.dev/logo.svg" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://mahendraa.dev/" />
-  <meta name="twitter:title" content="Velagapudi Mahendra | Architecting Verifiable AI &amp; High-Throughput Data Systems" />
+  <meta name="twitter:title" content="Velagapudi Mahendra | Data Science Student and AI Researcher" />
   <meta name="twitter:description"
-    content="Undergraduate researcher at MREM. Building deterministic static AST gates and runtime statistical oracles that eliminate hallucination in autonomous pipelines." />
+    content="B.Tech CSE (Data Science) student at Malla Reddy Engineering College and Management Sciences, Hyderabad. I build data science and machine learning projects and I am working on a research proposal on risk-based verification and evidence-grounded self-correction for AI data-analysis agents." />
   <meta name="twitter:image" content="https://mahendraa.dev/logo.svg" />
 
   <!-- Structured Data (JSON-LD) for Google Rich Snippets & Knowledge Graph -->
@@ -50,30 +50,30 @@
             "name": "Velagapudi Mahendra",
             "url": "https://mahendraa.dev/",
             "image": "https://mahendraa.dev/logo.svg",
-            "jobTitle": "Computer Science & Data Science Engineer",
+            "jobTitle": "Data Science Student & AI Researcher",
             "worksFor": {
               "@type": "CollegeOrUniversity",
-              "name": "Malla Reddy Engineering College for Management Sciences (MREM)"
+              "name": "Malla Reddy Engineering College & Management Sciences (MREM)"
             },
             "sameAs": [
               "https://github.com/mahendravelagapudi099-wq",
-              "https://www.linkedin.com/in/velagapudi-mahendra-543481353/"
+              "https://www.linkedin.com/in/velagapudi-mahendra-543481353"
             ],
-            "alumniOf": "JNTUH",
             "knowsAbout": [
+              "Data Science",
               "Machine Learning Systems",
-              "Runtime Invariant Verification",
-              "Autonomous AI Agent Reliability",
-              "Static AST Analysis",
-              "High-Throughput Data Engineering"
+              "Telugu NLP & Language Models",
+              "Retrieval-Augmented Generation (RAG)",
+              "Air Quality Data Engineering",
+              "Reinforcement Learning"
             ]
           },
           {
             "@type": "WebSite",
             "@id": "https://mahendraa.dev/#website",
             "url": "https://mahendraa.dev/",
-            "name": "Velagapudi Mahendra — X-01 Folio",
-            "description": "Portfolio and research monograph of Velagapudi Mahendra.",
+            "name": "Velagapudi Mahendra",
+            "description": "Portfolio, research proposal, and verified data science projects of Velagapudi Mahendra.",
             "publisher": {
               "@id": "https://mahendraa.dev/#person"
             }
@@ -87,6 +87,13 @@
     (function (l) {
       if (l.search[1] === '/') {
         var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      } else if (l.search.slice(1, 3) === 'p=') {
+        var decoded = l.search.slice(3).split('&').map(function (s) {
           return s.replace(/~and~/g, '&')
         }).join('?');
         window.history.replaceState(null, null,

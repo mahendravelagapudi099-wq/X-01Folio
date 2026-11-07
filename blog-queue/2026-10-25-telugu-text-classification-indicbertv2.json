@@ -1,0 +1,58 @@
+{
+  "title": "Fine-Tuning IndicBERTv2 for 3-Class Telugu Sentiment Classification",
+  "slug": "telugu-text-classification-indicbertv2",
+  "excerpt": "Fine-tuning IndicBERTv2, MuRIL, and XLM-RoBERTa on 35,142 Telugu sentences for 3-class sentiment classification, outperforming the TF-IDF baseline by +8.5 macro-F1 points.",
+  "feature_image": "https://mahendraa.dev/assets/project-01-telugu.png",
+  "published_at": "2026-10-25T10:00:00Z",
+  "featured": true,
+  "tags": [
+    "NLP",
+    "Telugu",
+    "Transformers",
+    "PyTorch"
+  ],
+  "reading_time": "4 min read",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Overview & Problem Statement"
+    },
+    {
+      "type": "text",
+      "content": "Telugu is a low-resource Dravidian language spoken by tens of millions of people, yet high-quality NLP benchmarks for sentiment classification remain limited. Standard English or generic multilingual models often struggle with Telugu morphological complexity, agglutination, and script nuances without targeted fine-tuning."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dataset & Experimental Setup"
+    },
+    {
+      "type": "text",
+      "content": "In this project, we worked with a curated dataset of 35,142 Telugu sentences labeled across three sentiment classes: Positive, Neutral, and Negative. To evaluate modern transformer architectures systematically, we benchmarked:\n\n• IndicBERTv2 (domain-pretrained on Indic languages)\n• MuRIL (Multilingual Representations for Indian Languages)\n• XLM-RoBERTa (general multilingual baseline)\n• Baseline: TF-IDF with Logistic Regression"
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments\n\nMODEL_NAME = \"ai4bharat/indic-bert\"\ntokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\nmodel = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, num_labels=3)"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Verified Empirical Results"
+    },
+    {
+      "type": "text",
+      "content": "The TF-IDF baseline achieved a macro-F1 score of 0.648. After fine-tuning on the 35,142 sentences, IndicBERTv2 delivered the highest performance:\n\n• IndicBERTv2 Macro-F1: 0.733\n• Performance delta: +8.5 points improvement over baseline\n• Statistical significance: p < 0.001\n\nA local interactive demonstration was built using Gradio for sentence-level inference testing."
+    },
+    {
+      "type": "quote",
+      "text": "IndicBERTv2 achieved a macro-F1 of 0.733 against the 0.648 TF-IDF baseline (+8.5 points, p < 0.001) across 35,142 sentences.",
+      "author": "Project Evaluation Benchmark"
+    },
+    {
+      "type": "text",
+      "content": "The code, training configurations, and local demo scripts are available in the public repository:\nhttps://github.com/mahendravelagapudi099-wq/telugu-text-classifier"
+    }
+  ]
+}

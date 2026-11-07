@@ -1,0 +1,49 @@
+{
+  "title": "Building VectorMind During My Data Science Internship at Codec Technologies",
+  "slug": "data-science-internship-vectormind",
+  "excerpt": "Reflections on developing a natural-language sales analytics and forecasting platform during a remote Data Science internship.",
+  "feature_image": "https://mahendraa.dev/assets/project-06-vectormind.png",
+  "published_at": "2026-10-29T10:00:00Z",
+  "featured": false,
+  "tags": [
+    "Internship",
+    "Data Science",
+    "Streamlit",
+    "Python"
+  ],
+  "reading_time": "3 min read",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Internship Experience at Codec Technologies"
+    },
+    {
+      "type": "text",
+      "content": "From May to June 2025, I worked as a remote Data Science Intern at Codec Technologies Pvt. Ltd. During this period, my primary responsibility was contributing to the development of VectorMind, an internal sales-analytics platform."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What VectorMind Does"
+    },
+    {
+      "type": "text",
+      "content": "VectorMind was designed to help non-technical stakeholders interrogate enterprise sales datasets effortlessly. Its core functions include:\n\n• Explaining sales trends across quarters\n• Generating future sales forecasts from historical patterns\n• Answering natural-language questions about commercial data\n• Visualizing breakdowns through an interactive Streamlit interface"
+    },
+    {
+      "type": "quote",
+      "text": "VectorMind: a sales-analytics platform built during a Data Science internship at Codec Technologies Pvt. Ltd (May–Jun 2025, Remote). It explains trends, forecasts sales, and answers natural-language questions about sales data.",
+      "author": "Verified Project Scope"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Technical Lessons & Takeaways"
+    },
+    {
+      "type": "text",
+      "content": "Working on VectorMind emphasized the importance of data sanity and conversational clarity. In commercial analytics, providing an accurate, grounded answer with clear boundaries is far more valuable than speculative forecasting."
+    }
+  ]
+}

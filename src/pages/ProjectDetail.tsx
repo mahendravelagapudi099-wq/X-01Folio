@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Github, ExternalLink } from 'lucide-react';
 import { PROJECTS, Project } from '@/data/projectsData';
 
@@ -31,6 +32,11 @@ export default function ProjectDetail() {
 
   return (
     <article className="min-h-screen bg-background text-foreground pt-28 pb-24 px-6 max-w-4xl mx-auto font-sans">
+      <Helmet>
+        <title>{project.title} | Velagapudi Mahendra</title>
+        <meta name="description" content={project.summary} />
+        <link rel="canonical" href={`https://mahendraa.dev/projects/${project.slug}`} />
+      </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">
         <Link to="/" className="hover:text-foreground">
@@ -77,41 +83,49 @@ export default function ProjectDetail() {
               Open Live Application <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           )}
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded border border-border bg-card hover:bg-muted text-xs font-mono font-medium text-foreground transition-colors"
-          >
-            <Github className="w-3.5 h-3.5" /> Source Repository <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          {project.github ? (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded border border-border bg-card hover:bg-muted text-xs font-mono font-medium text-foreground transition-colors"
+            >
+              <Github className="w-3.5 h-3.5" /> Source Repository <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded border border-border bg-card text-xs font-mono font-medium text-muted-foreground">
+              {project.githubLabel || 'Private repository'}
+            </span>
+          )}
         </div>
       </header>
 
       {/* Benchmark Grid (Tabular Numerals, Authoritative Heading) */}
-      <section className="mb-14">
-        <h2 className="text-xl font-sans font-bold text-foreground mb-4">
-          Empirical Performance Benchmarks
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {project.benchmarks.map((bm, idx) => (
-            <div
-              key={idx}
-              className="p-4 rounded-lg border border-border bg-card flex flex-col justify-between"
-            >
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
-                {bm.metric}
-              </span>
-              <span className="text-2xl font-sans font-bold text-foreground my-1 tabular-nums">
-                {bm.value}
-              </span>
-              <span className="text-xs text-muted-foreground font-mono">
-                {bm.note}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
+      {project.benchmarks && project.benchmarks.length > 0 && (
+        <section className="mb-14">
+          <h2 className="text-xl font-sans font-bold text-foreground mb-4">
+            Empirical Performance Benchmarks
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {project.benchmarks.map((bm, idx) => (
+              <div
+                key={idx}
+                className="p-4 rounded-lg border border-border bg-card flex flex-col justify-between"
+              >
+                <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+                  {bm.metric}
+                </span>
+                <span className="text-2xl font-sans font-bold text-foreground my-1 tabular-nums">
+                  {bm.value}
+                </span>
+                <span className="text-xs text-muted-foreground font-mono">
+                  {bm.note}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Visual Asset / Preview */}
       {project.image && (

@@ -1,11 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Award, Download, CheckCircle2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { Award, Download } from 'lucide-react';
 import { CERTIFICATES } from '@/data/credentialsData';
 
 export default function AboutPage() {
+  const skillsWithRatings = [
+    { name: 'Python & ML', level: 92 },
+    { name: 'SQL', level: 88 },
+    { name: 'Data Visualization', level: 90 },
+    { name: 'AI Search', level: 85 },
+    { name: 'Web Development', level: 88 },
+    { name: 'Data Engineering', level: 82 },
+    { name: 'C++ Proficient', level: 82 },
+    { name: 'R Proficient', level: 78 },
+    { name: 'Apache Spark & SQL Expert', level: 84 },
+    { name: 'AWS', level: 82 },
+    { name: 'GCP', level: 84 },
+  ];
+
   return (
     <article className="min-h-screen bg-background text-foreground pt-28 pb-24 px-6 max-w-4xl mx-auto font-sans">
+      <Helmet>
+        <title>About &amp; Trajectory | Velagapudi Mahendra</title>
+        <meta
+          name="description"
+          content="Academic background, experience, and verified technical competencies of Velagapudi Mahendra."
+        />
+        <link rel="canonical" href="https://mahendraa.dev/about" />
+      </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">
         <Link to="/" className="hover:text-foreground">
@@ -21,12 +44,12 @@ export default function AboutPage() {
           Velagapudi Mahendra
         </h1>
         <p className="text-xl font-sans text-muted-foreground leading-snug">
-          Computer Science &amp; Data Science student at MREM. Researcher-builder focused on verifiable data systems, runtime invariant assertions, and empirical machine learning.
+          B.Tech CSE (Data Science) student at Malla Reddy Engineering College and Management Sciences, Hyderabad.
         </p>
 
         <div className="flex flex-wrap items-center gap-3 pt-6">
           <a
-            href="/resume/Mahendra_Resume.pdf"
+            href="/Velagapudi_Mahendra_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity uppercase tracking-wider"
@@ -48,155 +71,119 @@ export default function AboutPage() {
         </div>
       </header>
 
-      {/* Trajectory & Bio */}
-      <section className="space-y-6 text-foreground text-base leading-relaxed mb-12">
-        <h2 className="text-2xl font-sans font-bold text-foreground">
-          Academic Trajectory
-        </h2>
-        <p className="text-muted-foreground leading-relaxed max-w-[70ch]">
-          I am currently pursuing a Bachelor of Technology in Computer Science &amp; Engineering (Data Science) at <strong className="text-foreground">Malla Reddy Engineering College (MREM)</strong>, affiliated with Jawaharlal Nehru Technological University Hyderabad (JNTUH), graduating in 2027.
-        </p>
-        <p className="text-muted-foreground leading-relaxed max-w-[70ch]">
-          My primary focus sits at the intersection of <strong className="text-foreground">runtime verification for autonomous AI agents</strong> and <strong className="text-foreground">scalable data intelligence</strong>. Rather than treating machine learning outputs as black boxes, my work explores deterministic symbolic oracles, abstract syntax tree (AST) execution gates, and calibrated statistical invariants to eliminate silent failure modes in automated analytical pipelines.
-        </p>
-      </section>
-
-      {/* Core Technical Philosophy */}
-      <section className="p-6 sm:p-8 rounded border border-border bg-card mb-12">
-        <h2 className="text-xl font-sans font-bold text-foreground mb-4">
-          Core Engineering Principles
-        </h2>
-        <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-4 h-4 text-foreground shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-foreground">Baseline First:</strong> Never deploy complex neural architectures where regularized regression, gradient boosted trees, or structured heuristic rules deliver comparable performance with superior interpretability and lower latency.
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-4 h-4 text-foreground shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-foreground">Deterministic Guardrails:</strong> Autonomous AI agents must never self-certify. Output validation requires independent, non-neural assertions that inspect AST code invariants and demand ground-truth matrix coordinates before conclusions are finalized.
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-4 h-4 text-foreground shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-foreground">Code Economy:</strong> Write the minimum code required to solve the problem completely. Eliminate decorative abstractions, unmaintained dependencies, and artificial marketing fluff.
-            </div>
-          </div>
+      {/* Stats Strip */}
+      <section className="mb-12 p-6 rounded-xl border border-border bg-card grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+        <div>
+          <span className="font-display text-3xl sm:text-4xl font-normal text-foreground">8</span>
+          <span className="block text-[11px] font-mono text-muted-foreground uppercase tracking-wider mt-1">Projects</span>
+        </div>
+        <div>
+          <span className="font-display text-3xl sm:text-4xl font-normal text-foreground">6</span>
+          <span className="block text-[11px] font-mono text-muted-foreground uppercase tracking-wider mt-1">Certifications</span>
+        </div>
+        <div>
+          <span className="font-display text-3xl sm:text-4xl font-normal text-foreground">0.733</span>
+          <span className="block text-[11px] font-mono text-muted-foreground uppercase tracking-wider mt-1">Macro-F1 (IndicBERTv2)</span>
+        </div>
+        <div>
+          <span className="font-display text-3xl sm:text-4xl font-normal text-foreground">&lt; 24h</span>
+          <span className="block text-[11px] font-mono text-muted-foreground uppercase tracking-wider mt-1">Replies Within 24h</span>
         </div>
       </section>
 
-      {/* Academic Timeline */}
-      <section className="mb-12 border-b border-border pb-12">
-        <h2 className="text-2xl font-sans font-bold text-foreground mb-6">
-          Education &amp; Academic Milestones
+      {/* Education */}
+      <section className="mb-12 border-b border-border pb-10">
+        <h2 className="text-2xl font-sans font-bold text-foreground mb-4">
+          Education
         </h2>
-        <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between p-5 rounded border border-border bg-card gap-2">
+        <div className="p-5 rounded border border-border bg-card">
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">
             <div>
               <span className="text-xs font-mono text-primary font-semibold tabular-nums">2023 &ndash; 2027</span>
               <h3 className="font-sans font-bold text-base text-foreground mt-1">
-                B.Tech in Computer Science &amp; Engineering (Data Science)
+                B.Tech Computer Science and Engineering (Data Science)
               </h3>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Malla Reddy Engineering College (MREM) &bull; JNTUH Affiliated
-              </p>
-              <p className="text-xs text-muted-foreground mt-2 max-w-xl">
-                Coursework: Advanced Data Structures, Probability &amp; Statistics, Machine Learning, Database Management Systems, Distributed Computing, Design &amp; Analysis of Algorithms.
+                Malla Reddy Engineering College &amp; Management Sciences, Hyderabad
               </p>
             </div>
             <span className="text-xs font-mono text-muted-foreground shrink-0 sm:text-right">
-              Hyderabad, India
+              Currently pursuing (7th semester)
             </span>
-          </div>
-
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between p-5 rounded border border-border bg-card gap-2">
-            <div>
-              <span className="text-xs font-mono text-neutral-300 font-semibold tabular-nums">Jan &ndash; Apr 2025</span>
-              <h3 className="font-sans font-bold text-base text-foreground mt-1">
-                Data Analytics with Python (12-Week Proctored Program)
-              </h3>
-              <p className="text-sm text-muted-foreground mt-0.5">
-                NPTEL &bull; Indian Institute of Technology (IIT) Roorkee
-              </p>
-              <p className="text-xs text-muted-foreground mt-2 max-w-xl">
-                Proctored examination covering exploratory data analysis, hypothesis testing, regression modeling, and statistical estimation. Credential ID: NPTEL25CS17S1147000547.
-              </p>
-            </div>
-            <a
-              href="https://nptel.ac.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-mono text-primary hover:underline flex items-center gap-1 shrink-0"
-            >
-              Verify <ArrowUpRight className="w-3 h-3" />
-            </a>
           </div>
         </div>
       </section>
 
-      {/* Toolkit & Systems Environment */}
+      {/* Experience Timeline */}
+      <section className="mb-12 border-b border-border pb-10">
+        <h2 className="text-2xl font-sans font-bold text-foreground mb-6">
+          Experience &amp; Leadership Timeline
+        </h2>
+        <div className="space-y-4">
+          <div className="p-5 rounded border border-border bg-card">
+            <span className="text-xs font-mono text-primary font-semibold tabular-nums">May &ndash; Jun 2025</span>
+            <h3 className="font-sans font-bold text-base text-foreground mt-1">
+              Data Science Intern &bull; Codec Technologies Pvt. Ltd (Remote)
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+              Contributed to VectorMind, a sales-analytics platform that explains trends, forecasts sales, and answers natural-language questions about sales data.
+            </p>
+          </div>
+
+          <div className="p-5 rounded border border-border bg-card">
+            <span className="text-xs font-mono text-neutral-300 font-semibold tabular-nums">2025</span>
+            <h3 className="font-sans font-bold text-base text-foreground mt-1">
+              Google Tech Sprint Hackathon 2025 &bull; 4th Place
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+              Built MDM, a tamper-evident digital certificate platform with cryptographically signed credentials, automated PDF generation, IPFS anchoring, QR verification, and role-based access.
+            </p>
+          </div>
+
+          <div className="p-5 rounded border border-border bg-card">
+            <span className="text-xs font-mono text-neutral-300 font-semibold tabular-nums">Feb 2025 &ndash; Present</span>
+            <h3 className="font-sans font-bold text-base text-foreground mt-1">
+              Student Chair &bull; CODE FORGE Student Club
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+              Leading student technical club activities, coding workshops, and peer collaboration initiatives.
+            </p>
+          </div>
+
+          <div className="p-5 rounded border border-border bg-card">
+            <span className="text-xs font-mono text-neutral-300 font-semibold tabular-nums">Jan &ndash; Jul 2026</span>
+            <h3 className="font-sans font-bold text-base text-foreground mt-1">
+              Campus Mantri &bull; GeeksforGeeks (6 months)
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+              Campus Mantri representative for GeeksforGeeks student community engagements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Confirmed Skills with Self-Ratings */}
       <section className="mb-12">
         <h2 className="text-2xl font-sans font-bold text-foreground mb-6">
-          Technical Toolkit &amp; Systems
+          Skills &amp; Technical Competencies
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
-          <div className="p-4 rounded border border-border bg-card">
-            <span className="text-foreground uppercase tracking-wider block mb-2 font-semibold text-[11px]">
-              Machine Learning &amp; Statistics
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {['Python', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy', 'SciPy', 'ChromaDB', 'LangChain', 'Prophet'].map((t) => (
-                <span key={t} className="px-2 py-0.5 rounded bg-muted text-foreground border border-border">
-                  {t}
-                </span>
-              ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {skillsWithRatings.map((skill) => (
+            <div key={skill.name} className="p-4 rounded border border-border bg-card flex flex-col gap-2">
+              <div className="flex justify-between items-center text-xs font-mono">
+                <span className="font-semibold text-foreground">{skill.name}</span>
+                <span className="text-muted-foreground tabular-nums">{skill.level}%</span>
+              </div>
+              <div className="w-full bg-muted rounded-full h-1.5 overflow-hidden">
+                <div
+                  className="bg-foreground h-full rounded-full transition-all duration-500"
+                  style={{ width: `${skill.level}%` }}
+                />
+              </div>
             </div>
-          </div>
-
-          <div className="p-4 rounded border border-border bg-card">
-            <span className="text-foreground uppercase tracking-wider block mb-2 font-semibold text-[11px]">
-              Full-Stack &amp; Web Interfaces
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {['TypeScript', 'React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'HTML5', 'CSS3'].map((t) => (
-                <span key={t} className="px-2 py-0.5 rounded bg-muted text-foreground border border-border">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="p-4 rounded border border-border bg-card">
-            <span className="text-foreground uppercase tracking-wider block mb-2 font-semibold text-[11px]">
-              Data Persistence &amp; Storage
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {['PostgreSQL', 'MongoDB', 'Supabase', 'Firebase Firestore', 'Redis', 'SQLite'].map((t) => (
-                <span key={t} className="px-2 py-0.5 rounded bg-muted text-foreground border border-border">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="p-4 rounded border border-border bg-card">
-            <span className="text-foreground uppercase tracking-wider block mb-2 font-semibold text-[11px]">
-              Developer Workflow &amp; Tooling
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {['Git', 'GitHub Actions', 'Linux (Ubuntu)', 'Postman', 'Docker', 'Bash', 'Jupyter Lab'].map((t) => (
-                <span key={t} className="px-2 py-0.5 rounded bg-muted text-foreground border border-border">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </article>
   );
 }
-

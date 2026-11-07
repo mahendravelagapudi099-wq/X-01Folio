@@ -18,7 +18,7 @@ const Footer = () => {
               <Logo size={28} showWordmark={true} />
             </Link>
             <p className="text-sm text-[#9B9B9B] leading-relaxed">
-              Undergraduate researcher in Computer Science &amp; Data Science at MREM. Investigating runtime verification, autonomous agent safety, and empirical machine learning pipelines.
+              B.Tech CSE (Data Science) student at Malla Reddy Engineering College &amp; Management Sciences, Hyderabad.
             </p>
           </div>
 
@@ -35,7 +35,7 @@ const Footer = () => {
                 SentimentScopex
               </Link>
               <Link to="/projects/vectormind" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
-                VectorMind RAG
+                VectorMind
               </Link>
             </div>
 
@@ -44,7 +44,7 @@ const Footer = () => {
                 Research &amp; CV
               </span>
               <Link to="/research" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
-                Working Paper
+                Research Proposal
               </Link>
               <Link to="/credentials" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
                 Verified Credentials
@@ -84,7 +84,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#272727] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#9B9B9B]">
           <span>
-            &copy; {new Date().getFullYear()} Velagapudi Mahendra &bull; MREM Data Science &bull; elayadesign/ai-design-skills
+            &copy; 2026 Velagapudi Mahendra &bull; Hyderabad, India
           </span>
           <div className="flex items-center gap-4">
             <Link to="/blog" className="hover:text-foreground transition-colors duration-300 ease-base">

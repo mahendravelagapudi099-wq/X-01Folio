@@ -1,0 +1,53 @@
+{
+  "title": "Building a RAG Chatbot Over Messy Technical PDFs with ChromaDB",
+  "slug": "rag-chatbot-over-messy-pdfs",
+  "excerpt": "Extracting and indexing 18 technical PDFs spanning 535 pages into 1,629 chunks with ChromaDB retrieval, achieving Hit Rate@5 of 0.926 and MRR of 0.893.",
+  "feature_image": "https://mahendraa.dev/assets/project-03-rag-chatbot.png",
+  "published_at": "2026-10-26T10:00:00Z",
+  "featured": true,
+  "tags": [
+    "RAG",
+    "ChromaDB",
+    "Information Retrieval",
+    "Python"
+  ],
+  "reading_time": "4 min read",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Challenge: Unstructured & Multi-Column Documents"
+    },
+    {
+      "type": "text",
+      "content": "Real-world technical documents are rarely cleanly formatted text files. They contain multi-column layouts, tables, headers, and inconsistent formatting that cause standard text extractors to produce fragmented and noisy chunks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Corpus Ingestion & Chunking"
+    },
+    {
+      "type": "text",
+      "content": "For this project, the ingestion corpus consisted of 18 technical PDFs containing 535 pages in total. Through heuristic structure extraction and boundary-aware chunking, the documents were partitioned into 1,629 clean text chunks and indexed into ChromaDB."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "import chromadb\n\nclient = chromadb.PersistentClient(path=\"./chroma_db\")\ncollection = client.get_or_create_collection(name=\"technical_pdf_chunks\")"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Empirical Retrieval Evaluation"
+    },
+    {
+      "type": "text",
+      "content": "Retrieval accuracy was rigorously measured across a standardized evaluation set:\n\n• Hit Rate@5: 0.926 (92.6% of queries found relevant context within top 5 candidates)\n• Mean Reciprocal Rank (MRR): 0.893\n• Test verification: 174 automated pytest tests passing"
+    },
+    {
+      "type": "text",
+      "content": "The complete pipeline implementation, evaluation harness, and Streamlit user interface are open-source:\nhttps://github.com/mahendravelagapudi099-wq/messy-pdf-rag-chatbot"
+    }
+  ]
+}

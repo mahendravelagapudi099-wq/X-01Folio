@@ -1,0 +1,53 @@
+{
+  "title": "Real-Time Air Quality Monitoring in Hyderabad Using OpenAQ and PostgreSQL",
+  "slug": "hyderabad-air-quality-monitor-openaq",
+  "excerpt": "Continuous air quality monitoring across 21 stations and 273 sensors in Hyderabad with rolling-MAD anomaly detection and Streamlit visualization.",
+  "feature_image": "https://mahendraa.dev/assets/project-02-air-quality.png",
+  "published_at": "2026-10-27T10:00:00Z",
+  "featured": false,
+  "tags": [
+    "Data Engineering",
+    "PostgreSQL",
+    "Streamlit",
+    "OpenAQ"
+  ],
+  "reading_time": "3 min read",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Monitoring Urban Air Quality"
+    },
+    {
+      "type": "text",
+      "content": "Hyderabad is one of India's fastest-growing metropolitan areas. Tracking particulate matter (PM2.5, PM10) and gaseous pollutants across diverse sensor locations is essential for understanding regional air quality dynamics."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pipeline Architecture & Storage"
+    },
+    {
+      "type": "text",
+      "content": "The data pipeline ingests live measurements from the OpenAQ API covering 21 monitoring stations and 273 sensors across Hyderabad. Cleaned readings are stored in a relational PostgreSQL schema, currently indexing 10,262 records."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "def detect_rolling_mad_anomalies(df, window=24, threshold=3.0):\n    rolling_median = df[\"value\"].rolling(window=window, min_periods=6).median()\n    diff = (df[\"value\"] - rolling_median).abs()\n    rolling_mad = diff.rolling(window=window, min_periods=6).median()\n    consistency_const = 1.4826\n    modified_z = diff / (consistency_const * rolling_mad + 1e-6)\n    return df[modified_z > threshold]"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Anomaly Detection & Interactive Dashboard"
+    },
+    {
+      "type": "text",
+      "content": "Using a rolling-MAD statistical filter, 148 anomalous pollution spikes were detected and isolated. The live dashboard is built with Streamlit for station-level temporal filtering, backed by 27 passing pytest unit tests."
+    },
+    {
+      "type": "text",
+      "content": "Repository and reproducible pipeline scripts:\nhttps://github.com/mahendravelagapudi099-wq/hyderabad-air-quality-monitor"
+    }
+  ]
+}

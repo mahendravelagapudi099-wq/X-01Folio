@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Mail, Github, Linkedin, Send, CheckCircle2, AlertCircle, Loader2, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
-const EMAIL = 'mahendravelagapudi099@gmail.com';
+const EMAIL = 'contact@mahendraa.dev';
 const GITHUB_URL = 'https://github.com/mahendravelagapudi099-wq';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/velagapudi-mahendra-543481353';
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined;
@@ -74,6 +75,14 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-28 pb-24 px-6 max-w-4xl mx-auto">
+      <Helmet>
+        <title>Contact &amp; Inquiries | Velagapudi Mahendra</title>
+        <meta
+          name="description"
+          content="Get in touch with Velagapudi Mahendra for data science, ML projects, and collaborations."
+        />
+        <link rel="canonical" href="https://mahendraa.dev/contact" />
+      </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">
         <Link to="/" className="hover:text-foreground">
@@ -85,10 +94,10 @@ export default function ContactPage() {
 
       <div className="border-b border-border/60 pb-8 mb-10">
         <h1 className="text-4xl sm:text-5xl font-sans font-bold text-foreground mb-4">
-          Contact &amp; Collaboration
+          Contact &amp; Inquiries
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          Open for academic research inquiries, MEXT/Honjo scholarship dialogues, data science engineering roles, and discussions on autonomous AI agent runtime safety.
+          Open for data science internships, research collaborations, and technical discussions.
         </p>
       </div>
 
@@ -100,6 +109,13 @@ export default function ContactPage() {
               Direct Communication Channels
             </h2>
             <div className="space-y-4 text-sm font-mono">
+              <div>
+                <span className="text-xs text-muted-foreground block mb-0.5">Location:</span>
+                <span className="text-foreground font-medium">
+                  Hyderabad, India (IST)
+                </span>
+              </div>
+
               <div>
                 <span className="text-xs text-muted-foreground block mb-0.5">Primary Email:</span>
                 <a
@@ -144,7 +160,7 @@ export default function ContactPage() {
           <div className="p-5 rounded-xl border border-border/50 bg-background/50 text-xs font-mono text-muted-foreground space-y-2">
             <span className="text-foreground font-semibold block">Response Guarantee</span>
             <p>
-              I read and respond to all substantive technical and academic messages within 24&ndash;48 hours.
+              I usually reply within 24 hours.
             </p>
           </div>
         </div>
