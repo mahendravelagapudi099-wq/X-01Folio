@@ -183,10 +183,10 @@ export default function Home() {
   const reduce = useReducedMotion();
 
   const SUFFIX_PHRASES = [
-    'production-grade data science & ML systems.',
-    'fine-tuned Telugu NLP models with IndicBERTv2.',
-    'evidence-grounded, verifiable AI analysis agents.',
-    'VectorMind sales-analytics systems at Codec Tech.',
+    'data science & ML projects.',
+    'Telugu NLP models with IndicBERTv2.',
+    'verifiable AI data-analysis agents.',
+    'sales-analytics systems at Codec Tech.',
   ];
 
   const displayedSuffix = useRotatingTypewriter(reduce ? [] : SUFFIX_PHRASES);
@@ -241,7 +241,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1
-              className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.08] hero-gradient-text min-h-[3.3em] sm:min-h-[2.8em] lg:min-h-[2.4em]"
+              className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.35rem] font-normal tracking-tight leading-[1.18] hero-gradient-text min-h-[3.6em] sm:min-h-[3em] lg:min-h-[2.6em]"
               aria-label={`B.Tech CSE (Data Science) student building ${SUFFIX_PHRASES[0]}`}
             >
               <span>B.Tech CSE (Data Science) student building </span>
