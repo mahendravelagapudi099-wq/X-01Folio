@@ -41,6 +41,51 @@ function CounterStat({ value, suffix = '', label }: { value: number; suffix?: st
 }
 
 /* ------------------------------------------------------------------ */
+/* Rotating Typewriter — continuously cycles through headline phrases */
+/* ------------------------------------------------------------------ */
+function useRotatingTypewriter(
+  phrases: string[],
+  typingSpeed = 38,
+  deletingSpeed = 20,
+  pauseDuration = 2400
+) {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState(phrases[0] || '');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    if (!phrases.length) return;
+    let timer: ReturnType<typeof setTimeout>;
+    const currentPhrase = phrases[phraseIndex] || '';
+
+    if (!isDeleting) {
+      if (displayedText.length < currentPhrase.length) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentPhrase.slice(0, displayedText.length + 1));
+        }, typingSpeed);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseDuration);
+      }
+    } else {
+      if (displayedText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentPhrase.slice(0, displayedText.length - 1));
+        }, deletingSpeed);
+      } else {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % phrases.length);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseDuration]);
+
+  return displayedText;
+}
+
+/* ------------------------------------------------------------------ */
 /* Experience & Leadership highlights                                 */
 /* ------------------------------------------------------------------ */
 const EXPERIENCES = [
@@ -175,6 +220,15 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
+  const HEADLINE_PHRASES = [
+    'B.Tech CSE (Data Science) student passionate about building.',
+    'Fine-tuning Telugu NLP models with IndicBERTv2.',
+    'Engineering verifiable AI data-analysis agents.',
+    'Developing sales-analytics systems at Codec Tech.',
+  ];
+
+  const displayedHeadline = useRotatingTypewriter(reduce ? [] : HEADLINE_PHRASES);
+
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-white selection:text-black">
       <Helmet>
@@ -218,20 +272,30 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 2. Headline — single static <h1> */}
+            {/* 2. Headline — continuously cycles and typewrites with fixed container to eliminate layout shift */}
             <motion.div
               initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full"
             >
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.0rem] font-normal tracking-tight leading-[1.06] hero-gradient-text">
-                B.Tech CSE (Data Science) student passionate about building data science &amp; ML systems.
+              <h1
+                className="font-display text-4xl sm:text-5xl lg:text-[3.0rem] font-normal tracking-tight leading-[1.06] hero-gradient-text min-h-[5.8rem] sm:min-h-[6.8rem] lg:min-h-[6.8rem] flex flex-col justify-start"
+                aria-label={HEADLINE_PHRASES[0]}
+              >
+                <span>
+                  {reduce ? HEADLINE_PHRASES[0] : displayedHeadline}
+                  <span
+                    aria-hidden="true"
+                    className="inline-block w-[3px] h-[0.8em] bg-white/70 ml-2 align-middle animate-pulse"
+                  />
+                </span>
               </h1>
             </motion.div>
 
             {/* 3. Sub-lead */}
             <motion.p
-              className="text-base sm:text-lg text-[#7A7A7A] leading-relaxed max-w-[600px] -mt-1 sm:-mt-2"
+              className="text-base sm:text-lg text-[#7A7A7A] leading-relaxed max-w-[600px] mt-1 sm:mt-1.5"
               initial={reduce ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
