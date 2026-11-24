@@ -190,6 +190,8 @@ export default function ContactPage() {
               </label>
               <Input
                 id="name"
+                name="name"
+                autoComplete="name"
                 type="text"
                 value={formData.name}
                 onChange={(e) => {
@@ -211,6 +213,8 @@ export default function ContactPage() {
               </label>
               <Input
                 id="email"
+                name="email"
+                autoComplete="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => {
@@ -274,9 +278,13 @@ export default function ContactPage() {
                 <>
                   <Loader2 className="w-4 h-4 animate-spin mr-2" /> Transmitting Message...
                 </>
-              ) : (
+              ) : CONTACT_ENDPOINT ? (
                 <>
                   <Send className="w-4 h-4 mr-2" /> Send Direct Message
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2" /> Open Email Draft
                 </>
               )}
             </Button>

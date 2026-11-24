@@ -50,7 +50,15 @@ export default function Navbar() {
         </div>
 
         {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <a
+            href="/Velagapudi_Mahendra_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-[#272727] text-muted-foreground hover:text-foreground hover:border-[#3A3A3A] text-xs font-mono transition-colors"
+          >
+            Resume <ArrowUpRight className="w-3 h-3 text-[#555555]" />
+          </a>
           <Link
             to="/contact"
             className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FFFFFF] text-[#000000] font-sans text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-all duration-300 ease-base"
@@ -96,7 +104,15 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          <div className="pt-2 mt-2 border-t border-[#272727]">
+          <div className="pt-2 mt-2 border-t border-[#272727] flex flex-col gap-2">
+            <a
+              href="/Velagapudi_Mahendra_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-md border border-[#272727] text-muted-foreground hover:text-foreground text-xs font-mono"
+            >
+              Resume (PDF) <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
             <Link
               to="/contact"
               className="w-full flex items-center justify-center gap-1.5 py-2 rounded-md bg-[#FFFFFF] text-[#000000] font-sans text-xs font-semibold"

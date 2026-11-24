@@ -57,39 +57,49 @@ export const TaglineReveal: React.FC<TaglineRevealProps> = ({
   return (
     <section
       ref={containerRef}
-      className="py-24 sm:py-32 px-6 max-w-5xl mx-auto border-b border-[#272727] select-none"
+      className="py-24 sm:py-32 px-6 max-w-5xl mx-auto border-b border-[#272727]"
       aria-label="Core Philosophy"
     >
       <div className="max-w-[680px] mx-auto text-center flex flex-col gap-6">
         <span className="text-xs font-mono text-[#9B9B9B] uppercase tracking-widest">
-          The Architectural Thesis
+          Approach
         </span>
 
-        <h2 className="text-2xl sm:text-4xl font-display font-normal tracking-tight leading-snug">
-          {words.map((word, index) => {
-            if (prefersReducedMotion) {
+        <h2
+          className="text-2xl sm:text-4xl font-display font-normal tracking-tight leading-snug"
+          aria-label={phrase}
+        >
+          <span aria-hidden="true">
+            {words.map((word, index) => {
+              if (prefersReducedMotion) {
+                return (
+                  <React.Fragment key={index}>
+                    <span className="text-[#FFFFFF] inline-block">
+                      {word}
+                    </span>
+                    {index < words.length - 1 && ' '}
+                  </React.Fragment>
+                );
+              }
+
+              // Stagger activation across words based on scrollProgress
+              const threshold = index / words.length;
+              const isRevealed = scrollProgress >= threshold;
+
               return (
-                <span key={index} className="text-[#FFFFFF] inline-block mr-2.5">
-                  {word}
-                </span>
+                <React.Fragment key={index}>
+                  <span
+                    className={`inline-block transition-colors duration-500 ease-base ${
+                      isRevealed ? 'text-[#FFFFFF]' : 'text-[#FFFFFF]/30'
+                    }`}
+                  >
+                    {word}
+                  </span>
+                  {index < words.length - 1 && ' '}
+                </React.Fragment>
               );
-            }
-
-            // Stagger activation across words based on scrollProgress
-            const threshold = index / words.length;
-            const isRevealed = scrollProgress >= threshold;
-
-            return (
-              <span
-                key={index}
-                className={`inline-block mr-2.5 transition-colors duration-500 ease-base ${
-                  isRevealed ? 'text-[#FFFFFF]' : 'text-[#FFFFFF]/30'
-                }`}
-              >
-                {word}
-              </span>
-            );
-          })}
+            })}
+          </span>
         </h2>
 
         {subtext && (

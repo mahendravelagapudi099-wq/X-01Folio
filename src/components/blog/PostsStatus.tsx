@@ -33,7 +33,7 @@ export const PostsError = ({
     </div>
     <h3 className="mb-2 font-sans text-xl font-bold text-foreground">Failed to retrieve articles</h3>
     <p className="mx-auto mb-6 max-w-md text-sm text-muted-foreground">
-      The Supabase publication endpoint did not respond. Please try reloading.
+      Unable to load articles at this time. Please try reloading.
     </p>
     <Button onClick={onRetry} variant="outline" className="border-border text-xs font-mono uppercase tracking-wider gap-2">
       <RefreshCw className="h-3.5 w-3.5" /> Retry Request
@@ -49,7 +49,7 @@ export const PostsEmpty = ({ className = '' }: { className?: string }) => (
     </div>
     <h3 className="mb-2 font-sans text-xl font-bold text-foreground">No articles published yet</h3>
     <p className="mx-auto max-w-md text-sm text-muted-foreground mb-4">
-      Articles published via the automated Muse AI pipeline will appear here in chronological order.
+      Articles will appear here in chronological order.
     </p>
     <a
       href="https://github.com/mahendravelagapudi099-wq"

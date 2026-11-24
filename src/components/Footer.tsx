@@ -26,16 +26,19 @@ const Footer = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-xs font-mono">
             <div className="flex flex-col gap-2">
               <span className="font-semibold text-foreground uppercase tracking-wider text-[11px]">
-                Systems
+                Projects
               </span>
               <Link to="/projects" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
                 All Projects
               </Link>
-              <Link to="/projects/sentimentscopex" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
-                SentimentScopex
+              <Link to="/projects/telugu-text-classifier" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                Telugu Text Classifier
               </Link>
-              <Link to="/projects/vectormind" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
-                VectorMind
+              <Link to="/projects/hyderabad-air-quality-monitor" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                Hyderabad AQI Monitor
+              </Link>
+              <Link to="/projects/messy-pdf-rag-chatbot" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
+                Messy PDF RAG Chatbot
               </Link>
             </div>
 
@@ -50,7 +53,7 @@ const Footer = () => {
                 Verified Credentials
               </Link>
               <Link to="/about" className="text-[#9B9B9B] hover:text-foreground transition-colors duration-300 ease-base">
-                Trajectory &amp; Bio
+                About &amp; Experience
               </Link>
             </div>
 
@@ -88,7 +91,7 @@ const Footer = () => {
           </span>
           <div className="flex items-center gap-4">
             <Link to="/blog" className="hover:text-foreground transition-colors duration-300 ease-base">
-              Technical Monograph
+              Blog
             </Link>
             <span>&bull;</span>
             <a

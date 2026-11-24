@@ -20,7 +20,7 @@ export const GENUINE_POSTS: BlogPostData[] = [
     title: 'Fine-Tuning IndicBERTv2 for 3-Class Telugu Sentiment Classification',
     excerpt:
       'Fine-tuning IndicBERTv2, MuRIL, and XLM-RoBERTa on 35,142 Telugu sentences for 3-class sentiment classification, outperforming the TF-IDF baseline by +8.5 macro-F1 points.',
-    feature_image: '/assets/project-01-telugu.png',
+    feature_image: '/assets/project-01-telugu.webp',
     published_at: '2026-10-25T10:00:00.000Z',
     featured: true,
     tags: ['NLP', 'Telugu', 'Transformers', 'PyTorch'],
@@ -94,7 +94,7 @@ training_args = TrainingArguments(
     title: 'Building a RAG Chatbot Over Messy Technical PDFs with ChromaDB',
     excerpt:
       'Extracting and indexing 18 technical PDFs spanning 535 pages into 1,629 chunks with ChromaDB retrieval, achieving Hit Rate@5 of 0.926 and MRR of 0.893.',
-    feature_image: '/assets/project-03-rag-chatbot.png',
+    feature_image: '/assets/project-03-rag-chatbot.webp',
     published_at: '2026-10-26T10:00:00.000Z',
     featured: true,
     tags: ['RAG', 'ChromaDB', 'Information Retrieval', 'Python'],
@@ -160,7 +160,7 @@ def retrieve_context(query_str: str, top_k: int = 5):
     title: 'Real-Time Air Quality Monitoring in Hyderabad Using OpenAQ and PostgreSQL',
     excerpt:
       'Continuous air quality monitoring across 21 stations and 273 sensors in Hyderabad with rolling-MAD anomaly detection and Streamlit visualization.',
-    feature_image: '/assets/project-02-air-quality.png',
+    feature_image: '/assets/project-02-air-quality.webp',
     published_at: '2026-10-27T10:00:00.000Z',
     featured: false,
     tags: ['Data Engineering', 'PostgreSQL', 'Streamlit', 'OpenAQ'],
@@ -228,7 +228,7 @@ def detect_rolling_mad_anomalies(df: pd.DataFrame, window: int = 24, threshold: 
     title: 'Reinforcement Learning Reward Shaping Experiments on LunarLander-v3',
     excerpt:
       'Comparing four reward-shaping formulations using PPO in Gymnasium with Stable-Baselines3 across 3 seeds and 1M training steps.',
-    feature_image: '/assets/project-04-lunar-lander.png',
+    feature_image: '/assets/project-04-lunar-lander.webp',
     published_at: '2026-10-28T10:00:00.000Z',
     featured: false,
     tags: ['Reinforcement Learning', 'PyTorch', 'PPO', 'Gymnasium'],
@@ -304,7 +304,7 @@ for seed in SEEDS:
     title: 'Building VectorMind During My Data Science Internship at Codec Technologies',
     excerpt:
       'Reflections on developing a natural-language sales analytics and forecasting platform during a remote Data Science internship.',
-    feature_image: '/assets/project-06-vectormind.png',
+    feature_image: '/assets/project-06-vectormind.webp',
     published_at: '2026-10-29T10:00:00.000Z',
     featured: false,
     tags: ['Internship', 'Data Science', 'Streamlit', 'Python'],

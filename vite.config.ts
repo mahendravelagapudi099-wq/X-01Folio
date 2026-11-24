@@ -32,7 +32,6 @@ export default defineConfig(({ mode }) => {
             if (id.includes("swiper")) return "swiper";
             if (id.includes("radix-ui")) return "radix";
             if (id.includes("syntax-highlighter")) return "highlighter";
-            if (id.includes("@supabase")) return "supabase";
             if (id.includes("@tanstack")) return "query";
             if (id.includes("lucide-react")) return "icons";
             return "vendor";

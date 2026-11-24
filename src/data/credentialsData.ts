@@ -83,7 +83,6 @@ export const CERTIFICATES: Certificate[] = [
       'REST API architecture, HTTP request lifecycles, automated testing collections, environments, and mock servers.',
     skills: ['REST APIs', 'Postman', 'API Testing', 'HTTP Protocol', 'Automation'],
     credentialId: 'C01963E6FFFB1F0',
-    verificationUrl: 'https://badgr.com/public/assertions/C01963E6FFFB1F0',
   },
 ];
 

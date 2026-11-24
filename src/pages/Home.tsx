@@ -20,6 +20,7 @@ import { CERTIFICATES } from '@/data/credentialsData';
 import { TaglineReveal } from '@/components/TaglineReveal';
 import { SpotlightGrid } from '@/components/effects/SpotlightGrid';
 import { BorderBeam } from '@/components/effects/BorderBeam';
+import { HeroVisual } from '@/components/HeroVisual';
 
 /* ------------------------------------------------------------------ */
 /* Design Read:                                                         */
@@ -29,71 +30,15 @@ import { BorderBeam } from '@/components/effects/BorderBeam';
 /* Stack: framer-motion (whileInView), Tailwind, Redaction 50 display  */
 /* ------------------------------------------------------------------ */
 
-/* ------------------------------------------------------------------ */
-/* Animated counter — no React state on each RAF frame                 */
-/* ------------------------------------------------------------------ */
-function useCountUp(target: number, duration = 1400, start = false) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let raf: number;
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setValue(Math.round(eased * target));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [start, target, duration]);
-  return value;
-}
-
 function CounterStat({ value, suffix = '', label }: { value: number; suffix?: string; label: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [fired, setFired] = useState(false);
-  const count = useCountUp(value, 1400, fired);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setFired(true); obs.disconnect(); } },
-      { threshold: 0.4 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
   return (
-    <div ref={ref} className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1">
       <span className="font-display text-5xl sm:text-6xl font-normal tracking-tight text-white tabular-nums">
-        {count}{suffix}
+        {value}{suffix}
       </span>
       <span className="text-[10px] font-mono text-[#555555] uppercase tracking-[0.18em]">{label}</span>
     </div>
   );
-}
-
-/* ------------------------------------------------------------------ */
-/* Typewriter — load-time effect                                       */
-/* ------------------------------------------------------------------ */
-function useTypewriter(text: string, speed = 32) {
-  const [displayed, setDisplayed] = useState('');
-  const [done, setDone] = useState(false);
-  useEffect(() => {
-    setDisplayed('');
-    setDone(false);
-    let i = 0;
-    const id = setInterval(() => {
-      i++;
-      setDisplayed(text.slice(0, i));
-      if (i >= text.length) { clearInterval(id); setDone(true); }
-    }, speed);
-    return () => clearInterval(id);
-  }, [text, speed]);
-  return { displayed, done };
 }
 
 /* ------------------------------------------------------------------ */
@@ -174,7 +119,7 @@ const FAQS = [
   },
   {
     q: 'Have you won anything or led anything?',
-    a: 'I participated in the Google Tech Sprint Hackathon 2025, where I built MDM, a tamper-evident digital certificate platform. I have been Student Chair of the CODE FORGE student club since February 2025. I was also a GeeksforGeeks Campus Mantri from January to July 2026 (6 months).',
+    a: 'I won 4th Place at the Google Tech Sprint Hackathon 2025, where I built MDM, a tamper-evident digital certificate platform. I have been Student Chair of the CODE FORGE student club since February 2025. I was also a GeeksforGeeks Campus Mantri from January to July 2026 (6 months).',
   },
   {
     q: 'How can I contact you?',
@@ -194,12 +139,11 @@ export default function Home() {
   const reduce = useReducedMotion();
 
   const headline = 'B.Tech CSE (Data Science) student building data science and ML projects.';
-  const { displayed, done } = useTypewriter(reduce ? '' : headline, 30);
 
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-white selection:text-black">
       <Helmet>
-        <title>Velagapudi Mahendra | Data Science Student and AI Researcher</title>
+        <title>Velagapudi Mahendra | Data Science & Machine Learning</title>
         <meta
           name="description"
           content="B.Tech CSE (Data Science) student at Malla Reddy Engineering College and Management Sciences, Hyderabad. I build data science and machine learning projects and I am working on a research proposal on risk-based verification and evidence-grounded self-correction for AI data-analysis agents."
@@ -221,10 +165,11 @@ export default function Home() {
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+        {/* Two-column hero grid */}
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_460px] gap-10 xl:gap-14 items-center w-full flex-1">
 
-        {/* LEFT column — existing content */}
-        <div className="flex flex-col items-start gap-8">
+          {/* LEFT column */}
+          <div className="flex flex-col items-start gap-8">
 
           {/* 1. Eyebrow — this is the ONLY eyebrow in the hero */}
           <motion.div
@@ -238,19 +183,14 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* 2. Headline — typewriter on load */}
+          {/* 2. Headline — direct render for instant LCP and SEO */}
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.08] hero-gradient-text">
-              {reduce ? headline : (
-                <>
-                  {displayed}
-                  {!done && <span className="inline-block w-[2px] h-[0.85em] bg-white/50 ml-1 align-middle animate-pulse" />}
-                </>
-              )}
+              {headline}
             </h1>
           </motion.div>
 
@@ -263,12 +203,12 @@ export default function Home() {
           >
             B.Tech CSE (Data Science) student at{' '}
             <strong className="text-white font-medium">Malla Reddy Engineering College and Management Sciences</strong>
-            {', '}Hyderabad. I build data science and machine learning projects and I am working on a research proposal on risk-based verification and evidence-grounded self-correction for AI data-analysis agents.
+            {', '}Hyderabad. Former Data Science Intern at Codec Technologies (VectorMind). Working on an AI-agent research proposal and open-source ML systems.
           </motion.p>
 
-          {/* 4. CTAs — primary + secondary only */}
+          {/* 4. CTAs — primary + secondary + resume */}
           <motion.div
-            className="flex flex-wrap items-center gap-4"
+            className="flex flex-wrap items-center gap-3.5"
             initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
@@ -283,8 +223,16 @@ export default function Home() {
               to="/research"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#222222] text-[#CCCCCC] text-sm font-medium hover:border-[#3A3A3A] hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
             >
-              <BookOpen className="w-4 h-4 text-[#555555]" /> Working Paper
+              <BookOpen className="w-4 h-4 text-[#555555]" /> Research Proposal
             </Link>
+            <a
+              href="/Velagapudi_Mahendra_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg border border-[#222222] text-xs font-mono text-[#888888] hover:border-[#3A3A3A] hover:text-white transition-all duration-200"
+            >
+              Resume (PDF) <ArrowUpRight className="w-3.5 h-3.5 text-[#555555]" />
+            </a>
             <a
               href="mailto:contact@mahendraa.dev"
               className="text-sm font-mono text-[#444444] hover:text-[#AAAAAA] transition-colors duration-200 hidden sm:block"
@@ -317,57 +265,14 @@ export default function Home() {
           </motion.div>
         </div>{/* end left column */}
 
-        {/* RIGHT column — visual panel */}
+        {/* RIGHT column — visual telemetry panel */}
         <motion.div
-          className="hidden lg:flex flex-col gap-4 items-center justify-center h-full"
-          initial={reduce ? false : { opacity: 0, x: 32 }}
+          className="flex flex-col items-center justify-center w-full"
+          initial={reduce ? false : { opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* ASCII art card */}
-          <div className="relative w-full rounded-xl overflow-hidden border border-[#1E1E1E] bg-[#040404] group">
-            {/* Terminal header bar */}
-            <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#1A1A1A] bg-[#080808]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-              <span className="ml-2 text-[10px] font-mono text-[#444444]">mahendra.ascii — render</span>
-            </div>
-            <div className="relative overflow-hidden">
-              <img
-                src="/assets/hero-ascii.png"
-                alt="ASCII art portrait of Mahendra"
-                className="w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-[1.02] transition-transform"
-                style={{ imageRendering: 'pixelated' }}
-              />
-              {/* scanline overlay */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 4px)',
-                }}
-              />
-              {/* corner glyph */}
-              <span className="absolute bottom-2 right-3 text-[9px] font-mono text-[#2A2A2A] select-none">0x4D · v2026</span>
-            </div>
-          </div>
-
-          {/* Portrait photo card */}
-          <div className="relative w-[75%] rounded-2xl overflow-hidden border border-[#222222] shadow-[0_0_60px_rgba(255,255,255,0.03)] group">
-            <img
-              src="/assets/hero-portrait.jpg"
-              alt="Velagapudi Mahendra"
-              className="w-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-              style={{ aspectRatio: '3/4' }}
-            />
-            {/* gradient overlay at bottom */}
-            <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
-              <span className="text-[11px] font-mono text-[#888888]">Velagapudi Mahendra</span>
-              <span className="text-[10px] font-mono text-[#444444]">B.Tech CSE · 2026</span>
-            </div>
-          </div>
+          <HeroVisual />
         </motion.div>
 
         </div>{/* end grid */}
@@ -379,9 +284,9 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <CounterStat value={8} suffix="" label="Projects" />
-          <CounterStat value={6} suffix="" label="Certifications" />
-          <div ref={null as unknown as React.RefObject<HTMLDivElement>} className="flex flex-col gap-1">
+          <CounterStat value={PROJECTS.length} suffix="" label="Projects" />
+          <CounterStat value={CERTIFICATES.length} suffix="" label="Certifications" />
+          <div className="flex flex-col gap-1">
             <span className="font-display text-5xl sm:text-6xl font-normal tracking-tight text-white tabular-nums">
               0.733
             </span>
@@ -389,9 +294,9 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-1">
             <span className="font-display text-5xl sm:text-6xl font-normal tracking-tight text-white tabular-nums">
-              24h
+              252+
             </span>
-            <span className="text-[10px] font-mono text-[#555555] uppercase tracking-[0.18em]">Reply Within 24 Hours</span>
+            <span className="text-[10px] font-mono text-[#555555] uppercase tracking-[0.18em]">Automated Pytest Tests</span>
           </div>
         </motion.div>
       </section>
@@ -613,7 +518,7 @@ export default function Home() {
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     Research Proposal
                   </span>
-                  <span className="text-[#444444]">Velagapudi Mahendra · Malla Reddy Engineering College</span>
+                  <span className="text-[#444444]">Velagapudi Mahendra · Malla Reddy Engineering College and Management Sciences</span>
                 </div>
 
                 <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight text-white leading-[1.1]">

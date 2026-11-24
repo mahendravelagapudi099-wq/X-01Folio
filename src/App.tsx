@@ -25,7 +25,7 @@ const BlogIndex = lazy(() => import('./pages/BlogIndex'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
-// Query client for caching Supabase queries
+// Query client for caching data queries
 const queryClient = new QueryClient();
 
 const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => (
