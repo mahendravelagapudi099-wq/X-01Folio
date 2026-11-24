@@ -183,7 +183,7 @@ export default function Home() {
   const reduce = useReducedMotion();
 
   const HEADLINE_PHRASES = [
-    'B.Tech CSE (Data Science) student building data science and ML projects.',
+    'B.Tech CSE (Data Science) student passionate about building.',
     'Fine-tuning Telugu NLP models with IndicBERTv2.',
     'Engineering verifiable AI data-analysis agents.',
     'Developing sales-analytics systems at Codec Tech.',
