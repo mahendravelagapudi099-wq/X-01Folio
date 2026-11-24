@@ -241,7 +241,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
             >
               <h1
-                className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.06] hero-gradient-text min-h-[3.25em]"
+                className="font-display text-4xl sm:text-5xl lg:text-[3.0rem] font-normal tracking-tight leading-[1.06] hero-gradient-text min-h-[3.25em]"
                 aria-label={HEADLINE_PHRASES[0]}
               >
                 <span>{reduce ? HEADLINE_PHRASES[0] : displayedHeadline}</span>
