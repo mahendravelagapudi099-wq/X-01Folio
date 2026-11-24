@@ -182,14 +182,14 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
-  const SUFFIX_PHRASES = [
-    'data science & ML projects.',
-    'Telugu NLP models with IndicBERTv2.',
-    'verifiable AI data-analysis agents.',
-    'sales-analytics systems at Codec Tech.',
+  const HEADLINE_PHRASES = [
+    'B.Tech CSE (Data Science) student building data science and ML projects.',
+    'Fine-tuning Telugu NLP models with IndicBERTv2.',
+    'Engineering verifiable AI data-analysis agents.',
+    'Developing sales-analytics systems at Codec Tech.',
   ];
 
-  const displayedSuffix = useRotatingTypewriter(reduce ? [] : SUFFIX_PHRASES);
+  const displayedHeadline = useRotatingTypewriter(reduce ? [] : HEADLINE_PHRASES);
 
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-white selection:text-black">
@@ -234,7 +234,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* 2. Headline — anchored prefix + dynamic rotating typewriter suffix */}
+          {/* 2. Headline — continuously cycles and typewrites with blinking cursor */}
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -242,10 +242,9 @@ export default function Home() {
           >
             <h1
               className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.35rem] font-normal tracking-tight leading-[1.18] hero-gradient-text min-h-[3.6em] sm:min-h-[3em] lg:min-h-[2.6em]"
-              aria-label={`B.Tech CSE (Data Science) student building ${SUFFIX_PHRASES[0]}`}
+              aria-label={HEADLINE_PHRASES[0]}
             >
-              <span>B.Tech CSE (Data Science) student building </span>
-              <span className="text-white">{reduce ? SUFFIX_PHRASES[0] : displayedSuffix}</span>
+              <span>{reduce ? HEADLINE_PHRASES[0] : displayedHeadline}</span>
               <span
                 aria-hidden="true"
                 className="inline-block w-[2px] h-[0.82em] bg-white/70 ml-1.5 align-middle animate-pulse"
