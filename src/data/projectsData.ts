@@ -28,7 +28,7 @@ export const PROJECTS: Project[] = [
     category: 'NLP & Multilingual ML',
     tagline: 'Fine-tuned IndicBERTv2 for 3-class Telugu sentiment classification',
     summary:
-      'Fine-tuned IndicBERTv2, MuRIL, and XLM-RoBERTa on 35,142 Telugu sentences for 3-class sentiment classification. IndicBERTv2 macro-F1 0.733 vs TF-IDF baseline 0.648, +8.5 points, p<0.001. Gradio demo runs locally only.',
+      'Fine-tuned IndicBERTv2, MuRIL, and XLM-RoBERTa on 35,142 Telugu sentences for 3-class sentiment classification. IndicBERTv2 achieved macro-F1 0.733 vs TF-IDF baseline 0.648 (+8.5 points, p<0.001) with an interactive Gradio inference pipeline.',
     problem:
       'Telugu is a low-resource language with limited publicly available sentiment datasets. Standard multilingual models underperform without domain-fine-tuning on script-specific morphology.',
     architecture: [
@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
       'Models evaluated: IndicBERTv2, MuRIL, XLM-RoBERTa. Best: IndicBERTv2.',
       'Baseline: TF-IDF + logistic regression, macro-F1 0.648.',
       'Fine-tuned result: IndicBERTv2 macro-F1 0.733, +8.5 points vs baseline, p<0.001.',
-      'Demo: Gradio interface, local only — no public deployment.',
+      'Inference: Interactive Gradio application with dual-model comparison and confidence scoring.',
     ],
     benchmarks: [
       { metric: 'IndicBERTv2 Macro-F1', value: '0.733', note: 'vs TF-IDF baseline 0.648' },
