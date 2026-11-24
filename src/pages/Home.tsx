@@ -220,7 +220,7 @@ export default function Home() {
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_460px] gap-10 xl:gap-14 items-center w-full flex-1">
 
           {/* LEFT column */}
-          <div className="flex flex-col items-start gap-8">
+          <div className="flex flex-col items-start gap-4 sm:gap-5">
 
           {/* 1. Eyebrow — this is the ONLY eyebrow in the hero */}
           <motion.div
@@ -241,20 +241,20 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1
-              className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.08] hero-gradient-text min-h-[3.3em] sm:min-h-[2.8em] lg:min-h-[2.4em]"
+              className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.06] hero-gradient-text"
               aria-label={HEADLINE_PHRASES[0]}
             >
               <span>{reduce ? HEADLINE_PHRASES[0] : displayedHeadline}</span>
               <span
                 aria-hidden="true"
-                className="inline-block w-[2px] h-[0.82em] bg-white/70 ml-1.5 align-middle animate-pulse"
+                className="inline-block w-[3px] h-[0.8em] bg-white/70 ml-2 align-middle animate-pulse"
               />
             </h1>
           </motion.div>
 
           {/* 3. Sub-lead */}
           <motion.p
-            className="text-base sm:text-lg text-[#7A7A7A] leading-relaxed max-w-[600px]"
+            className="text-base sm:text-lg text-[#7A7A7A] leading-relaxed max-w-[600px] mt-1"
             initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
