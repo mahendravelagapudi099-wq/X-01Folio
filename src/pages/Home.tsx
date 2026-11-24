@@ -20,7 +20,6 @@ import { CERTIFICATES } from '@/data/credentialsData';
 import { TaglineReveal } from '@/components/TaglineReveal';
 import { SpotlightGrid } from '@/components/effects/SpotlightGrid';
 import { BorderBeam } from '@/components/effects/BorderBeam';
-import { HeroVisual } from '@/components/HeroVisual';
 
 /* ------------------------------------------------------------------ */
 /* Design Read:                                                         */
@@ -265,14 +264,24 @@ export default function Home() {
           </motion.div>
         </div>{/* end left column */}
 
-        {/* RIGHT column — visual telemetry panel */}
+        {/* RIGHT column — pure ASCII portrait on black space */}
         <motion.div
-          className="flex flex-col items-center justify-center w-full"
+          className="flex items-center justify-center lg:justify-end w-full"
           initial={reduce ? false : { opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <HeroVisual />
+          <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] flex items-center justify-center">
+            <img
+              src="/ascii-portrait.png"
+              alt="ASCII portrait of Mahendra"
+              className="w-full h-auto object-contain select-none pointer-events-none"
+              style={{
+                aspectRatio: '186 / 225',
+                mixBlendMode: 'screen',
+              }}
+            />
+          </div>
         </motion.div>
 
         </div>{/* end grid */}
