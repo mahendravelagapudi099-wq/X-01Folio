@@ -28,7 +28,7 @@ export default function CredentialsPage() {
           name="description"
           content="Verified academic certifications and credentials of Velagapudi Mahendra."
         />
-        <link rel="canonical" href="https://mahendraa.dev/credentials" />
+        <link rel="canonical" href="https://mahendraa.dev/credentials/" />
       </Helmet>
       {/* Breadcrumbs */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">

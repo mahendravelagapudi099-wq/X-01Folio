@@ -81,7 +81,7 @@ export default function ContactPage() {
           name="description"
           content="Get in touch with Velagapudi Mahendra for data science, ML projects, and collaborations."
         />
-        <link rel="canonical" href="https://mahendraa.dev/contact" />
+        <link rel="canonical" href="https://mahendraa.dev/contact/" />
       </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">

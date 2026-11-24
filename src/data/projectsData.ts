@@ -149,9 +149,9 @@ export const PROJECTS: Project[] = [
     role: 'RL Researcher',
   },
   {
-    slug: 'sentimentscopex',
+    slug: 'sentimentscope',
     id: 5,
-    title: 'SentimentScopex',
+    title: 'SentimentScope',
     category: 'NLP & Web Application',
     tagline: 'AI-powered sentiment analysis web app with visual analytics',
     summary:
@@ -170,7 +170,7 @@ export const PROJECTS: Project[] = [
     liveDemo: true,
     featured: false,
     image: '/assets/project-05-sentimentscopex.webp',
-    imageAlt: 'SentimentScopex web app showing sentiment analysis results',
+    imageAlt: 'SentimentScope web app showing sentiment analysis results',
     date: '2025',
     role: 'Full-Stack Developer',
   },

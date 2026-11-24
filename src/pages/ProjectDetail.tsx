@@ -35,7 +35,7 @@ export default function ProjectDetail() {
       <Helmet>
         <title>{project.title} | Velagapudi Mahendra</title>
         <meta name="description" content={project.summary} />
-        <link rel="canonical" href={`https://mahendraa.dev/projects/${project.slug}`} />
+        <link rel="canonical" href={`https://mahendraa.dev/projects/${project.slug}/`} />
       </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">

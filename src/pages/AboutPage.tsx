@@ -22,12 +22,12 @@ export default function AboutPage() {
   return (
     <article className="min-h-screen bg-background text-foreground pt-28 pb-24 px-6 max-w-4xl mx-auto font-sans">
       <Helmet>
-        <title>About &amp; Trajectory | Velagapudi Mahendra</title>
+        <title>About &amp; Experience | Velagapudi Mahendra</title>
         <meta
           name="description"
           content="Academic background, experience, and verified technical competencies of Velagapudi Mahendra."
         />
-        <link rel="canonical" href="https://mahendraa.dev/about" />
+        <link rel="canonical" href="https://mahendraa.dev/about/" />
       </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">
@@ -35,7 +35,7 @@ export default function AboutPage() {
           Home
         </Link>
         <span>/</span>
-        <span className="text-foreground">About &amp; Trajectory</span>
+        <span className="text-foreground">About &amp; Experience</span>
       </div>
 
       {/* Header */}

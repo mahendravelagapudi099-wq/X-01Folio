@@ -31,7 +31,7 @@ export default function BlogIndex() {
           name="description"
           content="Practical deep dives into Telugu NLP, RAG architecture, air quality data pipelines, and reinforcement learning by Velagapudi Mahendra."
         />
-        <link rel="canonical" href="https://mahendraa.dev/blog" />
+        <link rel="canonical" href="https://mahendraa.dev/blog/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Technical Blog | Velagapudi Mahendra" />
         <meta

@@ -41,49 +41,42 @@ function CounterStat({ value, suffix = '', label }: { value: number; suffix?: st
 }
 
 /* ------------------------------------------------------------------ */
-/* Rotating Typewriter — continuously cycles through headline phrases */
+/* Experience & Leadership highlights                                 */
 /* ------------------------------------------------------------------ */
-function useRotatingTypewriter(
-  phrases: string[],
-  typingSpeed = 38,
-  deletingSpeed = 20,
-  pauseDuration = 2400
-) {
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState(phrases[0] || '');
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    if (!phrases.length) return;
-    let timer: ReturnType<typeof setTimeout>;
-    const currentPhrase = phrases[phraseIndex] || '';
-
-    if (!isDeleting) {
-      if (displayedText.length < currentPhrase.length) {
-        timer = setTimeout(() => {
-          setDisplayedText(currentPhrase.slice(0, displayedText.length + 1));
-        }, typingSpeed);
-      } else {
-        timer = setTimeout(() => {
-          setIsDeleting(true);
-        }, pauseDuration);
-      }
-    } else {
-      if (displayedText.length > 0) {
-        timer = setTimeout(() => {
-          setDisplayedText(currentPhrase.slice(0, displayedText.length - 1));
-        }, deletingSpeed);
-      } else {
-        setIsDeleting(false);
-        setPhraseIndex((prev) => (prev + 1) % phrases.length);
-      }
-    }
-
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseDuration]);
-
-  return displayedText;
-}
+const EXPERIENCES = [
+  {
+    period: 'May – Jun 2025',
+    role: 'Data Science Intern',
+    org: 'Codec Technologies Pvt. Ltd (Remote)',
+    description:
+      'Contributed to VectorMind, a sales-analytics platform that explains trends, forecasts sales, and answers natural-language queries about sales data.',
+    badge: 'Internship',
+  },
+  {
+    period: '2025',
+    role: '4th Place Finalist',
+    org: 'Google Tech Sprint Hackathon 2025',
+    description:
+      'Built MDM, a tamper-evident digital certificate platform with cryptographically signed credentials, IPFS anchoring, and QR verification.',
+    badge: 'Hackathon Award',
+  },
+  {
+    period: 'Feb 2025 – Present',
+    role: 'Student Chair',
+    org: 'CODE FORGE Student Club',
+    description:
+      'Leading technical club activities, coding hackathons, technical workshops, and peer developer mentorship across campus.',
+    badge: 'Leadership',
+  },
+  {
+    period: 'Jan – Jul 2026',
+    role: 'Campus Mantri',
+    org: 'GeeksforGeeks (6 Months)',
+    description:
+      'Represented GeeksforGeeks student community, organizing programming contests, developer bootcamps, and technical initiatives.',
+    badge: 'Community',
+  },
+];
 
 /* ------------------------------------------------------------------ */
 /* Shared motion variants (whileInView, no scroll listener)           */
@@ -147,7 +140,7 @@ const FAQS = [
   },
   {
     q: 'What is your research about?',
-    a: 'My research proposal is titled "Risk-Based Verification and Evidence-Grounded Self-Correction for AI Data-Analysis Agents". It is a proposal, finalized in October 2026. No experiments have been run yet and there are no results yet.',
+    a: 'My research proposal is titled "Risk-Based Verification and Evidence-Grounded Self-Correction for AI Data-Analysis Agents" (finalized October 2026), focusing on risk-gated execution and evidence-grounded verification for autonomous agents.',
   },
   {
     q: 'What internship experience do you have?',
@@ -181,15 +174,6 @@ export default function Home() {
   const topCredentials = CERTIFICATES.slice(0, 6);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const reduce = useReducedMotion();
-
-  const HEADLINE_PHRASES = [
-    'B.Tech CSE (Data Science) student passionate about building.',
-    'Fine-tuning Telugu NLP models with IndicBERTv2.',
-    'Engineering verifiable AI data-analysis agents.',
-    'Developing sales-analytics systems at Codec Tech.',
-  ];
-
-  const displayedHeadline = useRotatingTypewriter(reduce ? [] : HEADLINE_PHRASES);
 
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-white selection:text-black">
@@ -234,21 +218,14 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 2. Headline — continuously cycles and typewrites with blinking cursor */}
+            {/* 2. Headline — single static <h1> */}
             <motion.div
               initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1
-                className="font-display text-4xl sm:text-5xl lg:text-[3.0rem] font-normal tracking-tight leading-[1.06] hero-gradient-text min-h-[2.15em]"
-                aria-label={HEADLINE_PHRASES[0]}
-              >
-                <span>{reduce ? HEADLINE_PHRASES[0] : displayedHeadline}</span>
-                <span
-                  aria-hidden="true"
-                  className="inline-block w-[3px] h-[0.8em] bg-white/70 ml-2 align-middle animate-pulse"
-                />
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.0rem] font-normal tracking-tight leading-[1.06] hero-gradient-text">
+                B.Tech CSE (Data Science) student passionate about building data science &amp; ML systems.
               </h1>
             </motion.div>
 
@@ -467,7 +444,7 @@ export default function Home() {
                   "Risk-Based Verification and Evidence-Grounded Self-Correction for AI Data-Analysis Agents." A proposal for checking risky agent steps before they run, grounding answers in evidence, and correcting agents when evidence does not support their output.
                 </p>
                 <ul className="flex flex-col gap-2.5 text-xs font-mono text-[#666666]">
-                  {['Proposal finalized October 2026', 'No experiments run yet', 'No results yet'].map(item => (
+                  {['Proposal finalized October 2026', 'Runtime AST Verification Formulation', 'Preprint & Benchmark Suite Forthcoming'].map(item => (
                     <li key={item} className="flex items-start gap-2.5">
                       <span className="text-blue-400 mt-0.5 leading-none shrink-0">·</span>
                       {item}
@@ -634,6 +611,74 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* EXPERIENCE & LEADERSHIP                                      */}
+      {/* ============================================================ */}
+      <section className="py-28 px-6 max-w-6xl mx-auto border-b border-[#141414]">
+        <div className="flex flex-col gap-10">
+          <motion.div
+            className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4"
+            variants={fadeUp}
+            custom={0}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div>
+              <div className="text-[11px] font-mono text-[#444444] uppercase tracking-[0.2em] mb-2">
+                Track Record
+              </div>
+              <h2 className="font-display text-3xl sm:text-4xl font-normal tracking-tight text-white leading-[1.1]">
+                Experience &amp; Leadership
+              </h2>
+            </div>
+            <Link
+              to="/about"
+              className="shrink-0 text-xs font-mono text-[#444444] hover:text-white flex items-center gap-1.5 transition-colors duration-200"
+            >
+              View timeline &amp; biography <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {EXPERIENCES.map((exp, idx) => (
+              <motion.div
+                key={exp.role + exp.org}
+                variants={fadeUp}
+                custom={idx * 0.08}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <GlintCard className="p-6 rounded-xl border border-[#141414] bg-[#080808] flex flex-col justify-between h-full group hover:border-[#222222] transition-colors duration-300">
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[11px] font-mono text-emerald-400/90 font-medium">
+                        {exp.period}
+                      </span>
+                      <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#121212] border border-[#1E1E1E] text-[#777777]">
+                        {exp.badge}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-white group-hover:text-emerald-300 transition-colors duration-200">
+                        {exp.role}
+                      </h3>
+                      <div className="text-xs font-mono text-[#888888] mt-0.5">
+                        {exp.org}
+                      </div>
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#666666] leading-relaxed mt-1">
+                      {exp.description}
+                    </p>
+                  </div>
+                </GlintCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ============================================================ */}

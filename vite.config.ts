@@ -29,7 +29,6 @@ export default defineConfig(({ mode }) => {
           manualChunks(id) {
             if (!id.includes("node_modules")) return;
             if (id.includes("framer-motion")) return "framer";
-            if (id.includes("swiper")) return "swiper";
             if (id.includes("radix-ui")) return "radix";
             if (id.includes("syntax-highlighter")) return "highlighter";
             if (id.includes("@tanstack")) return "query";

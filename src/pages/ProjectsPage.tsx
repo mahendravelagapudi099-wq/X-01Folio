@@ -38,7 +38,7 @@ export default function ProjectsPage() {
           name="description"
           content="Data science, machine learning, and engineering projects by Velagapudi Mahendra."
         />
-        <link rel="canonical" href="https://mahendraa.dev/projects" />
+        <link rel="canonical" href="https://mahendraa.dev/projects/" />
       </Helmet>
       {/* Header */}
       <div className="flex flex-col gap-4 mb-12 border-b border-border pb-8">

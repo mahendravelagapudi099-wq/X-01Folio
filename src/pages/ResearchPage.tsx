@@ -12,7 +12,7 @@ export default function ResearchPage() {
           name="description"
           content="Risk-Based Verification and Evidence-Grounded Self-Correction for AI Data-Analysis Agents — Research proposal by Velagapudi Mahendra."
         />
-        <link rel="canonical" href="https://mahendraa.dev/research" />
+        <link rel="canonical" href="https://mahendraa.dev/research/" />
       </Helmet>
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-8">

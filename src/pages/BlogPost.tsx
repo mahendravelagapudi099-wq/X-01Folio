@@ -107,11 +107,11 @@ export default function BlogPost() {
       <Helmet>
         <title>{post.title} | Velagapudi Mahendra</title>
         <meta name="description" content={post.excerpt || post.title} />
-        <link rel="canonical" href={`${SITE_ORIGIN}/blog/${post.slug}`} />
+        <link rel="canonical" href={`${SITE_ORIGIN}/blog/${post.slug}/`} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt || post.title} />
-        <meta property="og:url" content={`${SITE_ORIGIN}/blog/${post.slug}`} />
+        <meta property="og:url" content={`${SITE_ORIGIN}/blog/${post.slug}/`} />
         {post.feature_image && <meta property="og:image" content={post.feature_image} />}
         <meta name="twitter:card" content={post.feature_image ? 'summary_large_image' : 'summary'} />
         {isValidDate(post.published_at) && (
