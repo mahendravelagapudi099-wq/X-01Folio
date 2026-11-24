@@ -47,10 +47,10 @@ function useRotatingTypewriter(
   phrases: string[],
   typingSpeed = 38,
   deletingSpeed = 20,
-  pauseDuration = 2200
+  pauseDuration = 2400
 ) {
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState(phrases[0] || '');
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
@@ -182,14 +182,14 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
-  const HEADLINE_PHRASES = [
-    'B.Tech CSE (Data Science) student building data science and ML projects.',
-    'Former Data Science Intern at Codec Technologies building VectorMind.',
-    'Machine learning practitioner fine-tuning IndicBERTv2 for Telugu NLP.',
-    'Engineering verifiable AI agents & evidence-grounded data pipelines.',
+  const SUFFIX_PHRASES = [
+    'production-grade data science & ML systems.',
+    'fine-tuned Telugu NLP models with IndicBERTv2.',
+    'evidence-grounded, verifiable AI analysis agents.',
+    'VectorMind sales-analytics systems at Codec Tech.',
   ];
 
-  const displayedHeadline = useRotatingTypewriter(reduce ? [] : HEADLINE_PHRASES);
+  const displayedSuffix = useRotatingTypewriter(reduce ? [] : SUFFIX_PHRASES);
 
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-white selection:text-black">
@@ -234,7 +234,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* 2. Headline — continuously cycles and typewrites with blinking cursor */}
+          {/* 2. Headline — anchored prefix + dynamic rotating typewriter suffix */}
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -242,19 +242,14 @@ export default function Home() {
           >
             <h1
               className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.08] hero-gradient-text min-h-[3.3em] sm:min-h-[2.8em] lg:min-h-[2.4em]"
-              aria-label={HEADLINE_PHRASES[0]}
+              aria-label={`B.Tech CSE (Data Science) student building ${SUFFIX_PHRASES[0]}`}
             >
-              {reduce ? (
-                HEADLINE_PHRASES[0]
-              ) : (
-                <>
-                  <span>{displayedHeadline}</span>
-                  <span
-                    aria-hidden="true"
-                    className="inline-block w-[2px] h-[0.82em] bg-white/70 ml-1.5 align-middle animate-pulse"
-                  />
-                </>
-              )}
+              <span>B.Tech CSE (Data Science) student building </span>
+              <span className="text-white">{reduce ? SUFFIX_PHRASES[0] : displayedSuffix}</span>
+              <span
+                aria-hidden="true"
+                className="inline-block w-[2px] h-[0.82em] bg-white/70 ml-1.5 align-middle animate-pulse"
+              />
             </h1>
           </motion.div>
 
@@ -265,9 +260,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
           >
-            B.Tech CSE (Data Science) student at{' '}
+            Undergraduate at{' '}
             <strong className="text-white font-medium">Malla Reddy Engineering College and Management Sciences</strong>
-            {', '}Hyderabad. Former Data Science Intern at Codec Technologies (VectorMind). Working on an AI-agent research proposal and open-source ML systems.
+            {', '}Hyderabad (2023–2027). Former Data Science Intern at Codec Technologies (VectorMind). Working on an AI-agent research proposal and open-source ML systems.
           </motion.p>
 
           {/* 4. CTAs — primary + secondary + resume */}
