@@ -221,7 +221,10 @@ export default function Home() {
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
 
-        <div className="relative z-10 flex flex-col items-start gap-8 max-w-[820px]">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+
+        {/* LEFT column — existing content */}
+        <div className="flex flex-col items-start gap-8">
 
           {/* 1. Eyebrow — this is the ONLY eyebrow in the hero */}
           <motion.div
@@ -312,7 +315,62 @@ export default function Home() {
               </span>
             ))}
           </motion.div>
-        </div>
+        </div>{/* end left column */}
+
+        {/* RIGHT column — visual panel */}
+        <motion.div
+          className="hidden lg:flex flex-col gap-4 items-center justify-center h-full"
+          initial={reduce ? false : { opacity: 0, x: 32 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {/* ASCII art card */}
+          <div className="relative w-full rounded-xl overflow-hidden border border-[#1E1E1E] bg-[#040404] group">
+            {/* Terminal header bar */}
+            <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#1A1A1A] bg-[#080808]">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+              <span className="ml-2 text-[10px] font-mono text-[#444444]">mahendra.ascii — render</span>
+            </div>
+            <div className="relative overflow-hidden">
+              <img
+                src="/assets/hero-ascii.png"
+                alt="ASCII art portrait of Mahendra"
+                className="w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-[1.02] transition-transform"
+                style={{ imageRendering: 'pixelated' }}
+              />
+              {/* scanline overlay */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 4px)',
+                }}
+              />
+              {/* corner glyph */}
+              <span className="absolute bottom-2 right-3 text-[9px] font-mono text-[#2A2A2A] select-none">0x4D · v2026</span>
+            </div>
+          </div>
+
+          {/* Portrait photo card */}
+          <div className="relative w-[75%] rounded-2xl overflow-hidden border border-[#222222] shadow-[0_0_60px_rgba(255,255,255,0.03)] group">
+            <img
+              src="/assets/hero-portrait.jpg"
+              alt="Velagapudi Mahendra"
+              className="w-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ aspectRatio: '3/4' }}
+            />
+            {/* gradient overlay at bottom */}
+            <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-black/70 to-transparent" />
+            <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
+              <span className="text-[11px] font-mono text-[#888888]">Velagapudi Mahendra</span>
+              <span className="text-[10px] font-mono text-[#444444]">B.Tech CSE · 2026</span>
+            </div>
+          </div>
+        </motion.div>
+
+        </div>{/* end grid */}
 
         {/* Stats — anchored to bottom of hero, full-width divider */}
         <motion.div
