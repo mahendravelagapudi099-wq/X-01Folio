@@ -41,6 +41,51 @@ function CounterStat({ value, suffix = '', label }: { value: number; suffix?: st
 }
 
 /* ------------------------------------------------------------------ */
+/* Rotating Typewriter — continuously cycles through headline phrases */
+/* ------------------------------------------------------------------ */
+function useRotatingTypewriter(
+  phrases: string[],
+  typingSpeed = 38,
+  deletingSpeed = 20,
+  pauseDuration = 2200
+) {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    if (!phrases.length) return;
+    let timer: ReturnType<typeof setTimeout>;
+    const currentPhrase = phrases[phraseIndex] || '';
+
+    if (!isDeleting) {
+      if (displayedText.length < currentPhrase.length) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentPhrase.slice(0, displayedText.length + 1));
+        }, typingSpeed);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseDuration);
+      }
+    } else {
+      if (displayedText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentPhrase.slice(0, displayedText.length - 1));
+        }, deletingSpeed);
+      } else {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % phrases.length);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseDuration]);
+
+  return displayedText;
+}
+
+/* ------------------------------------------------------------------ */
 /* Shared motion variants (whileInView, no scroll listener)           */
 /* ------------------------------------------------------------------ */
 const fadeUp = {
@@ -137,7 +182,14 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
-  const headline = 'B.Tech CSE (Data Science) student building data science and ML projects.';
+  const HEADLINE_PHRASES = [
+    'B.Tech CSE (Data Science) student building data science and ML projects.',
+    'Former Data Science Intern at Codec Technologies building VectorMind.',
+    'Machine learning practitioner fine-tuning IndicBERTv2 for Telugu NLP.',
+    'Engineering verifiable AI agents & evidence-grounded data pipelines.',
+  ];
+
+  const displayedHeadline = useRotatingTypewriter(reduce ? [] : HEADLINE_PHRASES);
 
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-white selection:text-black">
@@ -182,14 +234,27 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* 2. Headline — direct render for instant LCP and SEO */}
+          {/* 2. Headline — continuously cycles and typewrites with blinking cursor */}
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.08] hero-gradient-text">
-              {headline}
+            <h1
+              className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.08] hero-gradient-text min-h-[3.3em] sm:min-h-[2.8em] lg:min-h-[2.4em]"
+              aria-label={HEADLINE_PHRASES[0]}
+            >
+              {reduce ? (
+                HEADLINE_PHRASES[0]
+              ) : (
+                <>
+                  <span>{displayedHeadline}</span>
+                  <span
+                    aria-hidden="true"
+                    className="inline-block w-[2px] h-[0.82em] bg-white/70 ml-1.5 align-middle animate-pulse"
+                  />
+                </>
+              )}
             </h1>
           </motion.div>
 
@@ -264,7 +329,7 @@ export default function Home() {
           </motion.div>
         </div>{/* end left column */}
 
-        {/* RIGHT column — pure ASCII portrait on black space */}
+        {/* RIGHT column — pure ASCII portrait on black space with black shadows */}
         <motion.div
           className="flex items-center justify-center lg:justify-end w-full"
           initial={reduce ? false : { opacity: 0, x: 24 }}
@@ -272,14 +337,36 @@ export default function Home() {
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] flex items-center justify-center">
+            {/* Ambient black shadow layer */}
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none rounded-full bg-black/90 blur-2xl -z-10"
+            />
+
             <img
               src="/ascii-portrait.png"
               alt="ASCII portrait of Mahendra"
-              className="w-full h-auto object-contain select-none pointer-events-none"
+              className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
               style={{
-                aspectRatio: '186 / 225',
+                aspectRatio: '850 / 1024',
                 mixBlendMode: 'screen',
               }}
+            />
+
+            {/* Bottom black shadow gradient to smoothly dissolve shirt edge */}
+            <div
+              aria-hidden
+              className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none"
+            />
+
+            {/* Side edge shadow fades */}
+            <div
+              aria-hidden
+              className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black to-transparent pointer-events-none"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-black to-transparent pointer-events-none"
             />
           </div>
         </motion.div>
