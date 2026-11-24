@@ -222,148 +222,148 @@ export default function Home() {
           {/* LEFT column */}
           <div className="flex flex-col items-start gap-4 sm:gap-5">
 
-          {/* 1. Eyebrow — this is the ONLY eyebrow in the hero */}
+            {/* 1. Eyebrow — this is the ONLY eyebrow in the hero */}
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0E0E0E] border border-[#1E1E1E] text-[11px] font-mono text-[#666666]">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" style={{ boxShadow: '0 0 6px rgba(52,211,153,0.6)' }} />
+                MREM B.Tech CSE · Hyderabad, India
+              </div>
+            </motion.div>
+
+            {/* 2. Headline — continuously cycles and typewrites with blinking cursor */}
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h1
+                className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.06] hero-gradient-text min-h-[3.25em]"
+                aria-label={HEADLINE_PHRASES[0]}
+              >
+                <span>{reduce ? HEADLINE_PHRASES[0] : displayedHeadline}</span>
+                <span
+                  aria-hidden="true"
+                  className="inline-block w-[3px] h-[0.8em] bg-white/70 ml-2 align-middle animate-pulse"
+                />
+              </h1>
+            </motion.div>
+
+            {/* 3. Sub-lead */}
+            <motion.p
+              className="text-base sm:text-lg text-[#7A7A7A] leading-relaxed max-w-[600px] mt-1"
+              initial={reduce ? false : { opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Undergraduate at{' '}
+              <strong className="text-white font-medium">Malla Reddy Engineering College and Management Sciences</strong>
+              {', '}Hyderabad (2023–2027). Former Data Science Intern at Codec Technologies (VectorMind). Working on an AI-agent research proposal and open-source ML systems.
+            </motion.p>
+
+            {/* 4. CTAs — primary + secondary + resume */}
+            <motion.div
+              className="flex flex-wrap items-center gap-3.5"
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-black text-sm font-semibold hover:bg-white/90 active:scale-[0.97] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              >
+                Explore Case Studies <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/research"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#222222] text-[#CCCCCC] text-sm font-medium hover:border-[#3A3A3A] hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
+              >
+                <BookOpen className="w-4 h-4 text-[#555555]" /> Research Proposal
+              </Link>
+              <a
+                href="/Velagapudi_Mahendra_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg border border-[#222222] text-xs font-mono text-[#888888] hover:border-[#3A3A3A] hover:text-white transition-all duration-200"
+              >
+                Resume (PDF) <ArrowUpRight className="w-3.5 h-3.5 text-[#555555]" />
+              </a>
+              <a
+                href="mailto:contact@mahendraa.dev"
+                className="text-sm font-mono text-[#444444] hover:text-[#AAAAAA] transition-colors duration-200 hidden sm:block"
+              >
+                contact@mahendraa.dev →
+              </a>
+            </motion.div>
+
+            {/* Skill chips — below CTAs, decorative */}
+            <motion.div
+              className="flex flex-wrap gap-2 pt-1"
+              initial={reduce ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.32 }}
+            >
+              {[
+                { icon: <Cpu className="w-3 h-3 text-emerald-500" />, label: 'Python · PyTorch' },
+                { icon: <ShieldCheck className="w-3 h-3 text-blue-400" />, label: 'scikit-learn' },
+                { icon: <Code2 className="w-3 h-3 text-neutral-500" />, label: 'PostgreSQL' },
+                { icon: <Sparkles className="w-3 h-3 text-amber-400" />, label: 'Streamlit' },
+                { icon: <Terminal className="w-3 h-3 text-neutral-500" />, label: 'TypeScript' },
+              ].map(({ icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0C0C0C] text-[#888888] border border-[#1A1A1A] hover:border-[#2E2E2E] hover:text-[#CCCCCC] transition-colors duration-200"
+                >
+                  {icon} {label}
+                </span>
+              ))}
+            </motion.div>
+          </div>{/* end left column */}
+
+          {/* RIGHT column — pure ASCII portrait on black space with black shadows */}
           <motion.div
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center justify-center lg:justify-end w-full"
+            initial={reduce ? false : { opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0E0E0E] border border-[#1E1E1E] text-[11px] font-mono text-[#666666]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" style={{ boxShadow: '0 0 6px rgba(52,211,153,0.6)' }} />
-              MREM B.Tech CSE · Hyderabad, India
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] flex items-center justify-center">
+              {/* Ambient black shadow layer */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none rounded-full bg-black/90 blur-2xl -z-10"
+              />
+
+              <img
+                src="/ascii-portrait.png"
+                alt="ASCII portrait of Mahendra"
+                className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
+                style={{
+                  aspectRatio: '850 / 1024',
+                  mixBlendMode: 'screen',
+                }}
+              />
+
+              {/* Bottom black shadow gradient to smoothly dissolve shirt edge */}
+              <div
+                aria-hidden
+                className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none"
+              />
+
+              {/* Side edge shadow fades */}
+              <div
+                aria-hidden
+                className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black to-transparent pointer-events-none"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-black to-transparent pointer-events-none"
+              />
             </div>
           </motion.div>
-
-          {/* 2. Headline — continuously cycles and typewrites with blinking cursor */}
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h1
-              className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] font-normal tracking-tight leading-[1.06] hero-gradient-text"
-              aria-label={HEADLINE_PHRASES[0]}
-            >
-              <span>{reduce ? HEADLINE_PHRASES[0] : displayedHeadline}</span>
-              <span
-                aria-hidden="true"
-                className="inline-block w-[3px] h-[0.8em] bg-white/70 ml-2 align-middle animate-pulse"
-              />
-            </h1>
-          </motion.div>
-
-          {/* 3. Sub-lead */}
-          <motion.p
-            className="text-base sm:text-lg text-[#7A7A7A] leading-relaxed max-w-[600px] mt-1"
-            initial={reduce ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Undergraduate at{' '}
-            <strong className="text-white font-medium">Malla Reddy Engineering College and Management Sciences</strong>
-            {', '}Hyderabad (2023–2027). Former Data Science Intern at Codec Technologies (VectorMind). Working on an AI-agent research proposal and open-source ML systems.
-          </motion.p>
-
-          {/* 4. CTAs — primary + secondary + resume */}
-          <motion.div
-            className="flex flex-wrap items-center gap-3.5"
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-black text-sm font-semibold hover:bg-white/90 active:scale-[0.97] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-            >
-              Explore Case Studies <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/research"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#222222] text-[#CCCCCC] text-sm font-medium hover:border-[#3A3A3A] hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
-            >
-              <BookOpen className="w-4 h-4 text-[#555555]" /> Research Proposal
-            </Link>
-            <a
-              href="/Velagapudi_Mahendra_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg border border-[#222222] text-xs font-mono text-[#888888] hover:border-[#3A3A3A] hover:text-white transition-all duration-200"
-            >
-              Resume (PDF) <ArrowUpRight className="w-3.5 h-3.5 text-[#555555]" />
-            </a>
-            <a
-              href="mailto:contact@mahendraa.dev"
-              className="text-sm font-mono text-[#444444] hover:text-[#AAAAAA] transition-colors duration-200 hidden sm:block"
-            >
-              contact@mahendraa.dev →
-            </a>
-          </motion.div>
-
-          {/* Skill chips — below CTAs, decorative */}
-          <motion.div
-            className="flex flex-wrap gap-2 pt-1"
-            initial={reduce ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.32 }}
-          >
-            {[
-              { icon: <Cpu className="w-3 h-3 text-emerald-500" />, label: 'Python · PyTorch' },
-              { icon: <ShieldCheck className="w-3 h-3 text-blue-400" />, label: 'scikit-learn' },
-              { icon: <Code2 className="w-3 h-3 text-neutral-500" />, label: 'PostgreSQL' },
-              { icon: <Sparkles className="w-3 h-3 text-amber-400" />, label: 'Streamlit' },
-              { icon: <Terminal className="w-3 h-3 text-neutral-500" />, label: 'TypeScript' },
-            ].map(({ icon, label }) => (
-              <span
-                key={label}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0C0C0C] text-[#888888] border border-[#1A1A1A] hover:border-[#2E2E2E] hover:text-[#CCCCCC] transition-colors duration-200"
-              >
-                {icon} {label}
-              </span>
-            ))}
-          </motion.div>
-        </div>{/* end left column */}
-
-        {/* RIGHT column — pure ASCII portrait on black space with black shadows */}
-        <motion.div
-          className="flex items-center justify-center lg:justify-end w-full"
-          initial={reduce ? false : { opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] flex items-center justify-center">
-            {/* Ambient black shadow layer */}
-            <div
-              aria-hidden
-              className="absolute inset-0 pointer-events-none rounded-full bg-black/90 blur-2xl -z-10"
-            />
-
-            <img
-              src="/ascii-portrait.png"
-              alt="ASCII portrait of Mahendra"
-              className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
-              style={{
-                aspectRatio: '850 / 1024',
-                mixBlendMode: 'screen',
-              }}
-            />
-
-            {/* Bottom black shadow gradient to smoothly dissolve shirt edge */}
-            <div
-              aria-hidden
-              className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none"
-            />
-
-            {/* Side edge shadow fades */}
-            <div
-              aria-hidden
-              className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black to-transparent pointer-events-none"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-black to-transparent pointer-events-none"
-            />
-          </div>
-        </motion.div>
 
         </div>{/* end grid */}
 
