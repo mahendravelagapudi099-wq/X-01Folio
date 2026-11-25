@@ -1,25 +1,7 @@
 import { FileText, AlertCircle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-/** Loading state */
-export const PostsLoading = ({ className = '' }: { className?: string }) => (
-  <div
-    role="status"
-    aria-label="Loading articles"
-    className={`space-y-4 ${className}`}
-  >
-    {[...Array(3)].map((_, i) => (
-      <div key={i} className="p-6 rounded border border-border bg-card/40 animate-pulse flex flex-col gap-3" aria-hidden="true">
-        <div className="h-3 w-28 rounded bg-muted" />
-        <div className="h-6 w-3/4 rounded bg-muted" />
-        <div className="h-4 w-full rounded bg-muted/60" />
-      </div>
-    ))}
-    <span className="sr-only">Loading articles…</span>
-  </div>
-);
-
-/** Error state */
+/** Error state (retained for route-level error fallback) */
 export const PostsError = ({
   onRetry,
   className = '',
@@ -27,7 +9,7 @@ export const PostsError = ({
   onRetry: () => void;
   className?: string;
 }) => (
-  <div role="alert" className={`p-8 rounded border border-border bg-card text-center font-sans ${className}`}>
+  <div role="alert" className={`p-8 rounded-lg border border-border bg-card text-center font-sans ${className}`}>
     <div className="mb-3 inline-flex rounded border border-destructive/30 bg-destructive/10 p-3">
       <AlertCircle className="h-5 w-5 text-destructive" />
     </div>
@@ -41,24 +23,49 @@ export const PostsError = ({
   </div>
 );
 
-/** Empty state */
-export const PostsEmpty = ({ className = '' }: { className?: string }) => (
-  <div className={`p-10 rounded border border-border bg-card text-center font-sans ${className}`}>
-    <div className="mb-3 inline-flex rounded border border-border bg-muted p-3">
+/** Empty state for no posts or no filter matches */
+export const PostsEmpty = ({
+  hasActiveFilters = false,
+  onResetFilters,
+  className = '',
+}: {
+  hasActiveFilters?: boolean;
+  onResetFilters?: () => void;
+  className?: string;
+}) => (
+  <div
+    role="status"
+    aria-live="polite"
+    className={`p-10 rounded-lg border border-border bg-card text-center font-sans ${className}`}
+  >
+    <div className="mb-3 inline-flex rounded border border-border bg-secondary p-3">
       <FileText className="h-5 w-5 text-foreground" />
     </div>
-    <h3 className="mb-2 font-sans text-xl font-bold text-foreground">No articles published yet</h3>
-    <p className="mx-auto max-w-md text-sm text-muted-foreground mb-4">
-      Articles will appear here in chronological order.
+    <h3 className="mb-2 font-sans text-xl font-semibold text-foreground">
+      {hasActiveFilters ? 'No matching articles' : 'No articles published yet'}
+    </h3>
+    <p className="mx-auto max-w-md text-sm text-muted-foreground mb-5">
+      {hasActiveFilters
+        ? 'No articles match your current tag or search filter.'
+        : 'Technical notes and case studies will appear here as they are published.'}
     </p>
-    <a
-      href="https://github.com/mahendravelagapudi099-wq"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-xs font-mono font-medium text-primary hover:underline"
-    >
-      Follow on GitHub &rarr;
-    </a>
+    {hasActiveFilters && onResetFilters ? (
+      <button
+        type="button"
+        onClick={onResetFilters}
+        className="inline-flex items-center gap-2 px-4 py-2 rounded border border-border bg-secondary hover:bg-accent text-xs font-mono uppercase tracking-wider text-foreground transition-colors"
+      >
+        Reset Filters
+      </button>
+    ) : (
+      <a
+        href="https://github.com/mahendravelagapudi099-wq"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs font-mono font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+      >
+        Follow on GitHub &rarr;
+      </a>
+    )}
   </div>
 );
-

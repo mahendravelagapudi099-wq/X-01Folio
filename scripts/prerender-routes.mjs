@@ -38,8 +38,9 @@ const ROUTES = [
   },
   {
     path: '/blog/',
-    title: 'Blog | Velagapudi Mahendra',
-    description: 'Deep dives and technical reflections on Telugu NLP, RAG architecture, air quality telemetry, reinforcement learning, and data science internships.',
+    title: 'Writings & Technical Notes | Velagapudi Mahendra',
+    description: 'Practical engineering notes, benchmarks, and case studies on Telugu NLP, RAG systems, data pipelines, and reinforcement learning.',
+    isBlogIndex: true,
   },
   {
     path: '/contact/',
@@ -151,6 +152,78 @@ for (const route of ROUTES) {
     /<meta\s+name="twitter:description"\s+content=".*?"\s*\/?>/s,
     `<meta name="twitter:description" content="${route.description}" />`
   );
+
+  // Blog-post specific SEO (og:type=article, absolute image, keywords, article:published_time, BlogPosting JSON-LD)
+  if (route.published_at) {
+    const absImage = route.feature_image
+      ? route.feature_image.startsWith('http')
+        ? route.feature_image
+        : `https://mahendraa.dev${route.feature_image.startsWith('/') ? '' : '/'}${route.feature_image}`
+      : 'https://mahendraa.dev/og-image.png';
+
+    html = html.replace(
+      /<meta\s+property="og:type"\s+content=".*?"\s*\/?>/s,
+      `<meta property="og:type" content="article" />\n  <meta property="article:published_time" content="${route.published_at}" />`
+    );
+    html = html.replace(
+      /<meta\s+property="og:image"\s+content=".*?"\s*\/?>/s,
+      `<meta property="og:image" content="${absImage}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:image"\s+content=".*?"\s*\/?>/s,
+      `<meta name="twitter:image" content="${absImage}" />`
+    );
+    if (Array.isArray(route.tags) && route.tags.length > 0) {
+      html = html.replace(
+        /<meta\s+name="keywords"\s+content=".*?"\s*\/?>/s,
+        `<meta name="keywords" content="${route.tags.join(', ')}" />`
+      );
+    }
+
+    const blogPostingLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: route.title.replace(/\s*\|\s*Velagapudi Mahendra$/, ''),
+      description: route.excerpt || route.description,
+      datePublished: route.published_at,
+      image: absImage,
+      author: {
+        '@type': 'Person',
+        name: 'Velagapudi Mahendra',
+        url: 'https://mahendraa.dev/',
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': fullUrl,
+      },
+    };
+    html = html.replace(
+      /<script type="application\/ld\+json">[\s\S]*?<\/script>/s,
+      `<script type="application/ld+json">\n${JSON.stringify(blogPostingLd, null, 2)}\n  </script>`
+    );
+  } else if (route.isBlogIndex) {
+    const blogPosts = fs.existsSync(path.join(__dirname, 'blog-routes.json'))
+      ? JSON.parse(fs.readFileSync(path.join(__dirname, 'blog-routes.json'), 'utf-8'))
+      : [];
+    const blogIndexLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'Writings & Technical Notes',
+      description: route.description,
+      url: fullUrl,
+      author: { '@type': 'Person', name: 'Velagapudi Mahendra', url: 'https://mahendraa.dev/' },
+      blogPost: blogPosts.map((p) => ({
+        '@type': 'BlogPosting',
+        headline: p.title.replace(/\s*\|\s*Velagapudi Mahendra$/, ''),
+        url: `https://mahendraa.dev${p.path}`,
+        datePublished: p.published_at,
+      })),
+    };
+    html = html.replace(
+      /<script type="application\/ld\+json">[\s\S]*?<\/script>/s,
+      `<script type="application/ld+json">\n${JSON.stringify(blogIndexLd, null, 2)}\n  </script>`
+    );
+  }
 
   // Determine output path (e.g. dist/projects/index.html)
   const routeRelPath = route.path.replace(/^\//, '').replace(/\/$/, '');

@@ -7,6 +7,10 @@ export interface BlogPostData {
   title: string;
   excerpt: string;
   feature_image: string | null;
+  feature_image_alt?: string | null;
+  repo_url?: string | null;
+  demo_url?: string | null;
+  docs_url?: string | null;
   published_at: string;
   featured: boolean;
   tags: string[];
@@ -38,7 +42,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "From May to June 2025, I worked as a remote Data Science Intern at Codec Technologies Pvt. Ltd. During this period, my primary responsibility was contributing to the development of VectorMind, an internal sales-analytics platform."
+        "content": "From May to June 2025, I worked as a remote Data Science Intern at Codec Technologies Pvt. Ltd. During this period, my primary responsibility was contributing to the development of VectorMind, an internal sales-analytics platform.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "From May to June 2025, I worked as a remote Data Science Intern at Codec Technologies Pvt. Ltd. During this period, my primary responsibility was contributing to the development of VectorMind, an internal sales-analytics platform."
+          }
+        ]
       },
       {
         "type": "heading",
@@ -47,16 +57,62 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "VectorMind was designed to help non-technical stakeholders interrogate enterprise sales datasets effortlessly. Its core functions include:"
+        "content": "VectorMind was designed to help non-technical stakeholders interrogate enterprise sales datasets effortlessly. Its core functions include:",
+        "inline": [
+          {
+            "type": "text",
+            "value": "VectorMind was designed to help non-technical stakeholders interrogate enterprise sales datasets effortlessly. Its core functions include:"
+          }
+        ]
       },
       {
-        "type": "text",
-        "content": "• Explaining sales trends across quarters • Generating future sales forecasts from historical patterns • Answering natural-language questions about commercial data • Visualizing breakdowns through an interactive Streamlit interface"
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Explaining sales trends across quarters"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Generating future sales forecasts from historical patterns"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Answering natural-language questions about commercial data"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Visualizing breakdowns through an interactive Streamlit interface"
+              }
+            ]
+          }
+        ]
       },
       {
         "type": "quote",
         "text": "VectorMind: a sales-analytics platform built during a Data Science internship at Codec Technologies Pvt. Ltd (May–Jun 2025, Remote). It explains trends, forecasts sales, and answers natural-language questions about sales data.",
-        "author": "Verified Project Scope"
+        "author": "Verified Project Scope",
+        "inline": [
+          {
+            "type": "text",
+            "value": "VectorMind: a sales-analytics platform built during a Data Science internship at Codec Technologies Pvt. Ltd (May–Jun 2025, Remote). It explains trends, forecasts sales, and answers natural-language questions about sales data."
+          }
+        ]
       },
       {
         "type": "heading",
@@ -65,7 +121,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "Working on VectorMind emphasized the importance of data sanity and conversational clarity. In commercial analytics, providing an accurate, grounded answer with clear boundaries is far more valuable than speculative forecasting."
+        "content": "Working on VectorMind emphasized the importance of data sanity and conversational clarity. In commercial analytics, providing an accurate, grounded answer with clear boundaries is far more valuable than speculative forecasting.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Working on VectorMind emphasized the importance of data sanity and conversational clarity. In commercial analytics, providing an accurate, grounded answer with clear boundaries is far more valuable than speculative forecasting."
+          }
+        ]
       }
     ]
   },
@@ -92,7 +154,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "In reinforcement learning, reward design directly determines policy convergence velocity and stability. Naive sparse rewards lead to sample inefficiency, while poorly tuned dense rewards can introduce unintended policy side effects."
+        "content": "In reinforcement learning, reward design directly determines policy convergence velocity and stability. Naive sparse rewards lead to sample inefficiency, while poorly tuned dense rewards can introduce unintended policy side effects.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "In reinforcement learning, reward design directly determines policy convergence velocity and stability. Naive sparse rewards lead to sample inefficiency, while poorly tuned dense rewards can introduce unintended policy side effects."
+          }
+        ]
       },
       {
         "type": "heading",
@@ -101,15 +169,61 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "Using Gymnasium's LunarLander-v3 and Stable-Baselines3 PPO, we evaluated four distinct reward formulations systematically:"
+        "content": "Using Gymnasium's LunarLander-v3 and Stable-Baselines3 PPO, we evaluated four distinct reward formulations systematically:",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Using Gymnasium's LunarLander-v3 and Stable-Baselines3 PPO, we evaluated four distinct reward formulations systematically:"
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Default environment reward"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Velocity-penalized descent shaping"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Angular-tilt stabilization bonus"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Distance-to-pad Euclidean discount shaping"
+              }
+            ]
+          }
+        ]
       },
       {
         "type": "text",
-        "content": "1. Default environment reward 2. Velocity-penalized descent shaping 3. Angular-tilt stabilization bonus 4. Distance-to-pad Euclidean discount shaping"
-      },
-      {
-        "type": "text",
-        "content": "To ensure scientific reproducibility, each formulation was trained over 1,000,000 timesteps across 3 fixed random seeds."
+        "content": "To ensure scientific reproducibility, each formulation was trained over 1,000,000 timesteps across 3 fixed random seeds.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "To ensure scientific reproducibility, each formulation was trained over 1,000,000 timesteps across 3 fixed random seeds."
+          }
+        ]
       },
       {
         "type": "code",
@@ -123,11 +237,39 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "All training logs and evaluation benchmarks are covered by 51 passing unit and regression tests, verifying deterministic seed execution and rollout consistency."
+        "content": "All training logs and evaluation benchmarks are covered by 51 passing unit and regression tests, verifying deterministic seed execution and rollout consistency.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "All training logs and evaluation benchmarks are covered by 51 passing unit and regression tests, verifying deterministic seed execution and rollout consistency."
+          }
+        ]
       },
       {
         "type": "text",
-        "content": "Check the source code and experiment logs: https://github.com/mahendravelagapudi099-wq/lunar-lander-reward-shaping-lab"
+        "content": "Check the source code and experiment logs:\nhttps://github.com/mahendravelagapudi099-wq/lunar-lander-reward-shaping-lab",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Check the source code and experiment logs:\n"
+          },
+          {
+            "type": "link",
+            "href": "https://github.com/mahendravelagapudi099-wq/lunar-lander-reward-shaping-lab",
+            "children": [
+              {
+                "type": "link",
+                "href": "https://github.com/mahendravelagapudi099-wq/lunar-lander-reward-shaping-lab",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "https://github.com/mahendravelagapudi099-wq/lunar-lander-reward-shaping-lab"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -154,7 +296,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "Hyderabad is one of India's fastest-growing metropolitan areas. Tracking particulate matter (PM2.5, PM10) and gaseous pollutants across diverse sensor locations is essential for understanding regional air quality dynamics."
+        "content": "Hyderabad is one of India's fastest-growing metropolitan areas. Tracking particulate matter (PM2.5, PM10) and gaseous pollutants across diverse sensor locations is essential for understanding regional air quality dynamics.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Hyderabad is one of India's fastest-growing metropolitan areas. Tracking particulate matter (PM2.5, PM10) and gaseous pollutants across diverse sensor locations is essential for understanding regional air quality dynamics."
+          }
+        ]
       },
       {
         "type": "heading",
@@ -163,7 +311,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "The data pipeline ingests live measurements from the OpenAQ API covering 21 monitoring stations and 273 sensors across Hyderabad. Cleaned readings are stored in a relational PostgreSQL schema, currently indexing 10,262 records."
+        "content": "The data pipeline ingests live measurements from the OpenAQ API covering 21 monitoring stations and 273 sensors across Hyderabad. Cleaned readings are stored in a relational PostgreSQL schema, currently indexing 10,262 records.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "The data pipeline ingests live measurements from the OpenAQ API covering 21 monitoring stations and 273 sensors across Hyderabad. Cleaned readings are stored in a relational PostgreSQL schema, currently indexing 10,262 records."
+          }
+        ]
       },
       {
         "type": "code",
@@ -177,11 +331,39 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "Using a rolling-MAD statistical filter, 148 anomalous pollution spikes were detected and isolated. The live dashboard is built with Streamlit for station-level temporal filtering, backed by 27 passing pytest unit tests."
+        "content": "Using a rolling-MAD statistical filter, 148 anomalous pollution spikes were detected and isolated. The live dashboard is built with Streamlit for station-level temporal filtering, backed by 27 passing pytest unit tests.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Using a rolling-MAD statistical filter, 148 anomalous pollution spikes were detected and isolated. The live dashboard is built with Streamlit for station-level temporal filtering, backed by 27 passing pytest unit tests."
+          }
+        ]
       },
       {
         "type": "text",
-        "content": "Repository and reproducible pipeline scripts: https://github.com/mahendravelagapudi099-wq/hyderabad-air-quality-monitor"
+        "content": "Repository and reproducible pipeline scripts:\nhttps://github.com/mahendravelagapudi099-wq/hyderabad-air-quality-monitor",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Repository and reproducible pipeline scripts:\n"
+          },
+          {
+            "type": "link",
+            "href": "https://github.com/mahendravelagapudi099-wq/hyderabad-air-quality-monitor",
+            "children": [
+              {
+                "type": "link",
+                "href": "https://github.com/mahendravelagapudi099-wq/hyderabad-air-quality-monitor",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "https://github.com/mahendravelagapudi099-wq/hyderabad-air-quality-monitor"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -208,7 +390,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "Real-world technical documents are rarely cleanly formatted text files. They contain multi-column layouts, tables, headers, and inconsistent formatting that cause standard text extractors to produce fragmented and noisy chunks."
+        "content": "Real-world technical documents are rarely cleanly formatted text files. They contain multi-column layouts, tables, headers, and inconsistent formatting that cause standard text extractors to produce fragmented and noisy chunks.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Real-world technical documents are rarely cleanly formatted text files. They contain multi-column layouts, tables, headers, and inconsistent formatting that cause standard text extractors to produce fragmented and noisy chunks."
+          }
+        ]
       },
       {
         "type": "heading",
@@ -217,7 +405,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "For this project, the ingestion corpus consisted of 18 technical PDFs containing 535 pages in total. Through heuristic structure extraction and boundary-aware chunking, the documents were partitioned into 1,629 clean text chunks and indexed into ChromaDB."
+        "content": "For this project, the ingestion corpus consisted of 18 technical PDFs containing 535 pages in total. Through heuristic structure extraction and boundary-aware chunking, the documents were partitioned into 1,629 clean text chunks and indexed into ChromaDB.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "For this project, the ingestion corpus consisted of 18 technical PDFs containing 535 pages in total. Through heuristic structure extraction and boundary-aware chunking, the documents were partitioned into 1,629 clean text chunks and indexed into ChromaDB."
+          }
+        ]
       },
       {
         "type": "code",
@@ -231,15 +425,69 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "Retrieval accuracy was rigorously measured across a standardized evaluation set:"
+        "content": "Retrieval accuracy was rigorously measured across a standardized evaluation set:",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Retrieval accuracy was rigorously measured across a standardized evaluation set:"
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Hit Rate@5: 0.926 (92.6% of queries found relevant context within top 5 candidates)"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Mean Reciprocal Rank (MRR): 0.893"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Test verification: 174 automated pytest tests passing"
+              }
+            ]
+          }
+        ]
       },
       {
         "type": "text",
-        "content": "• Hit Rate@5: 0.926 (92.6% of queries found relevant context within top 5 candidates) • Mean Reciprocal Rank (MRR): 0.893 • Test verification: 174 automated pytest tests passing"
-      },
-      {
-        "type": "text",
-        "content": "The complete pipeline implementation, evaluation harness, and Streamlit user interface are open-source: https://github.com/mahendravelagapudi099-wq/messy-pdf-rag-chatbot"
+        "content": "The complete pipeline implementation, evaluation harness, and Streamlit user interface are open-source:\nhttps://github.com/mahendravelagapudi099-wq/messy-pdf-rag-chatbot",
+        "inline": [
+          {
+            "type": "text",
+            "value": "The complete pipeline implementation, evaluation harness, and Streamlit user interface are open-source:\n"
+          },
+          {
+            "type": "link",
+            "href": "https://github.com/mahendravelagapudi099-wq/messy-pdf-rag-chatbot",
+            "children": [
+              {
+                "type": "link",
+                "href": "https://github.com/mahendravelagapudi099-wq/messy-pdf-rag-chatbot",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "https://github.com/mahendravelagapudi099-wq/messy-pdf-rag-chatbot"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -266,7 +514,13 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "Telugu is a low-resource Dravidian language spoken by tens of millions of people, yet high-quality NLP benchmarks for sentiment classification remain limited. Standard English or generic multilingual models often struggle with Telugu morphological complexity, agglutination, and script nuances without targeted fine-tuning."
+        "content": "Telugu is a low-resource Dravidian language spoken by tens of millions of people, yet high-quality NLP benchmarks for sentiment classification remain limited. Standard English or generic multilingual models often struggle with Telugu morphological complexity, agglutination, and script nuances without targeted fine-tuning.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Telugu is a low-resource Dravidian language spoken by tens of millions of people, yet high-quality NLP benchmarks for sentiment classification remain limited. Standard English or generic multilingual models often struggle with Telugu morphological complexity, agglutination, and script nuances without targeted fine-tuning."
+          }
+        ]
       },
       {
         "type": "heading",
@@ -275,11 +529,51 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "In this project, we worked with a curated dataset of 35,142 Telugu sentences labeled across three sentiment classes: Positive, Neutral, and Negative. To evaluate modern transformer architectures systematically, we benchmarked:"
+        "content": "In this project, we worked with a curated dataset of 35,142 Telugu sentences labeled across three sentiment classes: Positive, Neutral, and Negative. To evaluate modern transformer architectures systematically, we benchmarked:",
+        "inline": [
+          {
+            "type": "text",
+            "value": "In this project, we worked with a curated dataset of 35,142 Telugu sentences labeled across three sentiment classes: Positive, Neutral, and Negative. To evaluate modern transformer architectures systematically, we benchmarked:"
+          }
+        ]
       },
       {
-        "type": "text",
-        "content": "• IndicBERTv2 (domain-pretrained on Indic languages) • MuRIL (Multilingual Representations for Indian Languages) • XLM-RoBERTa (general multilingual baseline) • Baseline: TF-IDF with Logistic Regression"
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "IndicBERTv2 (domain-pretrained on Indic languages)"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "MuRIL (Multilingual Representations for Indian Languages)"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "XLM-RoBERTa (general multilingual baseline)"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Baseline: TF-IDF with Logistic Regression"
+              }
+            ]
+          }
+        ]
       },
       {
         "type": "code",
@@ -293,24 +587,90 @@ export const GENUINE_POSTS: BlogPostData[] = [
       },
       {
         "type": "text",
-        "content": "The TF-IDF baseline achieved a macro-F1 score of 0.648. After fine-tuning on the 35,142 sentences, IndicBERTv2 delivered the highest performance:"
+        "content": "The TF-IDF baseline achieved a macro-F1 score of 0.648. After fine-tuning on the 35,142 sentences, IndicBERTv2 delivered the highest performance:",
+        "inline": [
+          {
+            "type": "text",
+            "value": "The TF-IDF baseline achieved a macro-F1 score of 0.648. After fine-tuning on the 35,142 sentences, IndicBERTv2 delivered the highest performance:"
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "IndicBERTv2 Macro-F1: 0.733"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Performance delta: +8.5 points improvement over baseline"
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Statistical significance: p < 0.001"
+              }
+            ]
+          }
+        ]
       },
       {
         "type": "text",
-        "content": "• IndicBERTv2 Macro-F1: 0.733 • Performance delta: +8.5 points improvement over baseline • Statistical significance: p < 0.001"
-      },
-      {
-        "type": "text",
-        "content": "A local interactive demonstration was built using Gradio for sentence-level inference testing."
+        "content": "A local interactive demonstration was built using Gradio for sentence-level inference testing.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "A local interactive demonstration was built using Gradio for sentence-level inference testing."
+          }
+        ]
       },
       {
         "type": "quote",
         "text": "IndicBERTv2 achieved a macro-F1 of 0.733 against the 0.648 TF-IDF baseline (+8.5 points, p < 0.001) across 35,142 sentences.",
-        "author": "Project Evaluation Benchmark"
+        "author": "Project Evaluation Benchmark",
+        "inline": [
+          {
+            "type": "text",
+            "value": "IndicBERTv2 achieved a macro-F1 of 0.733 against the 0.648 TF-IDF baseline (+8.5 points, p < 0.001) across 35,142 sentences."
+          }
+        ]
       },
       {
         "type": "text",
-        "content": "The code, training configurations, and local demo scripts are available in the public repository: https://github.com/mahendravelagapudi099-wq/telugu-text-classifier"
+        "content": "The code, training configurations, and local demo scripts are available in the public repository:\nhttps://github.com/mahendravelagapudi099-wq/telugu-text-classifier",
+        "inline": [
+          {
+            "type": "text",
+            "value": "The code, training configurations, and local demo scripts are available in the public repository:\n"
+          },
+          {
+            "type": "link",
+            "href": "https://github.com/mahendravelagapudi099-wq/telugu-text-classifier",
+            "children": [
+              {
+                "type": "link",
+                "href": "https://github.com/mahendravelagapudi099-wq/telugu-text-classifier",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "https://github.com/mahendravelagapudi099-wq/telugu-text-classifier"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   }

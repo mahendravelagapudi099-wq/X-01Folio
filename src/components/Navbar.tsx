@@ -61,7 +61,7 @@ export default function Navbar() {
           </a>
           <Link
             to="/contact"
-            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FFFFFF] text-[#000000] font-sans text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-all duration-300 ease-base"
+            className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#FFFFFF] text-[#000000] font-sans text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-all duration-300 ease-base"
           >
             Inquire
           </Link>

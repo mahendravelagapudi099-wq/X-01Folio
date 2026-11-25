@@ -8,6 +8,10 @@ export interface PostMeta {
   title: string;
   excerpt: string | null;
   feature_image: string | null;
+  feature_image_alt?: string | null;
+  repo_url?: string | null;
+  demo_url?: string | null;
+  docs_url?: string | null;
   published_at: string | null;
   featured: boolean | null;
   tags: string[] | null;
