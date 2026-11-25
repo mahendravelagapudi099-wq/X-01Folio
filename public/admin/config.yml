@@ -1,0 +1,59 @@
+backend:
+  name: github
+  repo: mahendravelagapudi099-wq/X-01Folio
+  branch: main
+
+media_folder: public/assets/blog
+public_folder: /assets/blog
+
+collections:
+  - name: blog
+    label: Blog Posts
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title}}"
+    sortable_fields:
+      fields: ["published_at", "title"]
+      default:
+        field: published_at
+        direction: descending
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: URL Slug
+        name: slug
+        widget: string
+        hint: "Lowercase words separated by hyphens (e.g. my-new-post)"
+      - label: Excerpt
+        name: excerpt
+        widget: text
+        hint: "1-2 sentence summary shown on /blog/ and in SEO meta description"
+      - label: Published Date
+        name: published_at
+        widget: datetime
+        format: "YYYY-MM-DDTHH:mm:ss.000[Z]"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+      - label: Featured Post
+        name: featured
+        widget: boolean
+        default: false
+      - label: Reading Time
+        name: reading_time
+        widget: string
+        default: "4 min read"
+      - label: Tags
+        name: tags
+        widget: list
+        default: ["ML"]
+      - label: Feature Image
+        name: feature_image
+        widget: image
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
