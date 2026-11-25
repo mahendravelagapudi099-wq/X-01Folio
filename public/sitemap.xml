@@ -81,28 +81,39 @@
 
   <!-- Verified Blog Posts -->
   <url>
-    <loc>https://mahendraa.dev/blog/telugu-text-classification-indicbertv2/</loc>
+    <loc>https://mahendraa.dev/blog/rolling-mad-anomaly-detection-pandas/</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mahendraa.dev/blog/rag-chatbot-over-messy-pdfs/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mahendraa.dev/blog/hyderabad-air-quality-monitor-openaq/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mahendraa.dev/blog/ppo-reward-shaping-lunar-lander/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mahendraa.dev/blog/data-science-internship-vectormind/</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mahendraa.dev/blog/ppo-reward-shaping-lunar-lander/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mahendraa.dev/blog/hyderabad-air-quality-monitor-openaq/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mahendraa.dev/blog/rag-chatbot-over-messy-pdfs/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mahendraa.dev/blog/telugu-text-classification-indicbertv2/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

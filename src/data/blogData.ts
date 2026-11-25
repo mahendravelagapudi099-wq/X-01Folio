@@ -20,6 +20,387 @@ export interface BlogPostData {
 
 export const GENUINE_POSTS: BlogPostData[] = [
   {
+    "id": "post-6",
+    "slug": "rolling-mad-anomaly-detection-pandas",
+    "title": "Robust Anomaly Detection with Rolling MAD in Pandas",
+    "excerpt": "Why a rolling median and MAD beat a plain z-score on noisy sensor streams, with a short pandas implementation.",
+    "feature_image": null,
+    "published_at": "2026-11-25T10:27:00.000Z",
+    "featured": false,
+    "tags": [
+      "ML",
+      "Data Science",
+      "Anomaly Detection",
+      "Python"
+    ],
+    "reading_time": "3 min read",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "Sensor data is messy. Stations drop out, readings spike, and a single bad value can distort the statistics you use to detect bad values. A rolling median with MAD (median absolute deviation) avoids that problem.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Sensor data is messy. Stations drop out, readings spike, and a single bad value can distort the statistics you use to detect bad values. A rolling median with MAD (median absolute deviation) avoids that problem."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Why plain z-scores fail"
+      },
+      {
+        "type": "text",
+        "content": "A z-score measures distance from the mean in units of standard deviation. Both the mean and the standard deviation are pulled by the outliers you are trying to find, so a large spike can inflate the spread enough to hide itself.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "A z-score measures distance from the mean in units of standard deviation. Both the mean and the standard deviation are pulled by the outliers you are trying to find, so a large spike can inflate the spread enough to hide itself."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "content": "Robust statistics handle this differently:",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Robust statistics handle this differently:"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "headers": [
+          [
+            {
+              "type": "text",
+              "value": "Method"
+            }
+          ],
+          [
+            {
+              "type": "text",
+              "value": "Centre"
+            }
+          ],
+          [
+            {
+              "type": "text",
+              "value": "Spread"
+            }
+          ],
+          [
+            {
+              "type": "text",
+              "value": "Breakdown point"
+            }
+          ]
+        ],
+        "rows": [
+          [
+            [
+              {
+                "type": "text",
+                "value": "Z-score"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "mean"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "standard deviation"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "0%"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "type": "text",
+                "value": "IQR fences"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "median"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "interquartile range"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "25%"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "type": "text",
+                "value": "Rolling MAD"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "rolling median"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "median absolute deviation"
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "50%"
+              }
+            ]
+          ]
+        ]
+      },
+      {
+        "type": "text",
+        "content": "The breakdown point is the share of bad data an estimator tolerates before it fails. Up to half of the values in a window can be corrupted before the median and MAD break down.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "The breakdown point is the share of bad data an estimator tolerates before it fails. Up to half of the values in a window can be corrupted before the median and MAD break down."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The rolling MAD idea"
+      },
+      {
+        "type": "text",
+        "content": "For each point, look at a trailing window of recent values and compute:",
+        "inline": [
+          {
+            "type": "text",
+            "value": "For each point, look at a trailing window of recent values and compute:"
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "The median of the window."
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "The median of the absolute deviations from that median (the MAD)."
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "A robust score for the new value."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "The score"
+      },
+      {
+        "type": "text",
+        "content": "The modified z-score is 0.6745 * (x - median) / MAD. The constant 0.6745 makes the score comparable to an ordinary z-score when the data is roughly normal. A common cutoff is an absolute score above 3.5.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "The modified z-score is "
+          },
+          {
+            "type": "code",
+            "value": "0.6745 * (x - median) / MAD"
+          },
+          {
+            "type": "text",
+            "value": ". The constant 0.6745 makes the score comparable to an ordinary z-score when the data is roughly normal. A common cutoff is an absolute score above 3.5."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Implementation"
+      },
+      {
+        "type": "code",
+        "language": "python",
+        "filename": "rolling_mad.py",
+        "code": "import numpy as np\nimport pandas as pd\n\n\ndef rolling_mad_anomalies(\n    series: pd.Series,\n    window: int = 48,\n    threshold: float = 3.5,\n) -> pd.DataFrame:\n    \"\"\"Flag points whose robust z-score exceeds the threshold.\"\"\"\n    min_periods = window // 2\n    median = series.rolling(window, min_periods=min_periods).median()\n    abs_dev = (series - median).abs()\n    mad = abs_dev.rolling(window, min_periods=min_periods).median()\n\n    robust_z = 0.6745 * (series - median) / mad.replace(0, np.nan)\n\n    return pd.DataFrame({\n        \"value\": series,\n        \"median\": median,\n        \"robust_z\": robust_z,\n        \"is_anomaly\": robust_z.abs() > threshold,\n    })"
+      },
+      {
+        "type": "callout",
+        "variant": "note",
+        "inline": [
+          {
+            "type": "text",
+            "value": "This is the fast approximation. It takes the median of each point's deviation from the rolling median at that moment. An exact MAD recomputes deviations inside every window with "
+          },
+          {
+            "type": "code",
+            "value": "rolling.apply"
+          },
+          {
+            "type": "text",
+            "value": ", which is slower and rarely changes the result for monitoring work."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Trying it out"
+      },
+      {
+        "type": "text",
+        "content": "Generate hourly readings with one injected spike and run the detector. See the pandas rolling docs for the window options.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Generate hourly readings with one injected spike and run the detector. See the "
+          },
+          {
+            "type": "link",
+            "href": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rolling.html",
+            "children": [
+              {
+                "type": "text",
+                "value": "pandas rolling docs"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "value": " for the window options."
+          }
+        ]
+      },
+      {
+        "type": "code",
+        "language": "python",
+        "filename": "demo.py",
+        "code": "rng = np.random.default_rng(42)\nindex = pd.date_range(\"2026-01-01\", periods=500, freq=\"h\")\nreadings = pd.Series(60 + rng.normal(0, 5, 500), index=index)\nreadings.iloc[250] += 80  # injected spike\n\nresult = rolling_mad_anomalies(readings)\nprint(result[result[\"is_anomaly\"]])"
+      },
+      {
+        "type": "text",
+        "content": "The spike at position 250 gets a score far above the threshold, while the median barely moves.",
+        "inline": [
+          {
+            "type": "text",
+            "value": "The spike at position 250 gets a score far above the threshold, while the median barely moves."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Where it breaks"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Strong daily cycles inflate the score, because normal peaks look unusual against a flat median."
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Short windows chase slow drifts and stop flagging real changes."
+              }
+            ]
+          },
+          {
+            "inline": [
+              {
+                "type": "text",
+                "value": "Very low-variance stretches can make the MAD close to zero and the score explode."
+              }
+            ],
+            "sublist": {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                {
+                  "inline": [
+                    {
+                      "type": "text",
+                      "value": "Guard against it with a minimum MAD floor."
+                    }
+                  ]
+                },
+                {
+                  "inline": [
+                    {
+                      "type": "text",
+                      "value": "Or ignore points where the MAD is zero, as the code above does."
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "variant": "warning",
+        "inline": [
+          {
+            "type": "text",
+            "value": "Remove seasonality before scoring. For hourly data, subtract the hour-of-day median first, then run the detector on the residuals. Otherwise you will flag every morning rush hour."
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "post-5",
     "slug": "data-science-internship-vectormind",
     "title": "Building VectorMind During My Data Science Internship at Codec Technologies",

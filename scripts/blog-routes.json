@@ -1,5 +1,19 @@
 [
   {
+    "path": "/blog/rolling-mad-anomaly-detection-pandas/",
+    "title": "Robust Anomaly Detection with Rolling MAD in Pandas | Velagapudi Mahendra",
+    "description": "Why a rolling median and MAD beat a plain z-score on noisy sensor streams, with a short pandas implementation.",
+    "excerpt": "Why a rolling median and MAD beat a plain z-score on noisy sensor streams, with a short pandas implementation.",
+    "feature_image": null,
+    "published_at": "2026-11-25T10:27:00.000Z",
+    "tags": [
+      "ML",
+      "Data Science",
+      "Anomaly Detection",
+      "Python"
+    ]
+  },
+  {
     "path": "/blog/data-science-internship-vectormind/",
     "title": "Building VectorMind During My Data Science Internship at Codec Technologies | Velagapudi Mahendra",
     "description": "Reflections on developing a natural-language sales analytics and forecasting platform during a remote Data Science internship.",

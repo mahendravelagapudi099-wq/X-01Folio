@@ -452,9 +452,10 @@ fs.writeFileSync(outRoutesPath, JSON.stringify(blogRoutes, null, 2), 'utf-8');
 // Update public/sitemap.xml Blog Articles section
 if (fs.existsSync(sitemapPath)) {
   const sitemap = fs.readFileSync(sitemapPath, 'utf-8');
-  const marker = '  <!-- Blog Articles -->';
-  const markerIdx = sitemap.indexOf(marker);
-  if (markerIdx !== -1) {
+  const markers = ['  <!-- Verified Blog Posts -->', '  <!-- Blog Articles -->'];
+  const marker = markers.find((m) => sitemap.includes(m));
+  const markerIdx = marker ? sitemap.indexOf(marker) : -1;
+  if (marker && markerIdx !== -1) {
     const blogXmlEntries = finalPosts
       .map((p) => {
         const date = String(p.published_at).slice(0, 10);
