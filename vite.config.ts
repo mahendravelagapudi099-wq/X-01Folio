@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
             if (!id.includes("node_modules")) return;
             if (id.includes("framer-motion")) return "framer";
             if (id.includes("radix-ui")) return "radix";
-            if (id.includes("syntax-highlighter")) return "highlighter";
+            if (id.includes("syntax-highlighter") || id.includes("refractor") || id.includes("prismjs")) return "highlighter";
             if (id.includes("@tanstack")) return "query";
             if (id.includes("lucide-react")) return "icons";
             return "vendor";

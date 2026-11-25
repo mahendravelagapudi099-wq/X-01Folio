@@ -185,6 +185,33 @@ export default function ProjectDetail() {
           </div>
         </section>
 
+        {/* Optional Evaluation & Benchmark Gallery */}
+        {project.gallery && project.gallery.length > 0 && (
+          <section className="border-b border-border pb-10">
+            <h2 className="text-2xl font-sans font-bold text-foreground mb-4">
+              Evaluation Plots &amp; Diagnostics
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {project.gallery.map((item, idx) => (
+                <figure
+                  key={idx}
+                  className="rounded-lg border border-border overflow-hidden bg-card flex flex-col justify-between"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-auto object-contain bg-black/40 p-2"
+                    loading="lazy"
+                  />
+                  <figcaption className="p-3 text-xs font-mono text-muted-foreground border-t border-border bg-background/60">
+                    {item.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Section 3: Tech Stack & System Specifications */}
         <section className="border-b border-border pb-10">
           <h2 className="text-2xl font-sans font-bold text-foreground mb-4">

@@ -16,6 +16,7 @@ export interface Project {
   featured: boolean;
   image: string | null;
   imageAlt: string;
+  gallery?: { src: string; alt: string; caption: string }[];
   date: string;
   role: string;
 }
@@ -49,6 +50,28 @@ export const PROJECTS: Project[] = [
     featured: true,
     image: '/assets/project-01-telugu.webp',
     imageAlt: 'Telugu text classifier training and evaluation results',
+    gallery: [
+      {
+        src: '/assets/telugu-model-comparison.png',
+        alt: 'Macro-F1 comparison across IndicBERTv2, MuRIL, XLM-RoBERTa, and TF-IDF',
+        caption: 'Model comparison: IndicBERTv2 (0.733 Macro-F1) vs MuRIL, XLM-RoBERTa, and TF-IDF (0.648)',
+      },
+      {
+        src: '/assets/telugu-per-class-f1.png',
+        alt: 'Per-class F1 scores across positive, neutral, and negative Telugu sentiment',
+        caption: 'Per-class F1 breakdown across Positive, Neutral, and Negative classes',
+      },
+      {
+        src: '/assets/telugu-error-taxonomy.png',
+        alt: 'Error taxonomy and misclassification diagnostics',
+        caption: 'Error taxonomy analyzing sarcasm, code-mixed Telugu, and ambiguous neutral spans',
+      },
+      {
+        src: '/assets/telugu-class-distribution.png',
+        alt: 'Dataset class distribution across 35,142 Telugu sentences',
+        caption: 'Class distribution across 35,142 annotated Telugu sentences',
+      },
+    ],
     date: '2025',
     role: 'ML Engineer',
   },

@@ -57,6 +57,57 @@ export default function ResearchPage() {
         </p>
       </section>
 
+      {/* 3-Stage Verification Architecture */}
+      <section className="mb-12">
+        <h2 className="text-xl font-sans font-bold text-foreground mb-4">
+          Proposed 3-Stage Verification Architecture
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-5 rounded-lg border border-border bg-card flex flex-col gap-2">
+            <span className="text-xs font-mono text-primary font-semibold">[01] Pre-Execution Gate</span>
+            <h3 className="text-base font-bold text-foreground">Risk-Based AST Inspection</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Classify generated SQL/Python tool calls by side-effect risk before sandbox execution to prevent destructive mutations or schema leaks.
+            </p>
+          </div>
+          <div className="p-5 rounded-lg border border-border bg-card flex flex-col gap-2">
+            <span className="text-xs font-mono text-primary font-semibold">[02] Evidence Grounding</span>
+            <h3 className="text-base font-bold text-foreground">Trace-Backed Claim Binding</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Require every numerical claim in the final narrative to cite exact row slices, aggregate query hashes, and execution traces.
+            </p>
+          </div>
+          <div className="p-5 rounded-lg border border-border bg-card flex flex-col gap-2">
+            <span className="text-xs font-mono text-primary font-semibold">[03] Self-Correction</span>
+            <h3 className="text-base font-bold text-foreground">Targeted Counterexample Repair</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              When trace verification fails or metrics diverge, feed the exact discrepancy back to regenerate only the failing analysis step.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Planned Evaluation Protocol */}
+      <section className="mb-12">
+        <h2 className="text-xl font-sans font-bold text-foreground mb-4">
+          Planned Evaluation Protocol
+        </h2>
+        <div className="p-5 rounded-lg border border-border bg-card space-y-3 text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border/60 pb-2.5">
+            <span className="font-mono text-foreground font-medium">Primary Metrics</span>
+            <span>Unsupported Claim Rate, Execution Safety Pass Rate, Correction Convergence</span>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border/60 pb-2.5">
+            <span className="font-mono text-foreground font-medium">Baselines</span>
+            <span>Unverified ReAct Agent vs. Post-Hoc Self-Critique vs. Proposed Risk-Gated Loop</span>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
+            <span className="font-mono text-foreground font-medium">Target Benchmarks</span>
+            <span>Multi-table analytical SQL &amp; Pandas data-analysis tasks with injected edge traps</span>
+          </div>
+        </div>
+      </section>
+
       {/* Status & Scope Notice */}
       <section className="space-y-6 text-foreground leading-relaxed text-sm">
         <div className="p-5 rounded border border-border bg-card">
